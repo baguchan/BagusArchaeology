@@ -1,0 +1,34 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "name": "minecraft:air"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "bagus_archeology:studded_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "bagus_archeology:studded_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "bagus_archeology:studded_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "bagus_archeology:studded_boots"
+        }
+      ]
+    }
+  ]
+}

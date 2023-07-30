@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bagus_archeology:item/studded_chestplate",
+    "layer1": "bagus_archeology:item/studded_chestplate_overlay"
+  }
+}
