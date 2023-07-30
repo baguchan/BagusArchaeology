@@ -18,7 +18,9 @@ public class ModBlockEntitys {
             ModBlocks.SKELETON_WOLF_HEAD.get(),
             ModBlocks.SKELETON_WOLF_HEAD_WALL.get(),
             ModBlocks.WITHER_SKELETON_WOLF_HEAD.get(),
-            ModBlocks.WITHER_SKELETON_WOLF_HEAD_WALL.get())));
+            ModBlocks.WITHER_SKELETON_WOLF_HEAD_WALL.get(),
+            ModBlocks.PIGMAN_SKULL.get(),
+            ModBlocks.PIGMAN_SKULL_WALL.get())));
 
     private static <T extends BlockEntity> BlockEntityType<T> register(String p_200966_0_, BlockEntityType.Builder<T> p_200966_1_) {
         Type<?> type = Util.fetchChoiceType(References.BLOCK_ENTITY, p_200966_0_);

@@ -5,6 +5,7 @@ import baguchan.earthmobsmod.registry.ModEntities;
 import baguchan.earthmobsmod.registry.ModSounds;
 import baguchan.soul_archeology.registry.ModBlocks;
 import baguchan.soul_archeology.registry.ModItems;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.monster.Creeper;
@@ -56,6 +57,10 @@ public class CommonEvents {
         if (stateAbove.is(ModBlocks.WITHER_SKELETON_WOLF_HEAD.get())) {
             event.setCanceled(true);
             event.getLevel().playSound(null, event.getPos(), ModSounds.SKELETON_WOLF_BARK.get(), SoundSource.RECORDS);
+        }
+        if (stateAbove.is(ModBlocks.PIGMAN_SKULL.get())) {
+            event.setCanceled(true);
+            event.getLevel().playSound(null, event.getPos(), SoundEvents.ZOMBIFIED_PIGLIN_ANGRY, SoundSource.RECORDS);
         }
     }
 }

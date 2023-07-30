@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "soul_archeology:item/studded_helmet",
+    "layer1": "soul_archeology:item/studded_helmet_overlay"
+  }
+}

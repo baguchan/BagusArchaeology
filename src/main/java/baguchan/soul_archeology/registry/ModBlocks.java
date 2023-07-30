@@ -25,10 +25,14 @@ public class ModBlocks {
     };
     public static final SkullBlock.Type WITHER_SKELETON_WOLF_HEAD_TYPE = new SkullBlock.Type() {
     };
+    public static final SkullBlock.Type PIGMAN_SKULL_TYPE = new SkullBlock.Type() {
+    };
     public static final RegistryObject<SkullBlock> SKELETON_WOLF_HEAD = noItemRegister("skeleton_wolf_head", () -> new ModSkullBlock(SKELETON_WOLF_HEAD_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
     public static final RegistryObject<WallSkullBlock> SKELETON_WOLF_HEAD_WALL = noItemRegister("skeleton_wolf_wall", () -> new ModWallSkullBlock(SKELETON_WOLF_HEAD_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
     public static final RegistryObject<SkullBlock> WITHER_SKELETON_WOLF_HEAD = noItemRegister("wither_skeleton_wolf_head", () -> new ModSkullBlock(WITHER_SKELETON_WOLF_HEAD_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
-    public static final RegistryObject<WallSkullBlock> WITHER_SKELETON_WOLF_HEAD_WALL = noItemRegister("wither_skeleton_wolf_wall", () -> new ModWallSkullBlock(WITHER_SKELETON_WOLF_HEAD_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
+    public static final RegistryObject<WallSkullBlock> WITHER_SKELETON_WOLF_HEAD_WALL = noItemRegister("wither_skeleton_wolf_head_wall", () -> new ModWallSkullBlock(WITHER_SKELETON_WOLF_HEAD_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
+    public static final RegistryObject<SkullBlock> PIGMAN_SKULL = noItemRegister("pigman_skull", () -> new ModSkullBlock(PIGMAN_SKULL_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
+    public static final RegistryObject<WallSkullBlock> PIGMAN_SKULL_WALL = noItemRegister("pigman_skull_wall", () -> new ModWallSkullBlock(PIGMAN_SKULL_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
 
 
     private static <T extends Block> RegistryObject<T> baseRegister(String name, Supplier<? extends T> block, Function<RegistryObject<T>, Supplier<? extends Item>> item) {

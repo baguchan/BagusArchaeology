@@ -13,14 +13,19 @@ import java.util.stream.Stream;
 public class ModCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, SoulArcheology.MODID);
 
-    public static final RegistryObject<CreativeModeTab> SOUL_RECEIVED = CREATIVE_TABS.register("soul_received", () -> CreativeModeTab.builder()
+    public static final RegistryObject<CreativeModeTab> SOUL_ARCHOELOGY = CREATIVE_TABS.register("soul_received", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
-            .title(Component.translatable("itemGroup." + "soul_received"))
+            .title(Component.translatable("itemGroup." + "soul_archeology"))
             .icon(() -> ModItems.SKELETON_WOLF_HEAD.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 output.acceptAll(Stream.of(
                         ModItems.SKELETON_WOLF_HEAD,
-                        ModItems.WITHER_SKELETON_WOLF_HEAD
+                        ModItems.WITHER_SKELETON_WOLF_HEAD,
+                        ModItems.PIGMAN_SKULL,
+                        ModItems.STUDDED_HELMET,
+                        ModItems.STUDDED_CHESTPLATE,
+                        ModItems.STUDDED_LEGGINGS,
+                        ModItems.STUDDED_BOOTS
                 ).map(sup -> {
                     return sup.get().getDefaultInstance();
                 }).toList());
