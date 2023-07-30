@@ -1,6 +1,6 @@
-package baguchan.bagus_archeology.blockentity;
+package baguchan.bagus_archaeology.blockentity;
 
-import baguchan.bagus_archeology.registry.ModBlockEntitys;
+import baguchan.bagus_archaeology.registry.ModBlockEntitys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.SkullBlockEntity;

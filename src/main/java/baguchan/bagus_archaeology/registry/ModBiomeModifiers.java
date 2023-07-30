@@ -1,7 +1,7 @@
-package baguchan.bagus_archeology.registry;
+package baguchan.bagus_archaeology.registry;
 
-import baguchan.bagus_archeology.BagusArcheology;
-import baguchan.bagus_archeology.biome.RemoveEarthMobsBiomeModifier;
+import baguchan.bagus_archaeology.BagusArcheology;
+import baguchan.bagus_archaeology.biome.RemoveEarthMobsBiomeModifier;
 import com.mojang.serialization.Codec;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.registries.DeferredRegister;

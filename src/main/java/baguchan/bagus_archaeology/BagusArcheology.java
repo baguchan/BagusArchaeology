@@ -1,6 +1,6 @@
-package baguchan.bagus_archeology;
+package baguchan.bagus_archaeology;
 
-import baguchan.bagus_archeology.registry.*;
+import baguchan.bagus_archaeology.registry.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -12,7 +12,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(BagusArcheology.MODID)
 public class BagusArcheology {
     // Define mod id in a common place for everything to reference
-    public static final String MODID = "bagus_archeology";
+    public static final String MODID = "bagus_archaeology";
 
     public BagusArcheology() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();

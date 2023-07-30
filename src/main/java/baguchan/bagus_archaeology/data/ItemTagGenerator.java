@@ -1,7 +1,7 @@
-package baguchan.bagus_archeology.data;
+package baguchan.bagus_archaeology.data;
 
-import baguchan.bagus_archeology.BagusArcheology;
-import baguchan.bagus_archeology.registry.ModItems;
+import baguchan.bagus_archaeology.BagusArcheology;
+import baguchan.bagus_archaeology.registry.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;

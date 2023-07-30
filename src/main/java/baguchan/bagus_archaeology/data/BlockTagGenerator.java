@@ -1,6 +1,6 @@
-package baguchan.bagus_archeology.data;
+package baguchan.bagus_archaeology.data;
 
-import baguchan.bagus_archeology.BagusArcheology;
+import baguchan.bagus_archaeology.BagusArcheology;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.BlockTagsProvider;

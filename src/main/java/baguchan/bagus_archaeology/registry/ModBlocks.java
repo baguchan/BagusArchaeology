@@ -1,8 +1,8 @@
-package baguchan.bagus_archeology.registry;
+package baguchan.bagus_archaeology.registry;
 
-import baguchan.bagus_archeology.BagusArcheology;
-import baguchan.bagus_archeology.block.ModSkullBlock;
-import baguchan.bagus_archeology.block.ModWallSkullBlock;
+import baguchan.bagus_archaeology.BagusArcheology;
+import baguchan.bagus_archaeology.block.ModSkullBlock;
+import baguchan.bagus_archaeology.block.ModWallSkullBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;

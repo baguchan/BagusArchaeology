@@ -1,6 +1,6 @@
-package baguchan.bagus_archeology.client;
+package baguchan.bagus_archaeology.client;
 
-import baguchan.bagus_archeology.BagusArcheology;
+import baguchan.bagus_archaeology.BagusArcheology;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
 

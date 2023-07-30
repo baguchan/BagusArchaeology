@@ -1,8 +1,8 @@
-package baguchan.bagus_archeology.registry;
+package baguchan.bagus_archaeology.registry;
 
-import baguchan.bagus_archeology.BagusArcheology;
-import baguchan.bagus_archeology.loot.LootInLootModifier;
-import baguchan.bagus_archeology.loot.OneItemLootModifier;
+import baguchan.bagus_archaeology.BagusArcheology;
+import baguchan.bagus_archaeology.loot.LootInLootModifier;
+import baguchan.bagus_archaeology.loot.OneItemLootModifier;
 import com.mojang.serialization.Codec;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.registries.DeferredRegister;

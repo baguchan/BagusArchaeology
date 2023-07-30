@@ -1,6 +1,6 @@
-package baguchan.bagus_archeology.biome;
+package baguchan.bagus_archaeology.biome;
 
-import baguchan.bagus_archeology.registry.ModBiomeModifiers;
+import baguchan.bagus_archaeology.registry.ModBiomeModifiers;
 import baguchan.earthmobsmod.EarthMobsMod;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.Holder;

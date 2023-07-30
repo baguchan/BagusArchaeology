@@ -1,21 +1,21 @@
-package baguchan.bagus_archeology.block;
+package baguchan.bagus_archaeology.block;
 
-import baguchan.bagus_archeology.blockentity.ModSkullBlockEntity;
-import baguchan.bagus_archeology.registry.ModBlockEntitys;
+import baguchan.bagus_archaeology.blockentity.ModSkullBlockEntity;
+import baguchan.bagus_archaeology.registry.ModBlockEntitys;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SkullBlock;
-import net.minecraft.world.level.block.WallSkullBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
 
-public class ModWallSkullBlock extends WallSkullBlock {
-    public ModWallSkullBlock(SkullBlock.Type type, Properties properties) {
+public class ModSkullBlock extends SkullBlock {
+    public ModSkullBlock(SkullBlock.Type type, BlockBehaviour.Properties properties) {
         super(type, properties);
     }
 

@@ -1,10 +1,10 @@
-package baguchan.bagus_archeology.client;
+package baguchan.bagus_archaeology.client;
 
-import baguchan.bagus_archeology.BagusArcheology;
-import baguchan.bagus_archeology.client.model.WolfHeadModel;
-import baguchan.bagus_archeology.registry.ModBlockEntitys;
-import baguchan.bagus_archeology.registry.ModBlocks;
-import baguchan.bagus_archeology.registry.ModItems;
+import baguchan.bagus_archaeology.BagusArcheology;
+import baguchan.bagus_archaeology.client.model.WolfHeadModel;
+import baguchan.bagus_archaeology.registry.ModBlockEntitys;
+import baguchan.bagus_archaeology.registry.ModBlocks;
+import baguchan.bagus_archaeology.registry.ModItems;
 import baguchan.earthmobsmod.EarthMobsMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.SkullModel;

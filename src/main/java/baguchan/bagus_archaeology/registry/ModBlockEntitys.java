@@ -1,7 +1,7 @@
-package baguchan.bagus_archeology.registry;
+package baguchan.bagus_archaeology.registry;
 
-import baguchan.bagus_archeology.BagusArcheology;
-import baguchan.bagus_archeology.blockentity.ModSkullBlockEntity;
+import baguchan.bagus_archaeology.BagusArcheology;
+import baguchan.bagus_archaeology.blockentity.ModSkullBlockEntity;
 import com.mojang.datafixers.types.Type;
 import net.minecraft.Util;
 import net.minecraft.util.datafix.fixes.References;

@@ -1,6 +1,6 @@
-package baguchan.bagus_archeology.registry;
+package baguchan.bagus_archaeology.registry;
 
-import baguchan.bagus_archeology.BagusArcheology;
+import baguchan.bagus_archaeology.BagusArcheology;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;

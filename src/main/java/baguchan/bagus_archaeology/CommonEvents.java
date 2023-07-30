@@ -1,7 +1,7 @@
-package baguchan.bagus_archeology;
+package baguchan.bagus_archaeology;
 
-import baguchan.bagus_archeology.registry.ModBlocks;
-import baguchan.bagus_archeology.registry.ModItems;
+import baguchan.bagus_archaeology.registry.ModBlocks;
+import baguchan.bagus_archaeology.registry.ModItems;
 import baguchan.earthmobsmod.entity.SkeletonWolf;
 import baguchan.earthmobsmod.registry.ModEntities;
 import baguchan.earthmobsmod.registry.ModSounds;

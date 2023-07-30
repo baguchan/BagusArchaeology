@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "bagus_archeology:item/studded_boots",
-    "layer1": "bagus_archeology:item/studded_boots_overlay"
+    "layer0": "bagus_archaeology:item/studded_boots",
+    "layer1": "bagus_archaeology:item/studded_boots_overlay"
   }
 }

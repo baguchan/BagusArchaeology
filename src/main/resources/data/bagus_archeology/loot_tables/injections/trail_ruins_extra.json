@@ -11,22 +11,22 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "bagus_archeology:studded_helmet"
+          "name": "bagus_archaeology:studded_helmet"
         },
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "bagus_archeology:studded_chestplate"
+          "name": "bagus_archaeology:studded_chestplate"
         },
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "bagus_archeology:studded_leggings"
+          "name": "bagus_archaeology:studded_leggings"
         },
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "bagus_archeology:studded_boots"
+          "name": "bagus_archaeology:studded_boots"
         }
       ]
     }
