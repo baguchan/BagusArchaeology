@@ -1,6 +1,6 @@
 package baguchan.bagus_archaeology.data;
 
-import baguchan.bagus_archaeology.BagusArcheology;
+import baguchan.bagus_archaeology.BagusArchaeology;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.BlockTagsProvider;
@@ -10,7 +10,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class BlockTagGenerator extends BlockTagsProvider {
     public BlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper exFileHelper) {
-        super(output, lookupProvider, BagusArcheology.MODID, exFileHelper);
+        super(output, lookupProvider, BagusArchaeology.MODID, exFileHelper);
     }
 
     @SuppressWarnings("unchecked")

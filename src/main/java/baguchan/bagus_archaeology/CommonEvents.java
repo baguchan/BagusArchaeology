@@ -18,7 +18,7 @@ import net.minecraftforge.event.level.NoteBlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = BagusArcheology.MODID)
+@Mod.EventBusSubscriber(modid = BagusArchaeology.MODID)
 public class CommonEvents {
     @SubscribeEvent
     public static void visionPercent(LivingEvent.LivingVisibilityEvent event) {

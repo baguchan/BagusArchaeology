@@ -1,6 +1,6 @@
 package baguchan.bagus_archaeology.registry;
 
-import baguchan.bagus_archaeology.BagusArcheology;
+import baguchan.bagus_archaeology.BagusArchaeology;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -11,11 +11,11 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.stream.Stream;
 
 public class ModCreativeTabs {
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, BagusArcheology.MODID);
+    public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, BagusArchaeology.MODID);
 
-    public static final RegistryObject<CreativeModeTab> SOUL_ARCHOELOGY = CREATIVE_TABS.register("soul_received", () -> CreativeModeTab.builder()
+    public static final RegistryObject<CreativeModeTab> SOUL_ARCHAEOLOGY = CREATIVE_TABS.register("soul_received", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
-            .title(Component.translatable("itemGroup." + "soul_archeology"))
+            .title(Component.translatable("itemGroup." + "soul_archaeology"))
             .icon(() -> ModItems.SKELETON_WOLF_HEAD.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 output.acceptAll(Stream.of(

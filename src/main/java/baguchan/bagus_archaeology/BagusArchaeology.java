@@ -9,12 +9,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(BagusArcheology.MODID)
-public class BagusArcheology {
+@Mod(BagusArchaeology.MODID)
+public class BagusArchaeology {
     // Define mod id in a common place for everything to reference
     public static final String MODID = "bagus_archaeology";
 
-    public BagusArcheology() {
+    public BagusArchaeology() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
 

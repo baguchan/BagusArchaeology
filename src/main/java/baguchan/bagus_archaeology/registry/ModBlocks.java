@@ -1,6 +1,6 @@
 package baguchan.bagus_archaeology.registry;
 
-import baguchan.bagus_archaeology.BagusArcheology;
+import baguchan.bagus_archaeology.BagusArchaeology;
 import baguchan.bagus_archaeology.block.ModSkullBlock;
 import baguchan.bagus_archaeology.block.ModWallSkullBlock;
 import net.minecraft.world.item.BlockItem;
@@ -19,7 +19,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, BagusArcheology.MODID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, BagusArchaeology.MODID);
 
     public static final SkullBlock.Type SKELETON_WOLF_HEAD_TYPE = new SkullBlock.Type() {
     };

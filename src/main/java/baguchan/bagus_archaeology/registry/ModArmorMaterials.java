@@ -1,6 +1,6 @@
 package baguchan.bagus_archaeology.registry;
 
-import baguchan.bagus_archaeology.BagusArcheology;
+import baguchan.bagus_archaeology.BagusArchaeology;
 import net.minecraft.Util;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -14,12 +14,12 @@ import java.util.EnumMap;
 import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
-    STUDDED(BagusArcheology.MODID + ":studded", 17, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266652_) -> {
+    STUDDED(BagusArchaeology.MODID + ":studded", 17, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266652_) -> {
         p_266652_.put(ArmorItem.Type.BOOTS, 2);
         p_266652_.put(ArmorItem.Type.LEGGINGS, 4);
         p_266652_.put(ArmorItem.Type.CHESTPLATE, 5);
         p_266652_.put(ArmorItem.Type.HELMET, 2);
-    }), 12, SoundEvents.ARMOR_EQUIP_LEATHER, 0.1F, 0.0F, () -> {
+    }), 12, SoundEvents.ARMOR_EQUIP_LEATHER, 0.25F, 0.0F, () -> {
         return Ingredient.of(Tags.Items.LEATHER);
     });
 

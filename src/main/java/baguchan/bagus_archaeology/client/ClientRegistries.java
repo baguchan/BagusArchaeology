@@ -1,6 +1,6 @@
 package baguchan.bagus_archaeology.client;
 
-import baguchan.bagus_archaeology.BagusArcheology;
+import baguchan.bagus_archaeology.BagusArchaeology;
 import baguchan.bagus_archaeology.client.model.WolfHeadModel;
 import baguchan.bagus_archaeology.registry.ModBlockEntitys;
 import baguchan.bagus_archaeology.registry.ModBlocks;
@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-@Mod.EventBusSubscriber(modid = BagusArcheology.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = BagusArchaeology.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientRegistries {
     @SubscribeEvent
     public static void registerSkull(EntityRenderersEvent.CreateSkullModels event) {
@@ -43,7 +43,7 @@ public class ClientRegistries {
     public static void clientSetupEvent(FMLClientSetupEvent event) {
         event.enqueueWork(() -> SkullBlockRenderer.SKIN_BY_TYPE.put(ModBlocks.SKELETON_WOLF_HEAD_TYPE, new ResourceLocation(EarthMobsMod.MODID, "textures/entity/skeleton_wolf/skeleton_wolf.png")));
         event.enqueueWork(() -> SkullBlockRenderer.SKIN_BY_TYPE.put(ModBlocks.WITHER_SKELETON_WOLF_HEAD_TYPE, new ResourceLocation(EarthMobsMod.MODID, "textures/entity/wither_skeleton_wolf/wither_skeleton_wolf.png")));
-        event.enqueueWork(() -> SkullBlockRenderer.SKIN_BY_TYPE.put(ModBlocks.PIGMAN_SKULL_TYPE, new ResourceLocation(BagusArcheology.MODID, "textures/entity/pigman_skull.png")));
+        event.enqueueWork(() -> SkullBlockRenderer.SKIN_BY_TYPE.put(ModBlocks.PIGMAN_SKULL_TYPE, new ResourceLocation(BagusArchaeology.MODID, "textures/entity/pigman_skull.png")));
     }
 
     public static void renderBlockColor() {

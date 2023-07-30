@@ -1,6 +1,6 @@
 package baguchan.bagus_archaeology.registry;
 
-import baguchan.bagus_archaeology.BagusArcheology;
+import baguchan.bagus_archaeology.BagusArchaeology;
 import baguchan.bagus_archaeology.blockentity.ModSkullBlockEntity;
 import com.mojang.datafixers.types.Type;
 import net.minecraft.Util;
@@ -12,9 +12,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlockEntitys {
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, BagusArcheology.MODID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, BagusArchaeology.MODID);
 
-    public static final RegistryObject<BlockEntityType<ModSkullBlockEntity>> MOD_SKULL = BLOCK_ENTITY.register("mod_skull", () -> register(BagusArcheology.prefixForString("mod_skull"), BlockEntityType.Builder.of(ModSkullBlockEntity::new,
+    public static final RegistryObject<BlockEntityType<ModSkullBlockEntity>> MOD_SKULL = BLOCK_ENTITY.register("mod_skull", () -> register(BagusArchaeology.prefixForString("mod_skull"), BlockEntityType.Builder.of(ModSkullBlockEntity::new,
             ModBlocks.SKELETON_WOLF_HEAD.get(),
             ModBlocks.SKELETON_WOLF_HEAD_WALL.get(),
             ModBlocks.WITHER_SKELETON_WOLF_HEAD.get(),

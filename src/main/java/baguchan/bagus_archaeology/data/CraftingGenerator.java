@@ -1,6 +1,6 @@
 package baguchan.bagus_archaeology.data;
 
-import baguchan.bagus_archaeology.BagusArcheology;
+import baguchan.bagus_archaeology.BagusArchaeology;
 import baguchan.bagus_archaeology.registry.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -64,6 +64,6 @@ public class CraftingGenerator extends RecipeProvider {
     }
 
     protected final ResourceLocation locEquip(String name) {
-        return BagusArcheology.prefix("equipment/" + name);
+        return BagusArchaeology.prefix("equipment/" + name);
     }
 }
