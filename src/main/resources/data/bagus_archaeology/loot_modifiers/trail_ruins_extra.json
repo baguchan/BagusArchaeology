@@ -1,9 +1,9 @@
 {
-  "type": "earthmobsmod:one_item_loot",
+  "type": "earthmobsmod:one_in_loot",
   "conditions": [
     {
       "condition": "forge:loot_table_id",
-      "loot_table_id": "minecraft:archaeology/trail_ruins_rare"
+      "loot_table_id": "minecraft:archaeology/trail_ruins_common"
     }
   ],
   "loot_table": "bagus_archaeology:injections/trail_ruins_extra"

@@ -60,7 +60,9 @@ public class CraftingGenerator extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, result.get())
                 .pattern("# #")
                 .pattern("# #")
-                .define('#', material.get());
+                .define('#', material.get())
+                .unlockedBy("has_item", has(material.get()))
+                .save(consumer, locEquip(name));
     }
 
     protected final ResourceLocation locEquip(String name) {

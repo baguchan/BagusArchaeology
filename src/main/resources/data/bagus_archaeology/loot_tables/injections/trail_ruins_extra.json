@@ -5,8 +5,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 8,
+          "weight": 30,
           "name": "minecraft:air"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "bagus_archaeology:studded_leather"
         },
         {
           "type": "minecraft:item",
@@ -27,11 +32,6 @@
           "type": "minecraft:item",
           "weight": 1,
           "name": "bagus_archaeology:studded_boots"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 4,
-          "name": "bagus_archaeology:studded_leather"
         }
       ]
     }

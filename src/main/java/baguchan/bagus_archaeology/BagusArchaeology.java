@@ -23,7 +23,6 @@ public class BagusArchaeology {
         ModBlockEntitys.BLOCK_ENTITY.register(modEventBus);
         ModBiomeModifiers.BIOME_MODIFIER_SERIALIZERS.register(modEventBus);
         ModCreativeTabs.CREATIVE_TABS.register(modEventBus);
-        ModLootModifiers.LOOT_MODIFIERS.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
