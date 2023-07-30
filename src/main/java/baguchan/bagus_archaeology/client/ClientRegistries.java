@@ -9,6 +9,7 @@ import baguchan.earthmobsmod.EarthMobsMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.SkullModel;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeableLeatherItem;
@@ -31,6 +32,7 @@ public class ClientRegistries {
 
     @SubscribeEvent
     public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(ModBlockEntitys.MOD_BRUSHABLE.get(), BrushableBlockRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntitys.MOD_SKULL.get(), SkullBlockRenderer::new);
     }
 

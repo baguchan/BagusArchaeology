@@ -30,5 +30,11 @@ public class ModCreativeTabs {
                 ).map(sup -> {
                     return sup.get().getDefaultInstance();
                 }).toList());
+                output.acceptAll(Stream.of(
+                        ModBlocks.SUSPICIOUS_SOUL_SAND,
+                        ModBlocks.SUSPICIOUS_SOUL_SOIL
+                ).map(sup -> {
+                    return sup.get().asItem().getDefaultInstance();
+                }).toList());
             }).build());
 }

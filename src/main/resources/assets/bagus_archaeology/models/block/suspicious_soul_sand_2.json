@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "bagus_archaeology:block/suspicious_soul_sand_2"
+  }
+}

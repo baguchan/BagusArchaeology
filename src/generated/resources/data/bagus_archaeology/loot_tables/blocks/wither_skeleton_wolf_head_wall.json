@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "bagus_archaeology:wither_skeleton_wolf_head"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "bagus_archaeology:blocks/wither_skeleton_wolf_head_wall"
+}
