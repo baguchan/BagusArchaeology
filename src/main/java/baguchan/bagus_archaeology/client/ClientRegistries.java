@@ -50,6 +50,9 @@ public class ClientRegistries {
         Minecraft.getInstance().getItemColors().register((p_92708_, p_92709_) -> {
             return p_92709_ > 0 ? -1 : ((DyeableLeatherItem) p_92708_.getItem()).getColor(p_92708_);
         }, ModItems.STUDDED_BOOTS.get(), ModItems.STUDDED_LEGGINGS.get(), ModItems.STUDDED_CHESTPLATE.get(), ModItems.STUDDED_HELMET.get());
+        Minecraft.getInstance().getItemColors().register((p_92708_, p_92709_) -> {
+            return 10511680;
+        }, ModItems.STUDDED_LEATHER.get());
 
     }
 

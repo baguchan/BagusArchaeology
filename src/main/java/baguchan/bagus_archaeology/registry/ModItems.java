@@ -23,5 +23,6 @@ public class ModItems {
         public static final RegistryObject<Item> STUDDED_CHESTPLATE = ITEMS.register("studded_chestplate", () -> new DyeableArmorItem(ModArmorMaterials.STUDDED, ArmorItem.Type.CHESTPLATE, (new Item.Properties())));
         public static final RegistryObject<Item> STUDDED_LEGGINGS = ITEMS.register("studded_leggings", () -> new DyeableArmorItem(ModArmorMaterials.STUDDED, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
         public static final RegistryObject<Item> STUDDED_BOOTS = ITEMS.register("studded_boots", () -> new DyeableArmorItem(ModArmorMaterials.STUDDED, ArmorItem.Type.BOOTS, (new Item.Properties())));
+        public static final RegistryObject<Item> STUDDED_LEATHER = ITEMS.register("studded_leather", () -> new Item((new Item.Properties())));
 
 }

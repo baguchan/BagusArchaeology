@@ -14,7 +14,7 @@ import java.util.EnumMap;
 import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
-    STUDDED(BagusArcheology.MODID + ":studded", 16, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266652_) -> {
+    STUDDED(BagusArcheology.MODID + ":studded", 17, Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266652_) -> {
         p_266652_.put(ArmorItem.Type.BOOTS, 2);
         p_266652_.put(ArmorItem.Type.LEGGINGS, 4);
         p_266652_.put(ArmorItem.Type.CHESTPLATE, 5);
