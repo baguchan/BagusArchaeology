@@ -3,6 +3,7 @@ package baguchan.bagus_archaeology.registry;
 import baguchan.bagus_archaeology.BagusArchaeology;
 import baguchan.bagus_archaeology.blockentity.ModBrushableBlockEntity;
 import baguchan.bagus_archaeology.blockentity.ModSkullBlockEntity;
+import baguchan.bagus_archaeology.blockentity.SoulRecoverBlockEntity;
 import com.mojang.datafixers.types.Type;
 import net.minecraft.Util;
 import net.minecraft.util.datafix.fixes.References;
@@ -25,6 +26,8 @@ public class ModBlockEntitys {
     public static final RegistryObject<BlockEntityType<ModBrushableBlockEntity>> MOD_BRUSHABLE = BLOCK_ENTITY.register("mod_brushable", () -> register(BagusArchaeology.prefixForString("mod_brushable"), BlockEntityType.Builder.of(ModBrushableBlockEntity::new
             , ModBlocks.SUSPICIOUS_SOUL_SAND.get()
             , ModBlocks.SUSPICIOUS_SOUL_SOIL.get())));
+    public static final RegistryObject<BlockEntityType<SoulRecoverBlockEntity>> SOUL_RECOVER = BLOCK_ENTITY.register("soul_recover", () -> register(BagusArchaeology.prefixForString("soul_recover"), BlockEntityType.Builder.of(SoulRecoverBlockEntity::new
+            , ModBlocks.SOUL_RECOVER.get())));
 
     private static <T extends BlockEntity> BlockEntityType<T> register(String p_200966_0_, BlockEntityType.Builder<T> p_200966_1_) {
         Type<?> type = Util.fetchChoiceType(References.BLOCK_ENTITY, p_200966_0_);

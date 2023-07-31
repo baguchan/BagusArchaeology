@@ -1,6 +1,7 @@
 package baguchan.bagus_archaeology;
 
 import baguchan.bagus_archaeology.registry.*;
+import com.google.common.reflect.Reflection;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -23,12 +24,16 @@ public class BagusArchaeology {
         ModBlockEntitys.BLOCK_ENTITY.register(modEventBus);
         ModBiomeModifiers.BIOME_MODIFIER_SERIALIZERS.register(modEventBus);
         ModCreativeTabs.CREATIVE_TABS.register(modEventBus);
+        ModMenuTypes.MENU_TYPES.register(modEventBus);
+        ModRecipeTypes.RECIPE_TYPES.register(modEventBus);
+        ModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        Reflection.initialize(ModRecipeBookTypes.class);
     }
 
     public static String prefixForString(String string) {

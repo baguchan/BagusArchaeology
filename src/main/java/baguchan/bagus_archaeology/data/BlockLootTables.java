@@ -39,6 +39,7 @@ public class BlockLootTables extends BlockLootSubProvider {
         dropOther(ModBlocks.SKELETON_WOLF_HEAD_WALL.get(), ModBlocks.SKELETON_WOLF_HEAD.get());
         registerEmpty(ModBlocks.SUSPICIOUS_SOUL_SAND.get());
         registerEmpty(ModBlocks.SUSPICIOUS_SOUL_SOIL.get());
+        dropSelf(ModBlocks.SOUL_RECOVER.get());
     }
 
 

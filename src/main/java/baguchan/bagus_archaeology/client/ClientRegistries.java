@@ -2,11 +2,14 @@ package baguchan.bagus_archaeology.client;
 
 import baguchan.bagus_archaeology.BagusArchaeology;
 import baguchan.bagus_archaeology.client.model.WolfHeadModel;
+import baguchan.bagus_archaeology.client.screen.SoulRecoverScreen;
 import baguchan.bagus_archaeology.registry.ModBlockEntitys;
 import baguchan.bagus_archaeology.registry.ModBlocks;
 import baguchan.bagus_archaeology.registry.ModItems;
+import baguchan.bagus_archaeology.registry.ModMenuTypes;
 import baguchan.earthmobsmod.EarthMobsMod;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.SkullModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
@@ -34,6 +37,7 @@ public class ClientRegistries {
     public static void registerEntityRenders(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntitys.MOD_BRUSHABLE.get(), BrushableBlockRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntitys.MOD_SKULL.get(), SkullBlockRenderer::new);
+
     }
 
     @SubscribeEvent
@@ -58,5 +62,6 @@ public class ClientRegistries {
     @SubscribeEvent
     public static void setup(FMLCommonSetupEvent event) {
         renderBlockColor();
+        MenuScreens.register(ModMenuTypes.SOUL_RECOVER.get(), SoulRecoverScreen::new);
     }
 }

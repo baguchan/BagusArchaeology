@@ -5,9 +5,12 @@
   "block.bagus_archaeology.pigman_skull": "Pigman Skull",
   "block.bagus_archaeology.suspicious_soul_sand": "Suspicious Soul Sand",
   "block.bagus_archaeology.suspicious_soul_soil": "Suspicious Soul Soil",
+  "block.bagus_archaeology.soul_recover": "Soul Recover",
   "item.bagus_archaeology.studded_leather": "Studded Leather",
   "item.bagus_archaeology.studded_helmet": "Studded Helmet",
   "item.bagus_archaeology.studded_chestplate": "Studded Chestplate",
   "item.bagus_archaeology.studded_leggings": "Studded Leggings",
-  "item.bagus_archaeology.studded_boots": "Studded Boots"
+  "item.bagus_archaeology.studded_boots": "Studded Boots",
+  "menu.bagus_archaeology.soul_recover": "Soul Recover",
+  "gui.bagus_archaeology.recipebook.toggleRecipes.archaeology": "Toggle Recipe Books"
 }
