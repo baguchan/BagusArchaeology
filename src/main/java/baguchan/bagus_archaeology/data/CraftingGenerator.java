@@ -44,7 +44,7 @@ public class CraftingGenerator extends RecipeProvider {
                 .unlockedBy("has_item", has(Items.ECHO_SHARD))
                 .save(consumer);
         soulRecivedBabySpawnRecipe(ModEntities.SKELETON_WOLF.get(), ModItems.SKELETON_WOLF_HEAD.get(), Items.LAPIS_LAZULI).save(consumer, prefix("skeleton_wolf"));
-        soulRecivedBabySpawnRecipe(ModEntities.WITHER_SKELETON_WOLF.get(), ModItems.SKELETON_WOLF_HEAD.get(), Items.LAPIS_LAZULI).save(consumer, prefix("wither_skeleton_wolf"));
+        soulRecivedBabySpawnRecipe(ModEntities.WITHER_SKELETON_WOLF.get(), ModItems.WITHER_SKELETON_WOLF_HEAD.get(), Items.LAPIS_LAZULI).save(consumer, prefix("wither_skeleton_wolf"));
     }
 
     protected final void helmetItem(Consumer<FinishedRecipe> consumer, String name, Supplier<? extends ItemLike> result, Supplier<? extends ItemLike> material) {

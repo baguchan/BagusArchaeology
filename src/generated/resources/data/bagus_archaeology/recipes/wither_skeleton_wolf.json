@@ -6,7 +6,7 @@
   "category": "fossil",
   "entity": "earthmobsmod:wither_skeleton_wolf",
   "ingredient": {
-    "item": "bagus_archaeology:skeleton_wolf_head"
+    "item": "bagus_archaeology:wither_skeleton_wolf_head"
   },
   "recover_time": 600,
   "tag": "{Age:-6000}"

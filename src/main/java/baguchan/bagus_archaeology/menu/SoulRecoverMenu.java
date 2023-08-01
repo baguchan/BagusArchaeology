@@ -1,7 +1,7 @@
 package baguchan.bagus_archaeology.menu;
 
+import baguchan.bagus_archaeology.recipe.SoulRecoverRecipe;
 import baguchan.bagus_archaeology.registry.ModMenuTypes;
-import baguchan.bagus_archaeology.registry.ModRecipeBookTypes;
 import baguchan.bagus_archaeology.registry.ModRecipeTypes;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -12,6 +12,8 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
+
+import java.util.Optional;
 
 public class SoulRecoverMenu extends RecipeBookMenu<Container> {
     public final Container container;
@@ -86,50 +88,49 @@ public class SoulRecoverMenu extends RecipeBookMenu<Container> {
     }
 
     @Override
-    public ItemStack quickMoveStack(Player player, int index) {
-        ItemStack itemStack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(index);
-        if (slot.hasItem()) {
-            ItemStack itemStack1 = slot.getItem();
-            itemStack = itemStack1.copy();
-            if (index != 1 && index != 0) {
-                if (this.canRecover(itemStack1)) {
-                    if (!this.moveItemStackTo(itemStack1, 0, 1, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (this.isFuel(itemStack1)) {
-                    if (!this.moveItemStackTo(itemStack1, 1, 2, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (index >= 2 && index < 29) {
-                    if (!this.moveItemStackTo(itemStack1, 29, 38, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (index >= 29 && index < 38 && !this.moveItemStackTo(itemStack1, 2, 29, false)) {
+    public ItemStack quickMoveStack(Player p_39490_, int p_39491_) {
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(p_39491_);
+        if (slot != null && slot.hasItem()) {
+            ItemStack itemstack1 = slot.getItem();
+            itemstack = itemstack1.copy();
+            if (p_39491_ == 0) {
+                if (!this.moveItemStackTo(itemstack1, 2, 38, true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.moveItemStackTo(itemStack1, 2, 38, false)) {
+            } else if (p_39491_ == 1) {
+                if (!this.moveItemStackTo(itemstack1, 2, 38, true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.moveItemStackTo(itemstack1, 2, 38, false)) {
                 return ItemStack.EMPTY;
             }
-            if (itemStack1.isEmpty()) {
-                slot.set(ItemStack.EMPTY);
+
+            if (itemstack1.isEmpty()) {
+                slot.setByPlayer(ItemStack.EMPTY);
             } else {
                 slot.setChanged();
             }
-            if (itemStack1.getCount() == itemStack.getCount()) {
+
+            if (itemstack1.getCount() == itemstack.getCount()) {
                 return ItemStack.EMPTY;
             }
-            slot.onTake(player, itemStack1);
+
+            slot.onTake(p_39490_, itemstack1);
         }
-        return itemStack;
+
+        return itemstack;
     }
 
     protected boolean canRecover(ItemStack stack) {
-        return this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.SOUL_RECOVER.get(), new SimpleContainer(stack), this.level).isPresent();
+        Optional<SoulRecoverRecipe> recoverRecipe = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.SOUL_RECOVER.get(), new SimpleContainer(stack), this.level);
+        return recoverRecipe.isPresent() && recoverRecipe.get().getIngredient().test(stack);
     }
 
     public boolean isFuel(ItemStack stack) {
-        return true;
+        Optional<SoulRecoverRecipe> recoverRecipe = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.SOUL_RECOVER.get(), new SimpleContainer(stack), this.level);
+        return recoverRecipe.isPresent() && recoverRecipe.get().getAddtionalIngredient().test(stack);
+
     }
 
     public int getProgressScaled() {
@@ -147,11 +148,11 @@ public class SoulRecoverMenu extends RecipeBookMenu<Container> {
 
     @Override
     public RecipeBookType getRecipeBookType() {
-        return ModRecipeBookTypes.SOUL_RECOVER;
+        return ModRecipeTypes.SOUL_RECOVER_TYPE;
     }
 
     @Override
     public boolean shouldMoveToInventory(int slot) {
-        return slot != 1;
+        return slot != this.getResultSlotIndex();
     }
 }

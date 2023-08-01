@@ -1,28 +1,28 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_skeleton_wolf_head": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "bagus_archaeology:skeleton_wolf_head"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "bagus_archaeology:wither_skeleton_wolf"
       },
       "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wither_skeleton_wolf_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bagus_archaeology:wither_skeleton_wolf_head"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
     [
-      "has_skeleton_wolf_head",
+      "has_wither_skeleton_wolf_head",
       "has_the_recipe"
     ]
   ],

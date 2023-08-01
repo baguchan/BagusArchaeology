@@ -25,11 +25,11 @@ public class ModRecipeCategorys {
 
     @SubscribeEvent
     public static void registerRecipeCategories(RegisterRecipeBookCategoriesEvent event) {
-        event.registerBookCategories(ModRecipeBookTypes.SOUL_RECOVER, ImmutableList.of(SOUL_RECOVER_SEARCH.get(), SOUL_RECOVER_MISC.get(), SOUL_RECOVER_GOLEM.get()));
-        event.registerAggregateCategory(SOUL_RECOVER_SEARCH.get(), ImmutableList.of(SOUL_RECOVER_MISC.get(), SOUL_RECOVER_GOLEM.get()));
-        event.registerRecipeCategoryFinder(ModRecipeTypes.SOUL_RECOVER.get(), recipe -> {
+        event.registerBookCategories(ModRecipeTypes.SOUL_RECOVER_TYPE, ImmutableList.of(SOUL_RECOVER_SEARCH.get(), SOUL_RECOVER_MISC.get(), SOUL_RECOVER_FOSSIL.get(), SOUL_RECOVER_GOLEM.get()));
+        event.registerAggregateCategory(SOUL_RECOVER_SEARCH.get(), ImmutableList.of(SOUL_RECOVER_MISC.get(), SOUL_RECOVER_FOSSIL.get(), SOUL_RECOVER_GOLEM.get()));
+        event.registerRecipeCategoryFinder(ModRecipeTypes.SOUL_RECOVER.get(), (recipe) -> {
             if (recipe instanceof SoulRecoverRecipe recoverRecipe) {
-                SoulBookCategory tab = (recoverRecipe).soulCategory();
+                SoulBookCategory tab = recoverRecipe.soulCategory();
                 if (tab != null) {
                     return switch (tab) {
                         case FOSSIL -> SOUL_RECOVER_FOSSIL.get();

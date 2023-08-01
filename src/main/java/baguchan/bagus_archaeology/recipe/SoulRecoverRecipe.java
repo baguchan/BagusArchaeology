@@ -24,7 +24,6 @@ import net.minecraftforge.common.crafting.CraftingHelper;
 import javax.annotation.Nullable;
 
 public class SoulRecoverRecipe implements Recipe<Container> {
-    protected final RecipeType<?> type;
     protected final ResourceLocation id;
     protected final String group;
     protected final Ingredient ingredient;
@@ -36,7 +35,6 @@ public class SoulRecoverRecipe implements Recipe<Container> {
 
     public SoulRecoverRecipe(ResourceLocation id, String group, Ingredient ingredient, Ingredient addtionalIngredient, EntityType<?> entity, CompoundTag tag, int recoverTime, SoulBookCategory category) {
         this.category = category;
-        this.type = ModRecipeTypes.SOUL_RECOVER.get();
         this.id = id;
         this.group = group;
         this.ingredient = ingredient;
@@ -122,7 +120,7 @@ public class SoulRecoverRecipe implements Recipe<Container> {
 
     @Override
     public RecipeType<?> getType() {
-        return this.type;
+        return ModRecipeTypes.SOUL_RECOVER.get();
     }
 
     public SoulBookCategory soulCategory() {
