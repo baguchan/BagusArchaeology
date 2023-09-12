@@ -70,7 +70,7 @@ public class CauldronBlockRender implements BlockEntityRenderer<AlchemyCauldronB
     }
 
     private float getAngle(int tickCount, int idx) {
-        return 24F * idx + (tickCount * 1.0F);
+        return 27.5F * idx + (tickCount * 1.0F);
     }
 
     private Vec3 getPosition(float angle, float distance) {
