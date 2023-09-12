@@ -51,7 +51,7 @@ public class CauldronBlockRender implements BlockEntityRenderer<AlchemyCauldronB
 
         ItemStack stack = new ItemStack(Items.WOODEN_SHOVEL);
         poseStack.pushPose();
-        poseStack.translate(0.25D, (10D / 16D), 0.5D);
+        poseStack.translate(0.85D, (10D / 16D), 0.85D);
         poseStack.mulPose(Axis.XP.rotationDegrees(-45.0F));
 
         // Neatly align items according to their index

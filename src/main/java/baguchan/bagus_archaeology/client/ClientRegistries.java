@@ -9,12 +9,14 @@ import baguchan.bagus_archaeology.registry.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.SkullModel;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -38,6 +40,13 @@ public class ClientRegistries {
     @SubscribeEvent
     public static void registerLayerDefinition(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ModModelLayer.WOLF_HEAD, WolfHeadModel::createWolfHeadModel);
+    }
+
+    @SubscribeEvent
+    public static void registerColor(RegisterColorHandlersEvent.Block event) {
+        event.register((p_92621_, p_92622_, p_92623_, p_92624_) -> {
+            return p_92622_ != null && p_92623_ != null ? BiomeColors.getAverageWaterColor(p_92622_, p_92623_) : -1;
+        }, ModBlocks.ALCHEMY_CAULDRON.get());
     }
 
     @SubscribeEvent

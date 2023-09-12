@@ -109,7 +109,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
             if (level.getBlockState(pos).is(BlockTags.CAMPFIRES) || level.getBlockState(pos).is(BlockTags.FIRE)) {
 
                 double x = ((double) pos.getX()) + (level.random.nextFloat());
-                double y = (double) pos.getY();
+                double y = (double) pos.getY() + 0.8F;
                 double z = ((double) pos.getZ()) + (level.random.nextFloat());
 
                 for (int k = 0; k < 3; ++k) {
@@ -118,30 +118,30 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
                 if (level.random.nextFloat() < 0.005F) {
                     level.playLocalSound(x, y, z, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 0.8F, 0.8F + level.random.nextFloat() * 0.4F, false);
                 }
-            }
 
-            double x = ((double) pos.getX()) + (level.random.nextFloat());
-            double y = (double) pos.getY() + 0.5D;
-            double z = ((double) pos.getZ()) + (level.random.nextFloat());
-            for (int k = 0; k < 3; ++k) {
+                x = ((double) pos.getX()) + (level.random.nextFloat());
+                y = (double) pos.getY() + 0.9F;
+                z = ((double) pos.getZ()) + (level.random.nextFloat());
+
                 level.addParticle(ParticleTypes.BUBBLE_POP, x, y, z, 0.0D, 5.0E-4D, 0.0D);
+                level.playLocalSound(x, y, z, SoundEvents.BUBBLE_COLUMN_BUBBLE_POP, SoundSource.BLOCKS, 0.6F, 0.8F + level.random.nextFloat() * 0.4F, false);
             }
-            level.playLocalSound(x, y, z, SoundEvents.BUBBLE_COLUMN_BUBBLE_POP, SoundSource.BLOCKS, 0.6F, 0.8F + level.random.nextFloat() * 0.4F, false);
-
             alchemyCauldronBlockEntity.tickCount++;
         }
     }
 
     public static void cookTick(Level p_155307_, BlockPos p_155308_, BlockState p_155309_, AlchemyCauldronBlockEntity p_155310_) {
         boolean flag = false;
+        if (p_155309_.getValue(AlchemyCauldronBlock.HAS_WATER)) {
 
-        if (p_155307_.getBlockState(p_155308_).is(BlockTags.CAMPFIRES) || p_155307_.getBlockState(p_155308_).is(BlockTags.FIRE)) {
-            for (int i = 0; i < p_155310_.items.size(); ++i) {
-                ItemStack itemstack = p_155310_.items.get(i);
-                if (!itemstack.isEmpty()) {
-                    flag = true;
-                    if (p_155310_.cookingProgress[i] < 400) {
-                        int j = p_155310_.cookingProgress[i]++;
+            if (p_155307_.getBlockState(p_155308_).is(BlockTags.CAMPFIRES) || p_155307_.getBlockState(p_155308_).is(BlockTags.FIRE)) {
+                for (int i = 0; i < p_155310_.items.size(); ++i) {
+                    ItemStack itemstack = p_155310_.items.get(i);
+                    if (!itemstack.isEmpty()) {
+                        flag = true;
+                        if (p_155310_.cookingProgress[i] < 400) {
+                            int j = p_155310_.cookingProgress[i]++;
+                        }
                     }
                 }
             }

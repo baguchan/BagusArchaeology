@@ -136,7 +136,6 @@ public class AlchemyCauldronBlock extends BaseEntityBlock {
             p_175621_.setItemInHand(p_175622_, ItemUtils.createFilledResult(p_175623_, p_175621_, new ItemStack(Items.BUCKET)));
             p_175621_.awardStat(Stats.FILL_CAULDRON);
             p_175621_.awardStat(Stats.ITEM_USED.get(item));
-            p_175619_.setBlockAndUpdate(p_175620_, ModBlocks.ALCHEMY_CAULDRON.get().defaultBlockState());
             p_175619_.playSound((Player) null, p_175620_, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
             p_175619_.gameEvent((Entity) null, GameEvent.FLUID_PLACE, p_175620_);
         }
