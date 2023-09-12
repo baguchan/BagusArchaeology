@@ -1,7 +1,6 @@
 package baguchan.bagus_archaeology.data;
 
-import baguchan.bagus_archaeology.BagusArchaeology;
-import baguchan.bagus_archaeology.registry.ModBlocks;
+import baguchan.bagus_archaeology.RelicsAndAlchemy;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -11,16 +10,15 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import static baguchan.bagus_archaeology.BagusArchaeology.prefix;
+import static baguchan.bagus_archaeology.RelicsAndAlchemy.prefix;
 
 public class ItemModelGenerator extends ItemModelProvider {
     public ItemModelGenerator(PackOutput generator, ExistingFileHelper existingFileHelper) {
-        super(generator, BagusArchaeology.MODID, existingFileHelper);
+        super(generator, RelicsAndAlchemy.MODID, existingFileHelper);
     }
 
     @Override
     protected void registerModels() {
-        this.toBlock(ModBlocks.SOUL_RECOVER.get());
     }
 
     private void toBlock(Block b) {

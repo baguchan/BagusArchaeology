@@ -1,7 +1,10 @@
 package baguchan.bagus_archaeology.registry;
 
-import baguchan.bagus_archaeology.BagusArchaeology;
-import baguchan.bagus_archaeology.block.*;
+import baguchan.bagus_archaeology.RelicsAndAlchemy;
+import baguchan.bagus_archaeology.block.BrushableSoulSandBlock;
+import baguchan.bagus_archaeology.block.BrushableSoulSoilBlock;
+import baguchan.bagus_archaeology.block.ModSkullBlock;
+import baguchan.bagus_archaeology.block.ModWallSkullBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -23,23 +26,13 @@ import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
 public class ModBlocks {
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, BagusArchaeology.MODID);
-
-    public static final SkullBlock.Type SKELETON_WOLF_HEAD_TYPE = new SkullBlock.Type() {
-    };
-    public static final SkullBlock.Type WITHER_SKELETON_WOLF_HEAD_TYPE = new SkullBlock.Type() {
-    };
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, RelicsAndAlchemy.MODID);
     public static final SkullBlock.Type PIGMAN_SKULL_TYPE = new SkullBlock.Type() {
     };
-    public static final RegistryObject<SkullBlock> SKELETON_WOLF_HEAD = noItemRegister("skeleton_wolf_head", () -> new ModSkullBlock(SKELETON_WOLF_HEAD_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
-    public static final RegistryObject<WallSkullBlock> SKELETON_WOLF_HEAD_WALL = noItemRegister("skeleton_wolf_wall", () -> new ModWallSkullBlock(SKELETON_WOLF_HEAD_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
-    public static final RegistryObject<SkullBlock> WITHER_SKELETON_WOLF_HEAD = noItemRegister("wither_skeleton_wolf_head", () -> new ModSkullBlock(WITHER_SKELETON_WOLF_HEAD_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
-    public static final RegistryObject<WallSkullBlock> WITHER_SKELETON_WOLF_HEAD_WALL = noItemRegister("wither_skeleton_wolf_head_wall", () -> new ModWallSkullBlock(WITHER_SKELETON_WOLF_HEAD_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
     public static final RegistryObject<SkullBlock> PIGMAN_SKULL = noItemRegister("pigman_skull", () -> new ModSkullBlock(PIGMAN_SKULL_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
     public static final RegistryObject<WallSkullBlock> PIGMAN_SKULL_WALL = noItemRegister("pigman_skull_wall", () -> new ModWallSkullBlock(PIGMAN_SKULL_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
     public static final RegistryObject<BrushableSoulSandBlock> SUSPICIOUS_SOUL_SAND = register("suspicious_soul_sand", () -> new BrushableSoulSandBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.35F).instrument(NoteBlockInstrument.COW_BELL).speedFactor(0.4F).sound(SoundType.SUSPICIOUS_SAND)));
     public static final RegistryObject<BrushableSoulSoilBlock> SUSPICIOUS_SOUL_SOIL = register("suspicious_soul_soil", () -> new BrushableSoulSoilBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.35F).sound(SoundType.SUSPICIOUS_SAND)));
-    public static final RegistryObject<SoulRecoverBlock> SOUL_RECOVER = register("soul_recover", () -> new SoulRecoverBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.0F).lightLevel(litBlockEmission(10)).sound(SoundType.METAL).noOcclusion().sound(SoundType.METAL)));
 
     private static ToIntFunction<BlockState> litBlockEmission(int p_50760_) {
         return (p_50763_) -> {

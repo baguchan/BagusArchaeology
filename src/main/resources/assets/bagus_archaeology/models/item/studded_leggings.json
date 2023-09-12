@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "bagus_archaeology:item/studded_leggings",
-    "layer1": "bagus_archaeology:item/studded_leggings_overlay"
+    "layer0": "relics_and_alchemy:item/studded_leggings",
+    "layer1": "relics_and_alchemy:item/studded_leggings_overlay"
   }
 }

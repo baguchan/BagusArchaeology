@@ -32,14 +32,9 @@ public class BlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.PIGMAN_SKULL.get());
-        dropSelf(ModBlocks.WITHER_SKELETON_WOLF_HEAD.get());
-        dropSelf(ModBlocks.SKELETON_WOLF_HEAD.get());
         dropOther(ModBlocks.PIGMAN_SKULL_WALL.get(), ModBlocks.PIGMAN_SKULL.get());
-        dropOther(ModBlocks.WITHER_SKELETON_WOLF_HEAD_WALL.get(), ModBlocks.WITHER_SKELETON_WOLF_HEAD.get());
-        dropOther(ModBlocks.SKELETON_WOLF_HEAD_WALL.get(), ModBlocks.SKELETON_WOLF_HEAD.get());
         registerEmpty(ModBlocks.SUSPICIOUS_SOUL_SAND.get());
         registerEmpty(ModBlocks.SUSPICIOUS_SOUL_SOIL.get());
-        dropSelf(ModBlocks.SOUL_RECOVER.get());
     }
 
 

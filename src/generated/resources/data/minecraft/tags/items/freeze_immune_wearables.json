@@ -1,8 +1,8 @@
 {
   "values": [
-    "bagus_archaeology:studded_boots",
-    "bagus_archaeology:studded_leggings",
-    "bagus_archaeology:studded_chestplate",
-    "bagus_archaeology:studded_helmet"
+    "relics_and_alchemy:studded_boots",
+    "relics_and_alchemy:studded_leggings",
+    "relics_and_alchemy:studded_chestplate",
+    "relics_and_alchemy:studded_helmet"
   ]
 }

@@ -1,7 +1,6 @@
 package baguchan.bagus_archaeology.data;
 
-import baguchan.bagus_archaeology.BagusArchaeology;
-import baguchan.bagus_archaeology.registry.ModBlocks;
+import baguchan.bagus_archaeology.RelicsAndAlchemy;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -12,12 +11,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class BlockstateGenerator extends BlockStateProvider {
     public BlockstateGenerator(PackOutput gen, ExistingFileHelper exFileHelper) {
-        super(gen, BagusArchaeology.MODID, exFileHelper);
+        super(gen, RelicsAndAlchemy.MODID, exFileHelper);
     }
 
     @Override
     protected void registerStatesAndModels() {
-        this.cutoutBlock(ModBlocks.SOUL_RECOVER.get());
     }
 
     public void cutoutBlock(Block block) {

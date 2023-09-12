@@ -1,0 +1,39 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 30,
+          "name": "minecraft:air"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "relics_and_alchemy:studded_leather"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "relics_and_alchemy:studded_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "relics_and_alchemy:studded_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "relics_and_alchemy:studded_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "relics_and_alchemy:studded_boots"
+        }
+      ]
+    }
+  ]
+}

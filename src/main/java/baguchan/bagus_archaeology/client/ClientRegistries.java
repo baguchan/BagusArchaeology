@@ -1,15 +1,11 @@
 package baguchan.bagus_archaeology.client;
 
-import baguchan.bagus_archaeology.BagusArchaeology;
+import baguchan.bagus_archaeology.RelicsAndAlchemy;
 import baguchan.bagus_archaeology.client.model.WolfHeadModel;
-import baguchan.bagus_archaeology.client.screen.SoulRecoverScreen;
 import baguchan.bagus_archaeology.registry.ModBlockEntitys;
 import baguchan.bagus_archaeology.registry.ModBlocks;
 import baguchan.bagus_archaeology.registry.ModItems;
-import baguchan.bagus_archaeology.registry.ModMenuTypes;
-import baguchan.earthmobsmod.EarthMobsMod;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.SkullModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
@@ -23,14 +19,11 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-@Mod.EventBusSubscriber(modid = BagusArchaeology.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = RelicsAndAlchemy.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ClientRegistries {
     @SubscribeEvent
     public static void registerSkull(EntityRenderersEvent.CreateSkullModels event) {
-        event.registerSkullModel(ModBlocks.SKELETON_WOLF_HEAD_TYPE, new WolfHeadModel(event.getEntityModelSet().bakeLayer(ModModelLayer.WOLF_HEAD)));
-        event.registerSkullModel(ModBlocks.WITHER_SKELETON_WOLF_HEAD_TYPE, new WolfHeadModel(event.getEntityModelSet().bakeLayer(ModModelLayer.WOLF_HEAD)));
         event.registerSkullModel(ModBlocks.PIGMAN_SKULL_TYPE, new SkullModel(event.getEntityModelSet().bakeLayer(ModelLayers.PLAYER_HEAD)));
-
     }
 
     @SubscribeEvent
@@ -47,9 +40,7 @@ public class ClientRegistries {
 
     @SubscribeEvent
     public static void clientSetupEvent(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> SkullBlockRenderer.SKIN_BY_TYPE.put(ModBlocks.SKELETON_WOLF_HEAD_TYPE, new ResourceLocation(EarthMobsMod.MODID, "textures/entity/skeleton_wolf/skeleton_wolf.png")));
-        event.enqueueWork(() -> SkullBlockRenderer.SKIN_BY_TYPE.put(ModBlocks.WITHER_SKELETON_WOLF_HEAD_TYPE, new ResourceLocation(EarthMobsMod.MODID, "textures/entity/wither_skeleton_wolf/wither_skeleton_wolf.png")));
-        event.enqueueWork(() -> SkullBlockRenderer.SKIN_BY_TYPE.put(ModBlocks.PIGMAN_SKULL_TYPE, new ResourceLocation(BagusArchaeology.MODID, "textures/entity/pigman_skull.png")));
+        event.enqueueWork(() -> SkullBlockRenderer.SKIN_BY_TYPE.put(ModBlocks.PIGMAN_SKULL_TYPE, new ResourceLocation(RelicsAndAlchemy.MODID, "textures/entity/pigman_skull.png")));
     }
 
     public static void renderBlockColor() {
@@ -62,6 +53,5 @@ public class ClientRegistries {
     @SubscribeEvent
     public static void setup(FMLCommonSetupEvent event) {
         renderBlockColor();
-        MenuScreens.register(ModMenuTypes.SOUL_RECOVER.get(), SoulRecoverScreen::new);
     }
 }
