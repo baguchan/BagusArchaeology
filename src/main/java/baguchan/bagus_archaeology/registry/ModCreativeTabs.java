@@ -35,7 +35,9 @@ public class ModCreativeTabs {
                     return sup.get().asItem().getDefaultInstance();
                 }).toList());
                 output.acceptAll(Stream.of(
-                        ModItems.ALCHEMY_POTION
+                        ModItems.ALCHEMY_POTION,
+                        ModItems.ALCHEMY_PROJECTILE,
+                        ModItems.ALCHEMY_GOLEM
                 ).map(sup -> {
                     return sup.get().getDefaultInstance();
                 }).toList());

@@ -1,5 +1,6 @@
 package baguchan.bagus_archaeology.element;
 
+import baguchan.bagus_archaeology.entity.AlchemyGolem;
 import baguchan.bagus_archaeology.registry.ModAlchemyElements;
 import com.mojang.serialization.Codec;
 import net.minecraft.world.entity.Entity;
@@ -39,6 +40,11 @@ public abstract class AlchemyElement {
     public static void projectileEvent(ProjectileImpactEvent projectileImpactEvent) {
 
     }
+
+    public void entityAttack(AlchemyGolem entity, Entity target, float power) {
+
+    }
+
 
     public abstract void projectileHit(Projectile projectile, HitResult hitResult, float power);
 

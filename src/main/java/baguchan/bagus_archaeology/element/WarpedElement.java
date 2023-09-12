@@ -1,5 +1,6 @@
 package baguchan.bagus_archaeology.element;
 
+import baguchan.bagus_archaeology.entity.AlchemyGolem;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AreaEffectCloud;
@@ -15,13 +16,25 @@ public class WarpedElement extends AlchemyElement {
         super(properties);
     }
 
+
+    @Override
+    public void entityAttack(AlchemyGolem entity, Entity target, float power) {
+        super.entityAttack(entity, target, power);
+        if (!entity.level().isClientSide()) {
+            if (target instanceof LivingEntity living) {
+                living.addEffect(new MobEffectInstance(MobEffects.POISON, (int) (power * 20F)), entity);
+            }
+
+        }
+    }
+
     @Override
     public void projectileHit(Projectile projectile, HitResult hitResult, float power) {
         if (!projectile.level().isClientSide()) {
             if (hitResult instanceof EntityHitResult entityHitResult) {
                 Entity entity = entityHitResult.getEntity();
                 if (entity instanceof LivingEntity living) {
-                    living.addEffect(new MobEffectInstance(MobEffects.POISON, (int) (-power * 20F)), projectile.getOwner() != null ? projectile.getOwner() : projectile);
+                    living.addEffect(new MobEffectInstance(MobEffects.POISON, (int) (power * 20F)), projectile.getOwner() != null ? projectile.getOwner() : projectile);
                 }
 
                 }

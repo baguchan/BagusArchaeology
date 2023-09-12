@@ -2,6 +2,7 @@ package baguchan.bagus_archaeology.client;
 
 import baguchan.bagus_archaeology.RelicsAndAlchemy;
 import baguchan.bagus_archaeology.client.model.WolfHeadModel;
+import baguchan.bagus_archaeology.client.render.AlchemyGolemRenderer;
 import baguchan.bagus_archaeology.client.render.CauldronBlockRender;
 import baguchan.bagus_archaeology.registry.ModBlockEntitys;
 import baguchan.bagus_archaeology.registry.ModBlocks;
@@ -38,6 +39,7 @@ public class ClientRegistries {
         event.registerBlockEntityRenderer(ModBlockEntitys.ALCHEMY_CAULDRON.get(), CauldronBlockRender::new);
 
         event.registerEntityRenderer(ModEntities.ALCHEMY_THROWN.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(ModEntities.ALCHEMY_GOLEM.get(), AlchemyGolemRenderer::new);
     }
 
     @SubscribeEvent

@@ -28,7 +28,7 @@ public class CauldronBlockRender implements BlockEntityRenderer<AlchemyCauldronB
         NonNullList<ItemStack> inventory = blockentity.getItems();
         int posLong = (int) blockentity.getBlockPos().asLong();
 
-        double height = blockentity.getBlockState().getValue(AlchemyCauldronBlock.HAS_WATER) ? 2D : 10D;
+        double height = blockentity.getBlockState().getValue(AlchemyCauldronBlock.HAS_WATER) ? 13D : -0.5D;
         for (int i = 0; i < inventory.size(); ++i) {
             ItemStack stack = inventory.get(i);
             if (!stack.isEmpty()) {

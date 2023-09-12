@@ -2,6 +2,7 @@ package baguchan.bagus_archaeology.registry;
 
 import baguchan.bagus_archaeology.RelicsAndAlchemy;
 import baguchan.bagus_archaeology.entity.AlchemyThrown;
+import baguchan.bagus_archaeology.item.AlchemyGolemItem;
 import baguchan.bagus_archaeology.item.AlchemyPotionItem;
 import baguchan.bagus_archaeology.item.AlchemyProjectileItem;
 import net.minecraft.core.Direction;
@@ -30,6 +31,7 @@ public class ModItems {
 
         public static final RegistryObject<Item> ALCHEMY_POTION = ITEMS.register("alchemy_potion", () -> new AlchemyPotionItem((new Item.Properties().stacksTo(16))));
         public static final RegistryObject<Item> ALCHEMY_PROJECTILE = ITEMS.register("alchemy_projectile", () -> new AlchemyProjectileItem((new Item.Properties().stacksTo(16))));
+        public static final RegistryObject<Item> ALCHEMY_GOLEM = ITEMS.register("alchemy_golem", () -> new AlchemyGolemItem(ModEntities.ALCHEMY_GOLEM, (new Item.Properties().stacksTo(1))));
 
         public static void dispenserRegistry() {
                 DispenserBlock.registerBehavior(ALCHEMY_PROJECTILE.get(), new AbstractProjectileDispenseBehavior() {

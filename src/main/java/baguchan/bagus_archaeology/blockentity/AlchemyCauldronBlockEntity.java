@@ -18,6 +18,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
@@ -84,14 +85,14 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
         return items.get(slot).isEmpty();
     }
 
-    public ItemStack result(ItemStack stack, Level level, BlockState state, BlockPos blockPos) {
+    public ItemStack result(ItemStack stack, Level level, BlockState state, BlockPos blockPos, boolean simulator) {
         if (stack.is(Items.GLASS_BOTTLE)) {
             ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_POTION.get());
             for (ItemStack stack2 : items) {
                 Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
                     return stack2.is(alchemyMaterialReference.get().getItem());
                 }).findFirst();
-                if (referenceOptional.isPresent()) {
+                if (!simulator && referenceOptional.isPresent()) {
                     ItemStack stack3 = stack2.split(1);
                     AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
                 }
@@ -107,7 +108,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
                 Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
                     return stack2.is(alchemyMaterialReference.get().getItem());
                 }).findFirst();
-                if (referenceOptional.isPresent()) {
+                if (!simulator && referenceOptional.isPresent()) {
                     ItemStack stack3 = stack2.split(1);
                     AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
                 }
@@ -118,7 +119,24 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
             return stack1;
         }
 
-        if (stack.is(Items.BUCKET)) {
+        if (stack.is(ItemTags.TERRACOTTA)) {
+            ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_GOLEM.get());
+            for (ItemStack stack2 : items) {
+                Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
+                    return stack2.is(alchemyMaterialReference.get().getItem());
+                }).findFirst();
+                if (!simulator && referenceOptional.isPresent()) {
+                    ItemStack stack3 = stack2.split(1);
+                    AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
+                }
+
+            }
+            level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
+            setChanged();
+            return stack1;
+        }
+
+        if (!simulator && stack.is(Items.BUCKET)) {
             level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
             setChanged();
             return Items.WATER_BUCKET.getDefaultInstance();

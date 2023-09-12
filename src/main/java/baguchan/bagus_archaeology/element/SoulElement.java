@@ -1,5 +1,6 @@
 package baguchan.bagus_archaeology.element;
 
+import baguchan.bagus_archaeology.entity.AlchemyGolem;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
@@ -14,6 +15,28 @@ import java.util.List;
 public class SoulElement extends AlchemyElement {
     public SoulElement(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public void entityAttack(AlchemyGolem entity, Entity target, float power) {
+        super.entityAttack(entity, target, power);
+        if (power > 0) {
+            if (entity.level().isClientSide()) {
+                entity.level().addParticle(ParticleTypes.SONIC_BOOM, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);
+            } else {
+                List<Entity> list1 = entity.level().getEntitiesOfClass(Entity.class, (new AABB(entity.blockPosition()).inflate(power * 0.25F)));
+
+                if (!list1.isEmpty()) {
+                    for (Entity hurtEntity : list1) {
+                        if (hurtEntity != entity && hurtEntity.isAttackable() && (!(hurtEntity instanceof LivingEntity hurtLiving) || entity.canAttack(hurtLiving))) {
+                            float distance = entity.distanceTo(hurtEntity);
+                            hurtEntity.hurt(hurtEntity.damageSources().sonicBoom(entity), (power * 1F / distance));
+                        }
+                    }
+                }
+            }
+            entity.playSound(SoundEvents.WARDEN_SONIC_BOOM, 1.5F, 1.0F);
+        }
     }
 
     @Override
