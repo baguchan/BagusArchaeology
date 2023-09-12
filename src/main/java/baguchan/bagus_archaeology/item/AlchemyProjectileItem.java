@@ -24,7 +24,9 @@ public class AlchemyProjectileItem extends AlchemyItem {
             snowball.setItem(itemstack);
             snowball.shootFromRotation(p_43143_, p_43143_.getXRot(), p_43143_.getYRot(), 0.0F, 1.5F, 1.0F);
             p_43142_.addFreshEntity(snowball);
+            p_43143_.getCooldowns().addCooldown(this, 40);
         }
+
 
         p_43143_.awardStat(Stats.ITEM_USED.get(this));
         if (!p_43143_.getAbilities().instabuild) {

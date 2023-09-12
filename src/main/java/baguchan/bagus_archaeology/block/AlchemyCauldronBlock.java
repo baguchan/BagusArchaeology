@@ -91,7 +91,7 @@ public class AlchemyCauldronBlock extends BaseEntityBlock {
                 p_151970_.setBlock(p_151971_, p_151969_.setValue(HAS_WATER, true), 3);
                 return emptyBucket(p_151970_, p_151971_, p_151972_, p_151973_, itemstack);
             } else if (p_151969_.getValue(HAS_WATER)) {
-                if (itemstack.isEmpty() || itemstack.is(Items.GLASS_BOTTLE) || itemstack.is(Items.BUCKET)) {
+                if (itemstack.isEmpty() || itemstack.is(Items.GLASS_BOTTLE) || itemstack.is(Items.SLIME_BALL) || itemstack.is(Items.CLAY_BALL) || itemstack.is(Items.BUCKET)) {
                     ItemStack resultItem = alchemyCauldronBlockEntity.result(itemstack, p_151970_, p_151969_, p_151971_);
 
                     if (resultItem.isEmpty() && itemstack.isEmpty() && !alchemyCauldronBlockEntity.isEmpty()) {

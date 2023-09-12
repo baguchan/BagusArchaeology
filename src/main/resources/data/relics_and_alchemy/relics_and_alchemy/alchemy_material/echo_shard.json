@@ -1,6 +1,6 @@
 {
   "item": "minecraft:echo_shard",
-  "power": 10,
+  "power": 12,
   "alchemy_element": [
     "relics_and_alchemy:soul"
   ]

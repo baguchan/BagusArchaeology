@@ -17,15 +17,16 @@ public class SoulElement extends AlchemyElement {
 
     @Override
     public void projectileHit(Projectile projectile, HitResult hitResult, float power) {
-        List<Entity> list1 = projectile.level().getEntitiesOfClass(Entity.class, (new AABB(projectile.blockPosition()).inflate(2.0F * power)));
         if (projectile.level().isClientSide()) {
             projectile.level().addParticle(ParticleTypes.SONIC_BOOM, projectile.getX(), projectile.getY(), projectile.getZ(), 0, 0, 0);
         } else {
+            List<Entity> list1 = projectile.level().getEntitiesOfClass(Entity.class, (new AABB(projectile.blockPosition()).inflate(power * 0.5F)));
+
             if (!list1.isEmpty()) {
                 for (Entity hurtEntity : list1) {
                     if (hurtEntity.isAttackable()) {
-                        float distance = hurtEntity.distanceTo(hurtEntity);
-                        projectile.hurt(hurtEntity.damageSources().sonicBoom(projectile.getOwner() != null ? projectile.getOwner() : projectile), (power * 4F / distance));
+                        float distance = projectile.distanceTo(hurtEntity);
+                        hurtEntity.hurt(hurtEntity.damageSources().sonicBoom(projectile.getOwner() != null ? projectile.getOwner() : projectile), (power * 1.5F / distance));
 
                     }
                 }
@@ -41,13 +42,13 @@ public class SoulElement extends AlchemyElement {
                 entity.level().addParticle(ParticleTypes.SONIC_BOOM, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);
             } else {
                 if (entity instanceof LivingEntity living) {
-                    List<Entity> list1 = living.level().getEntitiesOfClass(Entity.class, (new AABB(living.blockPosition()).inflate(power)));
+                    List<Entity> list1 = living.level().getEntitiesOfClass(Entity.class, (new AABB(living.blockPosition()).inflate(power * 0.7F)));
 
                     if (!list1.isEmpty()) {
                         for (Entity hurtEntity : list1) {
                             if (hurtEntity.isAttackable()) {
-                                float distance = hurtEntity.distanceTo(hurtEntity);
-                                living.hurt(entity.damageSources().sonicBoom(living), (power * 4F / distance));
+                                float distance = entity.distanceTo(hurtEntity);
+                                living.hurt(entity.damageSources().sonicBoom(living), (power / distance));
 
                             }
                         }

@@ -15,11 +15,11 @@ public class ModAlchemyElements {
     public static final Supplier<IForgeRegistry<AlchemyElement>> ALCHEMY_ELEMENT_REGISTRY = ALCHEMY_ELEMENT.makeRegistry(
             () -> new RegistryBuilder<AlchemyElement>());
 
-    public static final RegistryObject<AlchemyElement> GLOW = ALCHEMY_ELEMENT.register("thick", () -> new ThickElement(new AlchemyElement.Properties(new AlchemyElement.AlchemyType[]{AlchemyElement.AlchemyType.CORE}, 2.0F)));
-    public static final RegistryObject<AlchemyElement> EXTEND = ALCHEMY_ELEMENT.register("extend", () -> new ThickElement(new AlchemyElement.Properties(new AlchemyElement.AlchemyType[]{AlchemyElement.AlchemyType.CORE}, 1.5F)));
+    public static final RegistryObject<AlchemyElement> GLOW = ALCHEMY_ELEMENT.register("thick", () -> new ThickElement(new AlchemyElement.Properties(new AlchemyElement.AlchemyType[]{AlchemyElement.AlchemyType.CORE}, 1.1F)));
+    public static final RegistryObject<AlchemyElement> EXTEND = ALCHEMY_ELEMENT.register("extend", () -> new ThickElement(new AlchemyElement.Properties(new AlchemyElement.AlchemyType[]{AlchemyElement.AlchemyType.CORE}, 1.05F)));
     public static final RegistryObject<AlchemyElement> SOUL = ALCHEMY_ELEMENT.register("soul", () -> new SoulElement(new AlchemyElement.Properties(new AlchemyElement.AlchemyType[]{AlchemyElement.AlchemyType.PROJECTILE}, 0.5F)));
     public static final RegistryObject<AlchemyElement> SUGAR = ALCHEMY_ELEMENT.register("sugar", () -> new SugarElement(new AlchemyElement.Properties(new AlchemyElement.AlchemyType[]{AlchemyElement.AlchemyType.SELF}, 1F)));
-    public static final RegistryObject<AlchemyElement> WARPED = ALCHEMY_ELEMENT.register("warped", () -> new SugarElement(new AlchemyElement.Properties(new AlchemyElement.AlchemyType[]{AlchemyElement.AlchemyType.SELF}, 0.5F)));
+    public static final RegistryObject<AlchemyElement> WARPED = ALCHEMY_ELEMENT.register("warped", () -> new WarpedElement(new AlchemyElement.Properties(new AlchemyElement.AlchemyType[]{AlchemyElement.AlchemyType.PROJECTILE}, 0.75F)));
     public static final RegistryObject<AlchemyElement> EXPLOSION = ALCHEMY_ELEMENT.register("explosion", () -> new ExplosionElement(new AlchemyElement.Properties(new AlchemyElement.AlchemyType[]{AlchemyElement.AlchemyType.PROJECTILE}, 0.25F)));
 
     private static Supplier<IForgeRegistry<AlchemyElement>> registry;

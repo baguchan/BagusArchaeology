@@ -2,9 +2,11 @@ package baguchan.bagus_archaeology.element;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 
@@ -15,21 +17,36 @@ public class WarpedElement extends AlchemyElement {
 
     @Override
     public void projectileHit(Projectile projectile, HitResult hitResult, float power) {
-        if (power < 0) {
+        if (!projectile.level().isClientSide()) {
             if (hitResult instanceof EntityHitResult entityHitResult) {
                 Entity entity = entityHitResult.getEntity();
                 if (entity instanceof LivingEntity living) {
-                    living.addEffect(new MobEffectInstance(MobEffects.POISON, (int) (-power * 40F)), projectile.getOwner() != null ? projectile.getOwner() : projectile);
+                    living.addEffect(new MobEffectInstance(MobEffects.POISON, (int) (-power * 20F)), projectile.getOwner() != null ? projectile.getOwner() : projectile);
                 }
+
+                }
+            AreaEffectCloud areaeffectcloud = new AreaEffectCloud(projectile.level(), projectile.getX(), projectile.getY(), projectile.getZ());
+            if (projectile.getOwner() instanceof LivingEntity) {
+                areaeffectcloud.setOwner((LivingEntity) projectile.getOwner());
             }
-        }
+
+            areaeffectcloud.setRadius(3.0F);
+            areaeffectcloud.setRadiusOnUse(-0.25F);
+            areaeffectcloud.setWaitTime(10);
+            areaeffectcloud.setRadiusPerTick(-areaeffectcloud.getRadius() / (float) areaeffectcloud.getDuration());
+            areaeffectcloud.setPotion(Potions.POISON);
+
+            projectile.level().addFreshEntity(areaeffectcloud);
+            }
     }
 
     @Override
     public void active(Entity entity, float power) {
         if (power < 0) {
-            if (entity instanceof LivingEntity living) {
-                living.addEffect(new MobEffectInstance(MobEffects.POISON, (int) (-power * 40F)));
+            if (!entity.level().isClientSide()) {
+                if (entity instanceof LivingEntity living) {
+                    living.addEffect(new MobEffectInstance(MobEffects.POISON, (int) (-power * 20F)));
+                }
             }
         }
     }
