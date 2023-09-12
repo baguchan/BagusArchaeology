@@ -105,29 +105,31 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
     }
 
     public static void animationTick(Level level, BlockPos pos, BlockState state, AlchemyCauldronBlockEntity alchemyCauldronBlockEntity) {
-        if (level.getBlockState(pos).is(BlockTags.CAMPFIRES) || level.getBlockState(pos).is(BlockTags.FIRE)) {
+        if (state.getValue(AlchemyCauldronBlock.HAS_WATER)) {
+            if (level.getBlockState(pos).is(BlockTags.CAMPFIRES) || level.getBlockState(pos).is(BlockTags.FIRE)) {
 
-            double x = ((double) pos.getX()) - (level.random.nextFloat());
-            double y = (double) pos.getY();
-            double z = ((double) pos.getZ()) - (level.random.nextFloat());
+                double x = ((double) pos.getX()) + (level.random.nextFloat());
+                double y = (double) pos.getY();
+                double z = ((double) pos.getZ()) + (level.random.nextFloat());
 
+                for (int k = 0; k < 3; ++k) {
+                    level.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0D, 5.0E-4D, 0.0D);
+                }
+                if (level.random.nextFloat() < 0.005F) {
+                    level.playLocalSound(x, y, z, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 0.8F, 0.8F + level.random.nextFloat() * 0.4F, false);
+                }
+            }
+
+            double x = ((double) pos.getX()) + (level.random.nextFloat());
+            double y = (double) pos.getY() + 0.5D;
+            double z = ((double) pos.getZ()) + (level.random.nextFloat());
             for (int k = 0; k < 3; ++k) {
-                level.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0D, 5.0E-4D, 0.0D);
+                level.addParticle(ParticleTypes.BUBBLE_POP, x, y, z, 0.0D, 5.0E-4D, 0.0D);
             }
-            if (level.random.nextFloat() < 0.005F) {
-                level.playLocalSound(x, y, z, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 0.8F, 0.8F + level.random.nextFloat() * 0.4F, false);
-            }
-        }
+            level.playLocalSound(x, y, z, SoundEvents.BUBBLE_COLUMN_BUBBLE_POP, SoundSource.BLOCKS, 0.6F, 0.8F + level.random.nextFloat() * 0.4F, false);
 
-        double x = ((double) pos.getX()) - (level.random.nextFloat());
-        double y = (double) pos.getY() + 0.5D;
-        double z = ((double) pos.getZ()) - (level.random.nextFloat());
-        for (int k = 0; k < 3; ++k) {
-            level.addParticle(ParticleTypes.BUBBLE_POP, x, y, z, 0.0D, 5.0E-4D, 0.0D);
+            alchemyCauldronBlockEntity.tickCount++;
         }
-        level.playLocalSound(x, y, z, SoundEvents.BUBBLE_COLUMN_BUBBLE_POP, SoundSource.BLOCKS, 0.6F, 0.8F + level.random.nextFloat() * 0.4F, false);
-
-        alchemyCauldronBlockEntity.tickCount++;
     }
 
     public static void cookTick(Level p_155307_, BlockPos p_155308_, BlockState p_155309_, AlchemyCauldronBlockEntity p_155310_) {

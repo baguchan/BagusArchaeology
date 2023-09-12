@@ -4,6 +4,7 @@ import baguchan.bagus_archaeology.element.AlchemyElement;
 import baguchan.bagus_archaeology.material.AlchemyMaterial;
 import baguchan.bagus_archaeology.util.AlchemyUtils;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,8 +12,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class AlchemyPotionItem extends Item {
@@ -52,6 +55,15 @@ public class AlchemyPotionItem extends Item {
             }
 
             return p_41348_;
+        }
+    }
+
+
+    public void appendHoverText(ItemStack p_42988_, @Nullable Level p_42989_, List<Component> p_42990_, TooltipFlag p_42991_) {
+        List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(p_42988_);
+
+        for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
+            p_42990_.add(alchemyMaterial.getName());
         }
     }
 }

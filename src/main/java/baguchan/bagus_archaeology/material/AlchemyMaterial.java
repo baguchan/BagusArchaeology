@@ -6,9 +6,11 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
@@ -43,5 +45,9 @@ public class AlchemyMaterial {
 
     public float getPower() {
         return scale;
+    }
+
+    public Component getName() {
+        return this.getItem().getName(new ItemStack(this.getItem()));
     }
 }

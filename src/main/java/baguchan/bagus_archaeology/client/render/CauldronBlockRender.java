@@ -1,5 +1,6 @@
 package baguchan.bagus_archaeology.client.render;
 
+import baguchan.bagus_archaeology.block.AlchemyCauldronBlock;
 import baguchan.bagus_archaeology.blockentity.AlchemyCauldronBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -27,11 +28,12 @@ public class CauldronBlockRender implements BlockEntityRenderer<AlchemyCauldronB
         NonNullList<ItemStack> inventory = blockentity.getItems();
         int posLong = (int) blockentity.getBlockPos().asLong();
 
+        double height = blockentity.getBlockState().getValue(AlchemyCauldronBlock.HAS_WATER) ? 2D : 10D;
         for (int i = 0; i < inventory.size(); ++i) {
             ItemStack stack = inventory.get(i);
             if (!stack.isEmpty()) {
                 poseStack.pushPose();
-                poseStack.translate(0.5D, (10D / 16D), 0.5D);
+                poseStack.translate(0.5D, (height / 16D), 0.5D);
                 poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
 
                 // Neatly align items according to their index
@@ -53,7 +55,7 @@ public class CauldronBlockRender implements BlockEntityRenderer<AlchemyCauldronB
         poseStack.mulPose(Axis.XP.rotationDegrees(-45.0F));
 
         // Neatly align items according to their index
-        poseStack.translate(0.5F, 0.5F, 0.0D);
+        poseStack.translate(0.0F, 0.5F, 0.0D);
         // Resize the items
         poseStack.scale(0.6F, 0.6F, 0.6F);
         poseStack.mulPose(Axis.XP.rotationDegrees(-90.0F));

@@ -34,5 +34,10 @@ public class ModCreativeTabs {
                 ).map(sup -> {
                     return sup.get().asItem().getDefaultInstance();
                 }).toList());
+                output.acceptAll(Stream.of(
+                        ModItems.ALCHEMY_POTION
+                ).map(sup -> {
+                    return sup.get().getDefaultInstance();
+                }).toList());
             }).build());
 }

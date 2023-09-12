@@ -80,22 +80,28 @@ public class AlchemyCauldronBlock extends BaseEntityBlock {
         ItemStack itemstack = p_151972_.getItemInHand(p_151973_);
         BlockEntity blockentity = p_151970_.getBlockEntity(p_151971_);
         if (blockentity instanceof AlchemyCauldronBlockEntity alchemyCauldronBlockEntity) {
-            if (!p_151969_.getValue(HAS_WATER) && itemstack.is(Items.WATER_BUCKET)) {
+            if (!p_151969_.getValue(HAS_WATER) && itemstack.isEmpty() && !alchemyCauldronBlockEntity.isEmpty()) {
+                p_151972_.playSound(SoundEvents.ITEM_PICKUP);
+                ItemStack stack = alchemyCauldronBlockEntity.removeItem();
+                if (!p_151972_.addItem(stack)) {
+                    p_151972_.drop(stack, false);
+                }
+                return InteractionResult.SUCCESS;
+            } else if (!p_151969_.getValue(HAS_WATER) && itemstack.is(Items.WATER_BUCKET)) {
                 p_151970_.setBlock(p_151971_, p_151969_.setValue(HAS_WATER, true), 3);
                 return emptyBucket(p_151970_, p_151971_, p_151972_, p_151973_, itemstack);
             } else if (p_151969_.getValue(HAS_WATER)) {
-
+                ItemStack resultItem = alchemyCauldronBlockEntity.result(itemstack, p_151970_, p_151969_, p_151971_);
                 if (itemstack.isEmpty()) {
-                    if (!alchemyCauldronBlockEntity.isEmpty()) {
+                    if (resultItem.isEmpty() && !alchemyCauldronBlockEntity.isEmpty()) {
                         p_151972_.playSound(SoundEvents.ITEM_PICKUP);
                         ItemStack stack = alchemyCauldronBlockEntity.removeItem();
                         if (!p_151972_.addItem(stack)) {
                             p_151972_.drop(stack, false);
                         }
                         return InteractionResult.SUCCESS;
-                    } else {
-                        return fillBucket(p_151969_, p_151970_, p_151971_, p_151972_, p_151973_, itemstack, alchemyCauldronBlockEntity.result(itemstack, p_151970_, p_151969_, p_151971_), (state) -> state.getValue(HAS_WATER));
                     }
+                    return fillBucket(p_151969_, p_151970_, p_151971_, p_151972_, p_151973_, itemstack, resultItem, (state) -> state.getValue(HAS_WATER));
                 } else {
                     if (alchemyCauldronBlockEntity.addItem(itemstack)) {
                         p_151972_.playSound(SoundEvents.ITEM_PICKUP);

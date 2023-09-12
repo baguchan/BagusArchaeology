@@ -1,6 +1,7 @@
 package baguchan.bagus_archaeology.data;
 
 import baguchan.bagus_archaeology.RelicsAndAlchemy;
+import baguchan.bagus_archaeology.registry.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -19,6 +20,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        this.basicItem(ModItems.ALCHEMY_POTION.get());
     }
 
     private void toBlock(Block b) {
