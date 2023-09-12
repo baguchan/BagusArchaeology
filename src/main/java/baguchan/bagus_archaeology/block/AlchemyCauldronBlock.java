@@ -7,6 +7,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -93,7 +95,7 @@ public class AlchemyCauldronBlock extends BaseEntityBlock {
             } else if (p_151969_.getValue(HAS_WATER)) {
                 ItemStack testItem = alchemyCauldronBlockEntity.result(itemstack, p_151970_, p_151969_, p_151971_, true);
 
-                if (!testItem.isEmpty() || itemstack.isEmpty()) {
+                if (!testItem.isEmpty() || itemstack.isEmpty() || itemstack.is(Items.BUCKET)) {
 
                     if (itemstack.isEmpty() && testItem.isEmpty() && !alchemyCauldronBlockEntity.isEmpty()) {
                         p_151972_.playSound(SoundEvents.ITEM_PICKUP);
@@ -116,6 +118,20 @@ public class AlchemyCauldronBlock extends BaseEntityBlock {
         }
         return super.use(p_151969_, p_151970_, p_151971_, p_151972_, p_151973_, p_151974_);
     }
+
+    @Override
+    public void onRemove(BlockState p_51538_, Level p_51539_, BlockPos p_51540_, BlockState p_51541_, boolean p_51542_) {
+        if (!p_51538_.is(p_51541_.getBlock())) {
+            BlockEntity blockentity = p_51539_.getBlockEntity(p_51540_);
+            if (blockentity instanceof Container) {
+                Containers.dropContents(p_51539_, p_51540_, (Container) blockentity);
+                p_51539_.updateNeighbourForOutputSignal(p_51540_, this);
+            }
+
+            super.onRemove(p_51538_, p_51539_, p_51540_, p_51541_, p_51542_);
+        }
+    }
+
 
     static InteractionResult fillBucket(BlockState p_175636_, Level p_175637_, BlockPos p_175638_, Player p_175639_, InteractionHand p_175640_, ItemStack p_175641_, ItemStack p_175642_, Predicate<BlockState> p_175643_) {
         if (!p_175643_.test(p_175636_)) {

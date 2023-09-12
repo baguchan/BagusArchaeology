@@ -28,7 +28,7 @@ public class CauldronBlockRender implements BlockEntityRenderer<AlchemyCauldronB
         NonNullList<ItemStack> inventory = blockentity.getItems();
         int posLong = (int) blockentity.getBlockPos().asLong();
 
-        double height = blockentity.getBlockState().getValue(AlchemyCauldronBlock.HAS_WATER) ? 13D : -0.5D;
+        double height = blockentity.getBlockState().getValue(AlchemyCauldronBlock.HAS_WATER) ? 16.5D : 5D;
         for (int i = 0; i < inventory.size(); ++i) {
             ItemStack stack = inventory.get(i);
             if (!stack.isEmpty()) {
@@ -70,7 +70,7 @@ public class CauldronBlockRender implements BlockEntityRenderer<AlchemyCauldronB
     }
 
     private float getAngle(int tickCount, int idx) {
-        return 10F * idx + (tickCount * 1.0F);
+        return 24F * idx + (tickCount * 1.0F);
     }
 
     private Vec3 getPosition(float angle, float distance) {
