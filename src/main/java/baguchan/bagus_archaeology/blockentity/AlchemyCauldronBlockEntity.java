@@ -101,6 +101,22 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
             setChanged();
             return stack1;
         }
+        if (stack.is(Items.SLIME_BALL) || stack.is(Items.CLAY_BALL)) {
+            ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_PROJECTILE.get());
+            for (ItemStack stack2 : items) {
+                Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
+                    return stack2.is(alchemyMaterialReference.get().getItem());
+                }).findFirst();
+                if (referenceOptional.isPresent()) {
+                    ItemStack stack3 = stack2.split(1);
+                    AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
+                }
+
+            }
+            level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
+            setChanged();
+            return stack1;
+        }
 
         if (stack.is(Items.BUCKET)) {
             level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
