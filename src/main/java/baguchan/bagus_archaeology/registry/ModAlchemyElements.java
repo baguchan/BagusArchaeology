@@ -30,11 +30,4 @@ public class ModAlchemyElements {
                 .setName(new ResourceLocation(RelicsAndAlchemy.MODID, "alchemy_element"))
                 .setDefaultKey(new ResourceLocation(RelicsAndAlchemy.MODID, "thick")));
     }
-
-    public static Supplier<IForgeRegistry<AlchemyElement>> getRegistry() {
-        if (registry == null) {
-            throw new IllegalStateException("Registry not yet initialized");
-        }
-        return registry;
-    }
 }

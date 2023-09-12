@@ -88,8 +88,9 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
         if (stack.is(Items.GLASS_BOTTLE)) {
             ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_POTION.get());
             for (ItemStack stack2 : items) {
+                ItemStack stack3 = stack2.copy();
                 Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
-                    return stack2.is(alchemyMaterialReference.get().getItem());
+                    return stack3.is(alchemyMaterialReference.get().getItem());
                 }).findFirst();
                 if (referenceOptional.isPresent()) {
                     AlchemyUtils.addAlchemyMaterialToItemStack(stack1, referenceOptional.get().get());
@@ -101,12 +102,18 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
             setChanged();
             return stack1;
         }
+
+        if (stack.is(Items.BUCKET)) {
+            level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
+            setChanged();
+            return Items.WATER_BUCKET.getDefaultInstance();
+        }
         return stack;
     }
 
     public static void animationTick(Level level, BlockPos pos, BlockState state, AlchemyCauldronBlockEntity alchemyCauldronBlockEntity) {
         if (state.getValue(AlchemyCauldronBlock.HAS_WATER)) {
-            if (level.getBlockState(pos).is(BlockTags.CAMPFIRES) || level.getBlockState(pos).is(BlockTags.FIRE)) {
+            if (level.getBlockState(pos.below()).is(BlockTags.CAMPFIRES) || level.getBlockState(pos.below()).is(BlockTags.FIRE)) {
 
                 double x = ((double) pos.getX()) + (level.random.nextFloat());
                 double y = (double) pos.getY() + 0.8F;
@@ -134,7 +141,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
         boolean flag = false;
         if (p_155309_.getValue(AlchemyCauldronBlock.HAS_WATER)) {
 
-            if (p_155307_.getBlockState(p_155308_).is(BlockTags.CAMPFIRES) || p_155307_.getBlockState(p_155308_).is(BlockTags.FIRE)) {
+            if (p_155307_.getBlockState(p_155308_.below()).is(BlockTags.CAMPFIRES) || p_155307_.getBlockState(p_155308_.below()).is(BlockTags.FIRE)) {
                 for (int i = 0; i < p_155310_.items.size(); ++i) {
                     ItemStack itemstack = p_155310_.items.get(i);
                     if (!itemstack.isEmpty()) {
