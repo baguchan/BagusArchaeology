@@ -5,6 +5,7 @@ import baguchan.bagus_archaeology.client.model.WolfHeadModel;
 import baguchan.bagus_archaeology.client.render.CauldronBlockRender;
 import baguchan.bagus_archaeology.registry.ModBlockEntitys;
 import baguchan.bagus_archaeology.registry.ModBlocks;
+import baguchan.bagus_archaeology.registry.ModEntities;
 import baguchan.bagus_archaeology.registry.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.SkullModel;
@@ -12,6 +13,7 @@ import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraftforge.api.distmarker.Dist;
@@ -35,6 +37,7 @@ public class ClientRegistries {
         event.registerBlockEntityRenderer(ModBlockEntitys.MOD_SKULL.get(), SkullBlockRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntitys.ALCHEMY_CAULDRON.get(), CauldronBlockRender::new);
 
+        event.registerEntityRenderer(ModEntities.ALCHEMY_THROWN.get(), ThrownItemRenderer::new);
     }
 
     @SubscribeEvent

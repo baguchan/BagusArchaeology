@@ -27,6 +27,7 @@ public class RelicsAndAlchemy {
         ModAlchemyMaterials.ALCHEMY_MATERIAL.register(modEventBus);
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
+        ModEntities.ENTITIES_REGISTRY.register(modEventBus);
         ModBlockEntitys.BLOCK_ENTITY.register(modEventBus);
         ModCreativeTabs.CREATIVE_TABS.register(modEventBus);
         // Register the commonSetup method for modloading
@@ -41,6 +42,7 @@ public class RelicsAndAlchemy {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        ModItems.dispenserRegistry();
     }
 
     public static String prefixForString(String string) {
