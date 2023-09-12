@@ -1,6 +1,7 @@
 package baguchan.bagus_archaeology.registry;
 
 import baguchan.bagus_archaeology.RelicsAndAlchemy;
+import baguchan.bagus_archaeology.item.AlchemyPotionItem;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.DyeableArmorItem;
@@ -22,5 +23,7 @@ public class ModItems {
         public static final RegistryObject<Item> STUDDED_LEGGINGS = ITEMS.register("studded_leggings", () -> new DyeableArmorItem(ModArmorMaterials.STUDDED, ArmorItem.Type.LEGGINGS, (new Item.Properties())));
         public static final RegistryObject<Item> STUDDED_BOOTS = ITEMS.register("studded_boots", () -> new DyeableArmorItem(ModArmorMaterials.STUDDED, ArmorItem.Type.BOOTS, (new Item.Properties())));
         public static final RegistryObject<Item> STUDDED_LEATHER = ITEMS.register("studded_leather", () -> new Item((new Item.Properties())));
+
+    public static final RegistryObject<Item> ALCHEMY_POTION = ITEMS.register("alchemy_potion", () -> new AlchemyPotionItem((new Item.Properties())));
 
 }

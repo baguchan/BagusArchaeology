@@ -5,6 +5,7 @@ import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootTable;
 
 import java.util.HashSet;
@@ -35,6 +36,7 @@ public class BlockLootTables extends BlockLootSubProvider {
         dropOther(ModBlocks.PIGMAN_SKULL_WALL.get(), ModBlocks.PIGMAN_SKULL.get());
         registerEmpty(ModBlocks.SUSPICIOUS_SOUL_SAND.get());
         registerEmpty(ModBlocks.SUSPICIOUS_SOUL_SOIL.get());
+        dropOther(ModBlocks.ALCHEMY_CAULDRON.get(), Blocks.CAULDRON);
     }
 
 

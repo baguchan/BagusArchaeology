@@ -1,0 +1,17 @@
+{
+  "itemGroup.relics_and_alchemy": "Relics And Alchemy",
+  "block.relics_and_alchemy.skeleton_wolf_head": "Skeleton Wolf Head",
+  "block.relics_and_alchemy.wither_skeleton_wolf_head": "Wither Skeleton Wolf Head",
+  "block.relics_and_alchemy.pigman_skull": "Pigman Skull",
+  "block.relics_and_alchemy.suspicious_soul_sand": "Suspicious Soul Sand",
+  "block.relics_and_alchemy.suspicious_soul_soil": "Suspicious Soul Soil",
+  "block.relics_and_alchemy.soul_recover": "Soul Recover",
+  "block.relics_and_alchemy.alchemy_cauldron": "Alchemy Cauldron",
+  "item.relics_and_alchemy.studded_leather": "Studded Leather",
+  "item.relics_and_alchemy.studded_helmet": "Studded Helmet",
+  "item.relics_and_alchemy.studded_chestplate": "Studded Chestplate",
+  "item.relics_and_alchemy.studded_leggings": "Studded Leggings",
+  "item.relics_and_alchemy.studded_boots": "Studded Boots",
+  "menu.relics_and_alchemy.soul_recover": "Soul Recover",
+  "gui.relics_and_alchemy.recipebook.toggleRecipes.archaeology": "Toggle Recipe Books"
+}

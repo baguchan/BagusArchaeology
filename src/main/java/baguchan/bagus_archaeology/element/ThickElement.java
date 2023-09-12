@@ -7,7 +7,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import org.jetbrains.annotations.Nullable;
 
 public class ThickElement extends AlchemyElement {
     public ThickElement(Properties properties) {
@@ -25,7 +24,7 @@ public class ThickElement extends AlchemyElement {
     }
 
     @Override
-    public void active(@Nullable Entity entity, float power) {
+    public void active(Entity entity, float power) {
         if (entity instanceof LivingEntity living) {
             living.addEffect(new MobEffectInstance(MobEffects.GLOWING, (int) (200 * power)));
         }

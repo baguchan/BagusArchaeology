@@ -1,6 +1,7 @@
 package baguchan.bagus_archaeology.registry;
 
 import baguchan.bagus_archaeology.RelicsAndAlchemy;
+import baguchan.bagus_archaeology.blockentity.AlchemyCauldronBlockEntity;
 import baguchan.bagus_archaeology.blockentity.ModBrushableBlockEntity;
 import baguchan.bagus_archaeology.blockentity.ModSkullBlockEntity;
 import com.mojang.datafixers.types.Type;
@@ -21,6 +22,8 @@ public class ModBlockEntitys {
     public static final RegistryObject<BlockEntityType<ModBrushableBlockEntity>> MOD_BRUSHABLE = BLOCK_ENTITY.register("mod_brushable", () -> register(RelicsAndAlchemy.prefixForString("mod_brushable"), BlockEntityType.Builder.of(ModBrushableBlockEntity::new
             , ModBlocks.SUSPICIOUS_SOUL_SAND.get()
             , ModBlocks.SUSPICIOUS_SOUL_SOIL.get())));
+    public static final RegistryObject<BlockEntityType<AlchemyCauldronBlockEntity>> ALCHEMY_CAULDRON = BLOCK_ENTITY.register("alchemy_cauldron", () -> register(RelicsAndAlchemy.prefixForString("alchemy_cauldron"), BlockEntityType.Builder.of(AlchemyCauldronBlockEntity::new
+            , ModBlocks.ALCHEMY_CAULDRON.get())));
 
     private static <T extends BlockEntity> BlockEntityType<T> register(String p_200966_0_, BlockEntityType.Builder<T> p_200966_1_) {
         Type<?> type = Util.fetchChoiceType(References.BLOCK_ENTITY, p_200966_0_);

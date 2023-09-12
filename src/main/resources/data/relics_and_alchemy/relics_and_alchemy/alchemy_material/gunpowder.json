@@ -1,0 +1,7 @@
+{
+  "item": "minecraft:gunpowder",
+  "alchemy_materials": [
+    "relics_and_alchemy:explosion"
+  ],
+  "power": 6
+}

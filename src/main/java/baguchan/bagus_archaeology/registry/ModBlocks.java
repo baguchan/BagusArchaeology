@@ -1,10 +1,7 @@
 package baguchan.bagus_archaeology.registry;
 
 import baguchan.bagus_archaeology.RelicsAndAlchemy;
-import baguchan.bagus_archaeology.block.BrushableSoulSandBlock;
-import baguchan.bagus_archaeology.block.BrushableSoulSoilBlock;
-import baguchan.bagus_archaeology.block.ModSkullBlock;
-import baguchan.bagus_archaeology.block.ModWallSkullBlock;
+import baguchan.bagus_archaeology.block.*;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -33,6 +30,7 @@ public class ModBlocks {
     public static final RegistryObject<WallSkullBlock> PIGMAN_SKULL_WALL = noItemRegister("pigman_skull_wall", () -> new ModWallSkullBlock(PIGMAN_SKULL_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
     public static final RegistryObject<BrushableSoulSandBlock> SUSPICIOUS_SOUL_SAND = register("suspicious_soul_sand", () -> new BrushableSoulSandBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.35F).instrument(NoteBlockInstrument.COW_BELL).speedFactor(0.4F).sound(SoundType.SUSPICIOUS_SAND)));
     public static final RegistryObject<BrushableSoulSoilBlock> SUSPICIOUS_SOUL_SOIL = register("suspicious_soul_soil", () -> new BrushableSoulSoilBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.35F).sound(SoundType.SUSPICIOUS_SAND)));
+    public static final RegistryObject<AlchemyCauldronBlock> ALCHEMY_CAULDRON = noItemRegister("alchemy_cauldron", () -> new AlchemyCauldronBlock(BlockBehaviour.Properties.of().strength(1F, 5F).sound(SoundType.METAL)));
 
     private static ToIntFunction<BlockState> litBlockEmission(int p_50760_) {
         return (p_50763_) -> {

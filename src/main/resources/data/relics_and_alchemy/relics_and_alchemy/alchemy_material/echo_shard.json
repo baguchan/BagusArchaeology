@@ -1,0 +1,7 @@
+{
+  "item": "minecraft:echo_shard",
+  "power": 10,
+  "alchemy_materials": [
+    "relics_and_alchemy:soul"
+  ]
+}

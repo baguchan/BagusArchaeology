@@ -1,15 +1,17 @@
 package baguchan.bagus_archaeology.element;
 
+import baguchan.bagus_archaeology.registry.ModAlchemyElements;
+import com.mojang.serialization.Codec;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import org.jetbrains.annotations.Nullable;
 
 public abstract class AlchemyElement {
     protected final AlchemyType[] alchemyTypes;
     private final float scale;
+    public static final Codec<AlchemyElement> CODEC = net.minecraft.util.ExtraCodecs.lazyInitializedCodec(() -> ModAlchemyElements.ALCHEMY_ELEMENT_REGISTRY.get().getCodec());
 
     public AlchemyElement(Properties properties) {
         this.alchemyTypes = properties.alchemyType;
@@ -40,7 +42,7 @@ public abstract class AlchemyElement {
 
     public abstract void projectileHit(Projectile projectile, HitResult hitResult, float power);
 
-    public abstract void active(@Nullable Entity entity, float power);
+    public abstract void active(Entity entity, float power);
 
     public final boolean isCompatibleWith(AlchemyElement enchantmentIn) {
         return this.canApplyTogether(enchantmentIn) && enchantmentIn.canApplyTogether(this);
@@ -68,7 +70,7 @@ public abstract class AlchemyElement {
     public static enum AlchemyType {
         PROJECTILE(),
         NETURAL(),
-        AFFECT(),
+        SELF(),
         CORE();
     }
 }

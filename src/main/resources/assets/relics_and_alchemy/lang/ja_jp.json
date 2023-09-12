@@ -1,0 +1,16 @@
+{
+  "itemGroup.relics_and_alchemy": "Relics And Alchemy",
+  "block.relics_and_alchemy.skeleton_wolf_head": "スケルトンウルフの頭",
+  "block.relics_and_alchemy.wither_skeleton_wolf_head": "ウィザースケルトンウルフの頭",
+  "block.relics_and_alchemy.pigman_skull": "ピッグマンの頭蓋骨",
+  "block.relics_and_alchemy.suspicious_soul_sand": "怪しいソウルサンド",
+  "block.relics_and_alchemy.suspicious_soul_soil": "怪しいソウルソイル",
+  "block.relics_and_alchemy.alchemy_cauldron": "錬金かまど",
+  "item.relics_and_alchemy.studded_leather": "スタッドレザー",
+  "item.relics_and_alchemy.studded_helmet": "スタッドヘルメット",
+  "item.relics_and_alchemy.studded_chestplate": "スタッドチェストプレート",
+  "item.relics_and_alchemy.studded_leggings": "スタッドレギンス",
+  "item.relics_and_alchemy.studded_boots": "スタッドブーツ",
+  "menu.relics_and_alchemy.soul_recover": "ソウルリカバー",
+  "gui.relics_and_alchemy.recipebook.toggleRecipes.archaeology": "利用可能なレシピを表示中"
+}

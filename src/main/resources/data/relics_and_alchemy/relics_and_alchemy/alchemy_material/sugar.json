@@ -1,0 +1,7 @@
+{
+  "item": "minecraft:sugar",
+  "power": 0.5,
+  "alchemy_materials": [
+    "relics_and_alchemy:sugar"
+  ]
+}
