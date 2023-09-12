@@ -30,7 +30,7 @@ public class WarpedElement extends AlchemyElement {
                 areaeffectcloud.setOwner((LivingEntity) projectile.getOwner());
             }
 
-            areaeffectcloud.setRadius(3.0F);
+            areaeffectcloud.setRadius(0.25F * power);
             areaeffectcloud.setRadiusOnUse(-0.25F);
             areaeffectcloud.setWaitTime(10);
             areaeffectcloud.setRadiusPerTick(-areaeffectcloud.getRadius() / (float) areaeffectcloud.getDuration());

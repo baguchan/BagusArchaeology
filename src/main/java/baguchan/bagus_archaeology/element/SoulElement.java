@@ -6,6 +6,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 
 import java.util.List;
@@ -17,22 +18,28 @@ public class SoulElement extends AlchemyElement {
 
     @Override
     public void projectileHit(Projectile projectile, HitResult hitResult, float power) {
-        if (projectile.level().isClientSide()) {
-            projectile.level().addParticle(ParticleTypes.SONIC_BOOM, projectile.getX(), projectile.getY(), projectile.getZ(), 0, 0, 0);
-        } else {
-            List<Entity> list1 = projectile.level().getEntitiesOfClass(Entity.class, (new AABB(projectile.blockPosition()).inflate(power * 0.5F)));
+        if (power > 0) {
+            if (projectile.level().isClientSide()) {
+                projectile.level().addParticle(ParticleTypes.SONIC_BOOM, projectile.getX(), projectile.getY(), projectile.getZ(), 0, 0, 0);
+            } else {
+                List<Entity> list1 = projectile.level().getEntitiesOfClass(Entity.class, (new AABB(projectile.blockPosition()).inflate(power * 0.5F)));
 
-            if (!list1.isEmpty()) {
-                for (Entity hurtEntity : list1) {
-                    if (hurtEntity.isAttackable()) {
-                        float distance = projectile.distanceTo(hurtEntity);
-                        hurtEntity.hurt(hurtEntity.damageSources().sonicBoom(projectile.getOwner() != null ? projectile.getOwner() : projectile), (power * 1.5F / distance));
+                if (!list1.isEmpty()) {
+                    for (Entity hurtEntity : list1) {
+                        if (hurtEntity.isAttackable()) {
+                            float distance = projectile.distanceTo(hurtEntity);
+                            hurtEntity.hurt(hurtEntity.damageSources().sonicBoom(projectile.getOwner() != null ? projectile.getOwner() : projectile), (power * 1.5F / distance));
 
+                        }
                     }
                 }
             }
+            projectile.playSound(SoundEvents.WARDEN_SONIC_BOOM, 1.5F, 1.0F);
+        } else if (power < 0) {
+            if (hitResult instanceof EntityHitResult hitResult1 && hitResult1.getEntity() instanceof LivingEntity living) {
+                living.heal(-power);
+            }
         }
-        projectile.playSound(SoundEvents.WARDEN_SONIC_BOOM, 1.5F, 1.0F);
     }
 
     @Override
