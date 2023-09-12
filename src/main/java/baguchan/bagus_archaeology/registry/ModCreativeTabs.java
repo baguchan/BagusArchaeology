@@ -15,7 +15,7 @@ public class ModCreativeTabs {
 
     public static final RegistryObject<CreativeModeTab> SOUL_ARCHAEOLOGY = CREATIVE_TABS.register("soul_received", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
-            .title(Component.translatable("itemGroup." + "bagus_archaeology"))
+            .title(Component.translatable("itemGroup." + "relics_and_alchemy"))
             .icon(() -> ModItems.PIGMAN_SKULL.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 output.acceptAll(Stream.of(

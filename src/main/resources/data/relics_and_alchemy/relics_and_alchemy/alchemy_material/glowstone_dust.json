@@ -1,7 +1,7 @@
 {
   "item": "minecraft:glowstone_dust",
   "power": 2,
-  "alchemy_materials": [
+  "alchemy_element": [
     "relics_and_alchemy:thick"
   ]
 }

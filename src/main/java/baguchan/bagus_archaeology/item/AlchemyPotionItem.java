@@ -41,6 +41,9 @@ public class AlchemyPotionItem extends AlchemyItem {
                 }
             }
         }
+        if (!(p_41350_ instanceof Player) || !((Player) p_41350_).getAbilities().instabuild) {
+            p_41348_.shrink(1);
+        }
 
         if (p_41348_.isEmpty()) {
             return new ItemStack(Items.GLASS_BOTTLE);

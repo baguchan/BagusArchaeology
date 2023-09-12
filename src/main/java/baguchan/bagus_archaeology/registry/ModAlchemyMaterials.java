@@ -14,7 +14,6 @@ public class ModAlchemyMaterials {
 
     public static final ResourceKey<AlchemyMaterial> GLOWSTONE_DUST = key(new ResourceLocation(RelicsAndAlchemy.MODID, "glowstone_dust"));
     public static final ResourceKey<AlchemyMaterial> ECHO_SHARD = key(new ResourceLocation(RelicsAndAlchemy.MODID, "echo_shard"));
-
     public static ResourceKey<AlchemyMaterial> key(ResourceLocation name) {
         return ResourceKey.create(AlchemyMaterial.REGISTRY_KEY, name);
     }

@@ -4,6 +4,7 @@ import baguchan.bagus_archaeology.RelicsAndAlchemy;
 import baguchan.bagus_archaeology.element.AlchemyElement;
 import baguchan.bagus_archaeology.material.AlchemyMaterial;
 import com.google.common.collect.Lists;
+import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
@@ -11,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class AlchemyUtils {
     public static final String TAG_ALCHEMY_ELEMENT = "AlchemyElement";
@@ -85,28 +87,32 @@ public class AlchemyUtils {
         return linkedList;
     }
 
+    public static void addAlchemyMaterialToItemStack(ItemStack itemIn, ItemStack alchemyMaterial) {
+        ListTag listnbt = getAlchemyMaterialListForNBT(itemIn.getTag());
+
+        Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
+            return alchemyMaterial.is(alchemyMaterialReference.get().getItem());
+        }).findFirst();
+
+        if (referenceOptional.isPresent()) {
+            CompoundTag compoundnbt1 = new CompoundTag();
+            compoundnbt1.putString(TAG_ALCHEMY_MATERIAL, String.valueOf(referenceOptional.get().key().location()));
+            listnbt.add(compoundnbt1);
+        }
+
+        itemIn.getOrCreateTag().put(TAG_STORED_ALCHEMY_MATERIAL, listnbt);
+    }
 
     public static void addAlchemyMaterialToItemStack(ItemStack itemIn, AlchemyMaterial alchemyMaterial) {
         ListTag listnbt = getAlchemyMaterialListForNBT(itemIn.getTag());
 
-        boolean flag = true;
         ResourceLocation resourcelocation = RelicsAndAlchemy.registryAccess().registryOrThrow(AlchemyMaterial.REGISTRY_KEY).getKey(alchemyMaterial);
 
 
-        for (int i = 0; i < listnbt.size(); ++i) {
-            CompoundTag compoundnbt = listnbt.getCompound(i);
-            ResourceLocation resourcelocation1 = ResourceLocation.tryParse(compoundnbt.getString(TAG_ALCHEMY_MATERIAL));
-            if (resourcelocation1 != null && resourcelocation1.equals(resourcelocation)) {
-                flag = false;
-                break;
-            }
-        }
-
-        if (flag) {
             CompoundTag compoundnbt1 = new CompoundTag();
-            compoundnbt1.putString(TAG_ALCHEMY_MATERIAL, String.valueOf((Object) resourcelocation));
+        compoundnbt1.putString(TAG_ALCHEMY_MATERIAL, String.valueOf(resourcelocation));
             listnbt.add(compoundnbt1);
-        }
+
 
         itemIn.getOrCreateTag().put(TAG_STORED_ALCHEMY_MATERIAL, listnbt);
     }

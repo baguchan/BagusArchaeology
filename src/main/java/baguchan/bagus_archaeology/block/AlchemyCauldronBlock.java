@@ -120,7 +120,7 @@ public class AlchemyCauldronBlock extends BaseEntityBlock {
         } else {
             if (!p_175637_.isClientSide) {
                 Item item = p_175641_.getItem();
-                p_175639_.setItemInHand(p_175640_, ItemUtils.createFilledResult(p_175641_, p_175639_, p_175642_));
+                p_175639_.setItemInHand(p_175640_, ItemUtils.createFilledResult(p_175641_, p_175639_, p_175642_, false));
                 p_175639_.awardStat(Stats.USE_CAULDRON);
                 p_175639_.awardStat(Stats.ITEM_USED.get(item));
                 p_175637_.setBlockAndUpdate(p_175638_, ModBlocks.ALCHEMY_CAULDRON.get().defaultBlockState());

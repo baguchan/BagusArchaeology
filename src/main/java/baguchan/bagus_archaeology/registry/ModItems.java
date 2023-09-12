@@ -24,6 +24,6 @@ public class ModItems {
         public static final RegistryObject<Item> STUDDED_BOOTS = ITEMS.register("studded_boots", () -> new DyeableArmorItem(ModArmorMaterials.STUDDED, ArmorItem.Type.BOOTS, (new Item.Properties())));
         public static final RegistryObject<Item> STUDDED_LEATHER = ITEMS.register("studded_leather", () -> new Item((new Item.Properties())));
 
-    public static final RegistryObject<Item> ALCHEMY_POTION = ITEMS.register("alchemy_potion", () -> new AlchemyPotionItem((new Item.Properties())));
+        public static final RegistryObject<Item> ALCHEMY_POTION = ITEMS.register("alchemy_potion", () -> new AlchemyPotionItem((new Item.Properties().stacksTo(16))));
 
 }

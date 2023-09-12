@@ -13,7 +13,7 @@ public class ExplosionElement extends AlchemyElement {
 
     @Override
     public void projectileHit(Projectile projectile, HitResult hitResult, float power) {
-        projectile.level().explode(projectile, projectile.getX(), projectile.getY() - 0.01F, projectile.getZ(), power * 0.2F, Level.ExplosionInteraction.NONE);
+        projectile.level().explode(projectile.getOwner() != null ? projectile.getOwner() : projectile, projectile.getX(), projectile.getY() - 0.01F, projectile.getZ(), power * 0.2F, Level.ExplosionInteraction.NONE);
     }
 
     @Override

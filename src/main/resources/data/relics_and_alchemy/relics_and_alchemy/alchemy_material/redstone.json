@@ -1,0 +1,7 @@
+{
+  "item": "minecraft:redstone",
+  "power": 3,
+  "alchemy_element": [
+    "relics_and_alchemy:extend"
+  ]
+}

@@ -24,6 +24,6 @@ public class SugarElement extends AlchemyElement {
 
     @Override
     public float getSelfScale() {
-        return super.getSelfScale() * 2.0F;
+        return super.getSelfScale() * 0.5F;
     }
 }

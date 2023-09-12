@@ -88,13 +88,12 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
         if (stack.is(Items.GLASS_BOTTLE)) {
             ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_POTION.get());
             for (ItemStack stack2 : items) {
-                ItemStack stack3 = stack2.copy();
                 Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
-                    return stack3.is(alchemyMaterialReference.get().getItem());
+                    return stack2.is(alchemyMaterialReference.get().getItem());
                 }).findFirst();
                 if (referenceOptional.isPresent()) {
-                    AlchemyUtils.addAlchemyMaterialToItemStack(stack1, referenceOptional.get().get());
-                    stack2.shrink(1);
+                    ItemStack stack3 = stack2.split(1);
+                    AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
                 }
 
             }
@@ -108,7 +107,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
             setChanged();
             return Items.WATER_BUCKET.getDefaultInstance();
         }
-        return stack;
+        return ItemStack.EMPTY;
     }
 
     public static void animationTick(Level level, BlockPos pos, BlockState state, AlchemyCauldronBlockEntity alchemyCauldronBlockEntity) {
