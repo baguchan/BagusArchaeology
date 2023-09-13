@@ -1,5 +1,6 @@
 package baguchan.bagus_archaeology.element;
 
+import baguchan.bagus_archaeology.entity.AlchemyGolem;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -16,10 +17,20 @@ public class FlowerElemnt extends AlchemyElement {
     }
 
     @Override
+    public void entityAttack(AlchemyGolem entity, Entity target, Item item, float power) {
+        super.entityAttack(entity, target, item, power);
+        if (target instanceof LivingEntity living) {
+            if (item instanceof BlockItem blockItem && blockItem.getBlock() instanceof FlowerBlock flowerBlock) {
+                living.addEffect(new MobEffectInstance(flowerBlock.getSuspiciousEffect(), (int) (flowerBlock.getEffectDuration() * 0.5F + 20 * power)));
+            }
+        }
+    }
+
+    @Override
     public void projectileHit(Projectile projectile, HitResult hitResult, Item item, float power) {
         if (hitResult instanceof EntityHitResult entityHitResult && entityHitResult.getEntity() instanceof LivingEntity living) {
             if (item instanceof BlockItem blockItem && blockItem.getBlock() instanceof FlowerBlock flowerBlock) {
-                living.addEffect(new MobEffectInstance(flowerBlock.getSuspiciousEffect(), (int) (flowerBlock.getEffectDuration() + 20 * power)));
+                living.addEffect(new MobEffectInstance(flowerBlock.getSuspiciousEffect(), (int) (flowerBlock.getEffectDuration() * 0.5F + 20 * power)));
             }
         }
     }
@@ -28,12 +39,12 @@ public class FlowerElemnt extends AlchemyElement {
     public void active(Entity entity, Item item, float power) {
         if (entity instanceof LivingEntity living) {
             if (item instanceof BlockItem blockItem && blockItem.getBlock() instanceof FlowerBlock flowerBlock) {
-                living.addEffect(new MobEffectInstance(flowerBlock.getSuspiciousEffect(), (int) (flowerBlock.getEffectDuration() + 20 * power)));
+                living.addEffect(new MobEffectInstance(flowerBlock.getSuspiciousEffect(), (int) (flowerBlock.getEffectDuration() * 0.5F + 20 * power)));
             }
         }
     }
 
     public boolean isUsableConstruct() {
-        return false;
+        return true;
     }
 }

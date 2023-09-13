@@ -183,7 +183,7 @@ public class AlchemyGolem extends AbstractGolem implements TraceableEntity {
             for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
                 scale += alchemyMaterial.getPower() * this.getDamageScale();
                 for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
-                    alchemyElement.entityAttack(this, p_28837_, scale);
+                    alchemyElement.entityAttack(this, p_28837_, alchemyMaterial.getItem(), scale);
                     scale *= alchemyElement.getSelfScale();
                 }
             }

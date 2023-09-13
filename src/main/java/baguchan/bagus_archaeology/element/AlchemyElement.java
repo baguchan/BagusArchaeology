@@ -44,7 +44,7 @@ public abstract class AlchemyElement {
 
     }
 
-    public void entityAttack(AlchemyGolem entity, Entity target, float power) {
+    public void entityAttack(AlchemyGolem entity, Entity target, Item item, float power) {
 
     }
 

@@ -19,8 +19,8 @@ public class WarpedElement extends AlchemyElement {
 
 
     @Override
-    public void entityAttack(AlchemyGolem entity, Entity target, float power) {
-        super.entityAttack(entity, target, power);
+    public void entityAttack(AlchemyGolem entity, Entity target, Item item, float power) {
+        super.entityAttack(entity, target, item, power);
         if (!entity.level().isClientSide()) {
             if (target instanceof LivingEntity living) {
                 living.addEffect(new MobEffectInstance(MobEffects.POISON, (int) (power * 20F)), entity);

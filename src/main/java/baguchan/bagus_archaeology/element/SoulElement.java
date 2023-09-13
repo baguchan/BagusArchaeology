@@ -19,8 +19,8 @@ public class SoulElement extends AlchemyElement {
     }
 
     @Override
-    public void entityAttack(AlchemyGolem entity, Entity target, float power) {
-        super.entityAttack(entity, target, power);
+    public void entityAttack(AlchemyGolem entity, Entity target, Item item, float power) {
+        super.entityAttack(entity, target, item, power);
         if (power > 0) {
             if (entity.level().isClientSide()) {
                 entity.level().addParticle(ParticleTypes.SONIC_BOOM, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);

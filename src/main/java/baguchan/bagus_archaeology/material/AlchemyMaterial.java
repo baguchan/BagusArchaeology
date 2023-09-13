@@ -62,15 +62,15 @@ public class AlchemyMaterial {
     }
 
     public final boolean isUsableDrink() {
-        return this.alchemyElement.stream().noneMatch(alchemyElement1 -> {
+        return (this.alchemyElement.stream().noneMatch(alchemyElement1 -> {
             return !alchemyElement1.isUsableDrink();
-        }) && this.hardness <= 0 && this.toughness <= 0;
+        }) || this.alchemyElement.isEmpty()) && this.hardness <= 0 && this.toughness <= 0;
     }
 
     public final boolean isUsableConstruct() {
         return this.alchemyElement.stream().noneMatch(alchemyElement1 -> {
             return !alchemyElement1.isUsableConstruct();
-        });
+        }) || this.alchemyElement.isEmpty();
     }
 
     public Component getName() {
