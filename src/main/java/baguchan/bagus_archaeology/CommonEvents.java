@@ -34,5 +34,14 @@ public class CommonEvents {
                 event.setCanceled(true);
             }
         }
+        if (event.getLevel().getBlockState(event.getPos()).is(Blocks.WATER_CAULDRON)) {
+            if (event.getItemStack().is(Items.WOODEN_SHOVEL)) {
+                event.getEntity().playSound(SoundEvents.ARMOR_EQUIP_GENERIC);
+                event.getItemStack().shrink(1);
+                event.getLevel().setBlock(event.getPos(), ModBlocks.ALCHEMY_CAULDRON.get().defaultBlockState(), 3);
+                event.setUseItem(Event.Result.ALLOW);
+                event.setCanceled(true);
+            }
+        }
     }
 }

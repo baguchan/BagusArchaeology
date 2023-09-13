@@ -68,9 +68,7 @@ public class AlchemyMaterial {
     }
 
     public final boolean isUsableConstruct() {
-        return this.alchemyElement.stream().noneMatch(alchemyElement1 -> {
-            return !alchemyElement1.isUsableConstruct();
-        }) || this.alchemyElement.isEmpty();
+        return this.alchemyElement.stream().anyMatch(AlchemyElement::isUsableConstruct) || this.alchemyElement.isEmpty();
     }
 
     public Component getName() {

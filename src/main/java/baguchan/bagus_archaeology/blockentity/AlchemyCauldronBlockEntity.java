@@ -92,7 +92,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
                 Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
                     return stack2.is(alchemyMaterialReference.get().getItem());
                 }).findFirst();
-                if (!simulator && referenceOptional.isPresent() && referenceOptional.get().get().isUsableDrink()) {
+                if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent() && referenceOptional.get().get().isUsableDrink()) {
                     ItemStack stack3 = stack2.split(1);
                     AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
                 }
@@ -108,7 +108,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
                 Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
                     return stack2.is(alchemyMaterialReference.get().getItem());
                 }).findFirst();
-                if (!simulator && referenceOptional.isPresent()) {
+                if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent()) {
                     ItemStack stack3 = stack2.split(1);
                     AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
                 }
@@ -125,7 +125,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
                 Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
                     return stack2.is(alchemyMaterialReference.get().getItem());
                 }).findFirst();
-                if (!simulator && referenceOptional.isPresent() && referenceOptional.get().get().isUsableConstruct()) {
+                if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent() && referenceOptional.get().get().isUsableConstruct()) {
                     ItemStack stack3 = stack2.split(1);
                     AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
                 }

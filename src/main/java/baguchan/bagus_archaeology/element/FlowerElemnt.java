@@ -43,8 +43,4 @@ public class FlowerElemnt extends AlchemyElement {
             }
         }
     }
-
-    public boolean isUsableConstruct() {
-        return true;
-    }
 }

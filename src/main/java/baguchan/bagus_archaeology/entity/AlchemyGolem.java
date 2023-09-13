@@ -149,9 +149,9 @@ public class AlchemyGolem extends AbstractGolem implements TraceableEntity {
     @Override
     public boolean canAttack(LivingEntity p_21171_) {
         if (p_21171_ instanceof TraceableEntity traceableEntity) {
-            return traceableEntity.getOwner() == getOwner();
+            return traceableEntity.getOwner() != getOwner();
         } else if (p_21171_ instanceof TamableAnimal tamableAnimal) {
-            return tamableAnimal.getOwner() == getOwner();
+            return tamableAnimal.getOwner() != getOwner();
         } else if (p_21171_.getType() == EntityType.CREEPER) {
             return false;
         }
