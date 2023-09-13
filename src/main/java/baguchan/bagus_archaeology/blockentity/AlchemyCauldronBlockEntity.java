@@ -40,13 +40,11 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 
 public class AlchemyCauldronBlockEntity extends BlockEntity implements Container {
-    private NonNullList<ItemStack> items = NonNullList.withSize(12, ItemStack.EMPTY);
+    private NonNullList<ItemStack> items = NonNullList.withSize(8, ItemStack.EMPTY);
 
     @Nullable
     protected ResourceLocation lootTable;
     protected long lootTableSeed;
-
-    private final int[] cookingProgress = new int[12];
     public int tickCount;
 
     public AlchemyCauldronBlockEntity(BlockPos p_155731_, BlockState p_155732_) {
@@ -179,9 +177,6 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
                     ItemStack itemstack = p_155310_.items.get(i);
                     if (!itemstack.isEmpty()) {
                         flag = true;
-                        if (p_155310_.cookingProgress[i] < 400) {
-                            int j = p_155310_.cookingProgress[i]++;
-                        }
                     }
                 }
             }
@@ -212,10 +207,6 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
         if (!this.tryLoadLootTable(p_155349_)) {
             ContainerHelper.loadAllItems(p_155349_, this.items);
         }
-        if (p_155349_.contains("CookingTimes", 11)) {
-            int[] aint = p_155349_.getIntArray("CookingTimes");
-            System.arraycopy(aint, 0, this.cookingProgress, 0, Math.min(400, aint.length));
-        }
         setChanged();
     }
 
@@ -224,7 +215,6 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
         if (!this.trySaveLootTable(p_187489_)) {
             ContainerHelper.saveAllItems(p_187489_, this.items);
         }
-        p_187489_.putIntArray("CookingTimes", this.cookingProgress);
     }
 
     protected boolean tryLoadLootTable(CompoundTag p_59632_) {
