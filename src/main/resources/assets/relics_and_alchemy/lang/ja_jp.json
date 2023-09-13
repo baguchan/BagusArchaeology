@@ -13,5 +13,6 @@
   "item.relics_and_alchemy.studded_boots": "スタッドブーツ",
   "item.relics_and_alchemy.alchemy_potion": "錬金ポーション",
   "item.relics_and_alchemy.alchemy_projectile": "錬金玉",
-  "item.relics_and_alchemy.alchemy_golem": "錬金ゴーレム"
+  "item.relics_and_alchemy.alchemy_golem": "錬金ゴーレム",
+  "entity.relics_and_alchemy.alchemy_golem": "錬金ゴーレム"
 }
