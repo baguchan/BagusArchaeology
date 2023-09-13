@@ -10,6 +10,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -109,7 +110,7 @@ public class AlchemyGolem extends AbstractGolem implements TraceableEntity {
                 return InteractionResult.PASS;
             } else {
                 float f1 = 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F;
-                this.playSound(SoundEvents.IRON_GOLEM_REPAIR, 1.0F, f1);
+                this.playSound(SoundEvents.STONE_HIT, 1.0F, f1);
                 if (!p_28861_.getAbilities().instabuild) {
                     itemstack.shrink(1);
                 }
@@ -121,6 +122,18 @@ public class AlchemyGolem extends AbstractGolem implements TraceableEntity {
 
     protected void playStepSound(BlockPos p_28864_, BlockState p_28865_) {
         this.playSound(SoundEvents.STONE_STEP, 0.8F, 1.0F);
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource p_27517_) {
+        return SoundEvents.STONE_HIT;
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.STONE_BREAK;
     }
 
     protected int decreaseAirSupply(int p_28882_) {
@@ -217,7 +230,7 @@ public class AlchemyGolem extends AbstractGolem implements TraceableEntity {
         IronGolem.Crackiness irongolem$crackiness = this.getCrackiness();
         boolean flag = super.hurt(p_28848_, p_28849_);
         if (flag && this.getCrackiness() != irongolem$crackiness) {
-            this.playSound(SoundEvents.IRON_GOLEM_DAMAGE, 1.0F, 1.0F);
+            this.playSound(SoundEvents.STONE_BREAK, 1.0F, 1.0F);
         }
 
         return flag;
