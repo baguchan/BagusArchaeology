@@ -13,8 +13,8 @@ import net.minecraft.world.phys.HitResult;
 
 import java.util.List;
 
-public class SoulElement extends AlchemyElement {
-    public SoulElement(Properties properties) {
+public class SoulEchoElement extends AlchemyElement {
+    public SoulEchoElement(Properties properties) {
         super(properties);
     }
 

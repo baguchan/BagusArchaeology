@@ -54,6 +54,7 @@ public class AlchemyThrown extends ThrowableItemProjectile {
     protected void onHitEntity(EntityHitResult p_37404_) {
         super.onHitEntity(p_37404_);
         float scale = 0F;
+        float hardness = 0F;
         if (AlchemyUtils.hasAlchemyMaterial(this.getItem())) {
             List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
             for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
@@ -61,6 +62,12 @@ public class AlchemyThrown extends ThrowableItemProjectile {
                 for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
                     alchemyElement.projectileHit(this, p_37404_, alchemyMaterial.getItem(), scale);
                     scale *= alchemyElement.getSelfScale();
+                }
+                hardness += alchemyMaterial.getHardness();
+            }
+            if (hardness > 0) {
+                if (this.getOwner() instanceof LivingEntity living) {
+                    p_37404_.getEntity().hurt(this.damageSources().mobProjectile(this, living), hardness);
                 }
             }
         }
@@ -71,6 +78,7 @@ public class AlchemyThrown extends ThrowableItemProjectile {
     protected void onHitBlock(BlockHitResult p_37258_) {
         super.onHitBlock(p_37258_);
         float scale = 0F;
+
         if (AlchemyUtils.hasAlchemyMaterial(this.getItem())) {
             List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
             for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
@@ -79,7 +87,9 @@ public class AlchemyThrown extends ThrowableItemProjectile {
                     alchemyElement.projectileHit(this, p_37258_, alchemyMaterial.getItem(), scale);
                     scale *= alchemyElement.getSelfScale();
                 }
+
             }
+
         }
         makeDiscard();
     }
