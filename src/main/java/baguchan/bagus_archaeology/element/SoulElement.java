@@ -6,6 +6,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -40,7 +41,7 @@ public class SoulElement extends AlchemyElement {
     }
 
     @Override
-    public void projectileHit(Projectile projectile, HitResult hitResult, float power) {
+    public void projectileHit(Projectile projectile, HitResult hitResult, Item item, float power) {
         if (power > 0) {
             if (projectile.level().isClientSide()) {
                 projectile.level().addParticle(ParticleTypes.SONIC_BOOM, projectile.getX(), projectile.getY(), projectile.getZ(), 0, 0, 0);
@@ -66,7 +67,7 @@ public class SoulElement extends AlchemyElement {
     }
 
     @Override
-    public void active(Entity entity, float power) {
+    public void active(Entity entity, Item item, float power) {
         if (power > 10) {
             if (entity.level().isClientSide()) {
                 entity.level().addParticle(ParticleTypes.SONIC_BOOM, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);

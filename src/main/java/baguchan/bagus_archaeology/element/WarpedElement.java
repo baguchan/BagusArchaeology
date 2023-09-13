@@ -7,6 +7,7 @@ import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -29,7 +30,7 @@ public class WarpedElement extends AlchemyElement {
     }
 
     @Override
-    public void projectileHit(Projectile projectile, HitResult hitResult, float power) {
+    public void projectileHit(Projectile projectile, HitResult hitResult, Item item, float power) {
         if (!projectile.level().isClientSide()) {
             if (hitResult instanceof EntityHitResult entityHitResult) {
                 Entity entity = entityHitResult.getEntity();
@@ -54,7 +55,7 @@ public class WarpedElement extends AlchemyElement {
     }
 
     @Override
-    public void active(Entity entity, float power) {
+    public void active(Entity entity, Item item, float power) {
         if (power < 0) {
             if (!entity.level().isClientSide()) {
                 if (entity instanceof LivingEntity living) {

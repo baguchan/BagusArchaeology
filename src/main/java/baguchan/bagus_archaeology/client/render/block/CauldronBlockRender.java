@@ -1,4 +1,4 @@
-package baguchan.bagus_archaeology.client.render;
+package baguchan.bagus_archaeology.client.render.block;
 
 import baguchan.bagus_archaeology.block.AlchemyCauldronBlock;
 import baguchan.bagus_archaeology.blockentity.AlchemyCauldronBlockEntity;
@@ -70,7 +70,7 @@ public class CauldronBlockRender implements BlockEntityRenderer<AlchemyCauldronB
     }
 
     private float getAngle(int tickCount, int idx) {
-        return 27.5F * idx + (tickCount * 1.0F);
+        return 26F * idx + (tickCount * 1.0F);
     }
 
     private Vec3 getPosition(float angle, float distance) {

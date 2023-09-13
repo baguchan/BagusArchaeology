@@ -92,7 +92,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
                 Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
                     return stack2.is(alchemyMaterialReference.get().getItem());
                 }).findFirst();
-                if (!simulator && referenceOptional.isPresent()) {
+                if (!simulator && referenceOptional.isPresent() && referenceOptional.get().get().isUsableDrink()) {
                     ItemStack stack3 = stack2.split(1);
                     AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
                 }
@@ -125,7 +125,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
                 Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
                     return stack2.is(alchemyMaterialReference.get().getItem());
                 }).findFirst();
-                if (!simulator && referenceOptional.isPresent()) {
+                if (!simulator && referenceOptional.isPresent() && referenceOptional.get().get().isUsableConstruct()) {
                     ItemStack stack3 = stack2.split(1);
                     AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
                 }
@@ -216,6 +216,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
             int[] aint = p_155349_.getIntArray("CookingTimes");
             System.arraycopy(aint, 0, this.cookingProgress, 0, Math.min(400, aint.length));
         }
+        setChanged();
     }
 
     protected void saveAdditional(CompoundTag p_187489_) {

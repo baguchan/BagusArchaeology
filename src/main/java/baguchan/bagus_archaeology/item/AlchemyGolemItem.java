@@ -63,6 +63,8 @@ public class AlchemyGolemItem extends AlchemyItem {
                 if (itemstack.getTag() != null) {
                     if (entity instanceof AlchemyGolem alchemyGolem) {
                         alchemyGolem.setItem(itemstack);
+                        alchemyGolem.setOwner(p_43223_.getPlayer());
+                        alchemyGolem.setStatsFromItem(itemstack);
                     }
                 }
                 itemstack.shrink(1);
@@ -91,6 +93,8 @@ public class AlchemyGolemItem extends AlchemyItem {
                 if (itemstack.getTag() != null) {
                     if (entity instanceof AlchemyGolem alchemyGolem) {
                         alchemyGolem.setItem(itemstack);
+                        alchemyGolem.setOwner(p_43226_);
+                        alchemyGolem.setStatsFromItem(itemstack);
                     }
                 }
                 if (entity == null) {

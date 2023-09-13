@@ -2,8 +2,8 @@ package baguchan.bagus_archaeology.client;
 
 import baguchan.bagus_archaeology.RelicsAndAlchemy;
 import baguchan.bagus_archaeology.client.model.WolfHeadModel;
-import baguchan.bagus_archaeology.client.render.AlchemyGolemRenderer;
-import baguchan.bagus_archaeology.client.render.CauldronBlockRender;
+import baguchan.bagus_archaeology.client.render.block.CauldronBlockRender;
+import baguchan.bagus_archaeology.client.render.entity.AlchemyGolemRenderer;
 import baguchan.bagus_archaeology.registry.ModBlockEntitys;
 import baguchan.bagus_archaeology.registry.ModBlocks;
 import baguchan.bagus_archaeology.registry.ModEntities;

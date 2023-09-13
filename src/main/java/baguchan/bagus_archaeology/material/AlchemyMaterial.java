@@ -19,20 +19,26 @@ public class AlchemyMaterial {
             .group(
                     BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(instance2 -> instance2.getItem()),
                     AlchemyElement.CODEC.listOf().fieldOf("alchemy_element").orElse(List.of()).forGetter(alchemyMaterial -> alchemyMaterial.getAlchemyElement()),
-                    Codec.FLOAT.fieldOf("power").forGetter(alchemyMaterial -> alchemyMaterial.getPower()))
-            .apply(instance, (Item item1, List<AlchemyElement> alchemyMaterial1, Float scale) -> new AlchemyMaterial(item1, alchemyMaterial1, scale))
+                    Codec.FLOAT.fieldOf("power").orElse(0F).forGetter(alchemyMaterial -> alchemyMaterial.getPower()),
+                    Codec.FLOAT.fieldOf("hardness").orElse(0F).forGetter(alchemyMaterial -> alchemyMaterial.getHardness()),
+                    Codec.FLOAT.fieldOf("toughness").orElse(0F).forGetter(alchemyMaterial -> alchemyMaterial.getToughness()))
+            .apply(instance, (Item item1, List<AlchemyElement> alchemyMaterial1, Float scale, Float hardness, Float toughness) -> new AlchemyMaterial(item1, alchemyMaterial1, scale, hardness, toughness))
     );
 
     public static final ResourceKey<Registry<AlchemyMaterial>> REGISTRY_KEY = ResourceKey
             .createRegistryKey(new ResourceLocation(RelicsAndAlchemy.MODID, "alchemy_material"));
     private final Item item;
     private final List<AlchemyElement> alchemyElement;
-    private final float scale;
+    private final float power;
+    private final float hardness;
+    private final float toughness;
 
-    public AlchemyMaterial(Item item, List<AlchemyElement> alchemyElement, float scale) {
+    public AlchemyMaterial(Item item, List<AlchemyElement> alchemyElement, float power, float hardness, float toughness) {
         this.item = item;
         this.alchemyElement = alchemyElement;
-        this.scale = scale;
+        this.power = power;
+        this.hardness = hardness;
+        this.toughness = toughness;
     }
 
     public Item getItem() {
@@ -44,7 +50,27 @@ public class AlchemyMaterial {
     }
 
     public float getPower() {
-        return scale;
+        return power;
+    }
+
+    public float getHardness() {
+        return hardness;
+    }
+
+    public float getToughness() {
+        return toughness;
+    }
+
+    public final boolean isUsableDrink() {
+        return this.alchemyElement.stream().noneMatch(alchemyElement1 -> {
+            return !alchemyElement1.isUsableDrink();
+        }) && this.hardness <= 0 && this.toughness <= 0;
+    }
+
+    public final boolean isUsableConstruct() {
+        return this.alchemyElement.stream().noneMatch(alchemyElement1 -> {
+            return !alchemyElement1.isUsableConstruct();
+        });
     }
 
     public Component getName() {

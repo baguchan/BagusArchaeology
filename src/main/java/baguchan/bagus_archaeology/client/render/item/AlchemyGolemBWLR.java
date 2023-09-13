@@ -1,7 +1,7 @@
 package baguchan.bagus_archaeology.client.render.item;
 
 import baguchan.bagus_archaeology.client.model.AlchemyGolemModel;
-import baguchan.bagus_archaeology.client.render.AlchemyGolemRenderer;
+import baguchan.bagus_archaeology.client.render.entity.AlchemyGolemRenderer;
 import baguchan.bagus_archaeology.item.AlchemyGolemItem;
 import baguchan.bagus_archaeology.registry.ModItems;
 import com.mojang.blaze3d.vertex.PoseStack;

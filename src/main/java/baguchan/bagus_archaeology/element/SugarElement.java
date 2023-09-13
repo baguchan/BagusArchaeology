@@ -2,6 +2,7 @@ package baguchan.bagus_archaeology.element;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.phys.HitResult;
 
 public class SugarElement extends AlchemyElement {
@@ -10,11 +11,11 @@ public class SugarElement extends AlchemyElement {
     }
 
     @Override
-    public void projectileHit(Projectile projectile, HitResult hitResult, float power) {
+    public void projectileHit(Projectile projectile, HitResult hitResult, Item item, float power) {
     }
 
     @Override
-    public void active(Entity entity, float power) {
+    public void active(Entity entity, Item item, float power) {
     }
 
     @Override

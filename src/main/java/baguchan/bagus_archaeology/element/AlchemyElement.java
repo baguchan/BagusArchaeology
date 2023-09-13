@@ -5,9 +5,12 @@ import baguchan.bagus_archaeology.registry.ModAlchemyElements;
 import com.mojang.serialization.Codec;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import java.util.Arrays;
 
 public abstract class AlchemyElement {
     protected final AlchemyType[] alchemyTypes;
@@ -46,20 +49,30 @@ public abstract class AlchemyElement {
     }
 
 
-    public abstract void projectileHit(Projectile projectile, HitResult hitResult, float power);
+    public abstract void projectileHit(Projectile projectile, HitResult hitResult, Item item, float power);
 
-    public abstract void active(Entity entity, float power);
+    public abstract void active(Entity entity, Item item, float power);
 
-    public final boolean isCompatibleWith(AlchemyElement enchantmentIn) {
-        return this.canApplyTogether(enchantmentIn) && enchantmentIn.canApplyTogether(this);
+    public final boolean isCompatibleWith(AlchemyElement alchemyElement) {
+        return this.canApplyTogether(alchemyElement) && alchemyElement.canApplyTogether(this);
     }
 
+
+    public boolean isUsableDrink() {
+        return Arrays.stream(this.alchemyTypes).noneMatch(alchemyType -> {
+            return alchemyType == AlchemyType.CONSTRUCT;
+        });
+    }
+
+    public boolean isUsableConstruct() {
+        return true;
+    }
 
     /**
      * Determines if the enchantment passed can be applyied together with this enchantment.
      */
-    protected boolean canApplyTogether(AlchemyElement ench) {
-        return this != ench;
+    protected boolean canApplyTogether(AlchemyElement alchemyElement) {
+        return this != alchemyElement;
     }
 
 
@@ -76,6 +89,7 @@ public abstract class AlchemyElement {
     public static enum AlchemyType {
         PROJECTILE(),
         NETURAL(),
+        CONSTRUCT(),
         SELF(),
         CORE();
     }

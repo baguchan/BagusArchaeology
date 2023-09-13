@@ -1,4 +1,4 @@
-package baguchan.bagus_archaeology.client.render;
+package baguchan.bagus_archaeology.client.render.entity;
 
 import baguchan.bagus_archaeology.RelicsAndAlchemy;
 import baguchan.bagus_archaeology.client.model.AlchemyGolemModel;
@@ -15,13 +15,21 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class AlchemyGolemRenderer extends MobRenderer<AlchemyGolem, AlchemyGolemModel<AlchemyGolem>> {
     public static final ResourceLocation GOLEM_LOCATION = new ResourceLocation(RelicsAndAlchemy.MODID, "textures/entity/alchemy_golem/alchemy_golem.png");
+    public static final ResourceLocation GOLEM_LOCATION_CRACK_1 = new ResourceLocation(RelicsAndAlchemy.MODID, "textures/entity/alchemy_golem/alchemy_golem_crack_1.png");
+    public static final ResourceLocation GOLEM_LOCATION_CRACK_2 = new ResourceLocation(RelicsAndAlchemy.MODID, "textures/entity/alchemy_golem/alchemy_golem_crack_2.png");
+    public static final ResourceLocation GOLEM_LOCATION_CRACK_3 = new ResourceLocation(RelicsAndAlchemy.MODID, "textures/entity/alchemy_golem/alchemy_golem_crack_3.png");
 
     public AlchemyGolemRenderer(EntityRendererProvider.Context p_174188_) {
         super(p_174188_, new AlchemyGolemModel<>(p_174188_.bakeLayer(ModelLayers.IRON_GOLEM)), 0.7F);
     }
 
     public ResourceLocation getTextureLocation(AlchemyGolem p_115012_) {
-        return GOLEM_LOCATION;
+        return switch (p_115012_.getCrackiness()) {
+            case LOW -> GOLEM_LOCATION_CRACK_1;
+            case MEDIUM -> GOLEM_LOCATION_CRACK_2;
+            case HIGH -> GOLEM_LOCATION_CRACK_3;
+            default -> GOLEM_LOCATION;
+        };
     }
 
     @Override
