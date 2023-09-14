@@ -15,12 +15,12 @@ public class AlchemySlimeSpitGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        return this.alchemySlime.isAlive() && this.alchemySlime.getTarget() != null && this.alchemySlime.canAttack(this.alchemySlime.getTarget()) && this.alchemySlime.hasLineOfSight(this.alchemySlime.getTarget()) && this.alchemySlime.getTarget().isAlive();
+        return this.alchemySlime.isAlive() && this.alchemySlime.getTarget() != null && this.alchemySlime.canAttack(this.alchemySlime.getTarget()) && this.alchemySlime.getSensing().hasLineOfSight(this.alchemySlime.getTarget()) && this.alchemySlime.getTarget().isAlive();
     }
 
     @Override
     public boolean canContinueToUse() {
-        return this.alchemySlime.isAlive() && this.alchemySlime.getTarget() != null && this.alchemySlime.canAttack(this.alchemySlime.getTarget()) && this.alchemySlime.hasLineOfSight(this.alchemySlime.getTarget()) && this.alchemySlime.getTarget().isAlive();
+        return this.alchemySlime.isAlive() && this.alchemySlime.getTarget() != null && this.alchemySlime.canAttack(this.alchemySlime.getTarget()) && this.alchemySlime.getSensing().hasLineOfSight(this.alchemySlime.getTarget()) && this.alchemySlime.getTarget().isAlive();
     }
 
     public void tick() {

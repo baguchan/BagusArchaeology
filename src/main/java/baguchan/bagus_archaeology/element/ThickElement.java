@@ -32,7 +32,7 @@ public class ThickElement extends AlchemyElement {
     }
 
     public float getProjectileScale() {
-        return 1.1F;
+        return 1.05F;
     }
 
     public float getSelfScale() {

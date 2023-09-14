@@ -17,5 +17,11 @@
   "item.relics_and_alchemy.golem_combat_core": "戦闘用ゴーレムのコア",
   "item.relics_and_alchemy.alchemy_slime": "錬金スライム",
   "entity.relics_and_alchemy.alchemy_combat_golem": "戦闘用錬金ゴーレム",
-  "entity.relics_and_alchemy.alchemy_slime": "錬金スライム"
+  "entity.relics_and_alchemy.alchemy_slime": "錬金スライム",
+  "death.attack.freeze_entity": "%1$s was freeze entity by %2$s",
+  "alchemy.when_used": "使用したとき :",
+  "alchemy.status.projectile_power": "投げた時の推定パワー",
+  "alchemy.status.self_power": "推定パワー",
+  "alchemy.status.hardness": "堅さ",
+  "alchemy.status.toughness": "強度"
 }

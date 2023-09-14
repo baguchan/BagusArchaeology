@@ -3,6 +3,7 @@ package baguchan.bagus_archaeology.entity;
 import baguchan.bagus_archaeology.api.AlchemyCommand;
 import baguchan.bagus_archaeology.api.IAlchemyMob;
 import baguchan.bagus_archaeology.api.IAlchemyOwner;
+import baguchan.bagus_archaeology.element.AlchemyElement;
 import baguchan.bagus_archaeology.entity.goal.AlchemyCopyHurtByOwnerTargetGoal;
 import baguchan.bagus_archaeology.entity.goal.AlchemyCopyHurtOwnerTargetGoal;
 import baguchan.bagus_archaeology.entity.goal.AlchemySlimeSpitGoal;
@@ -78,7 +79,18 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
             return InteractionResult.PASS;
         } else {
             float f = this.getHealth();
-            this.heal(10.0F);
+            float scale = 0;
+
+            if (AlchemyUtils.hasAlchemyMaterial(this.getItem())) {
+                List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
+                for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
+                    scale += alchemyMaterial.getPower();
+                    for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
+                        scale *= alchemyElement.getSelfScale();
+                    }
+                }
+            }
+            this.heal(scale);
             if (this.getHealth() == f) {
                 return InteractionResult.PASS;
             } else {
@@ -225,19 +237,22 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
 
     @Override
     public boolean canAttack(LivingEntity p_21171_) {
+        if (this.getOwner() == p_21171_) {
+            return false;
+        } else
         if (p_21171_ instanceof TraceableEntity traceableEntity) {
             return traceableEntity.getOwner() != getOwner();
         } else if (p_21171_ instanceof TamableAnimal tamableAnimal) {
             return tamableAnimal.getOwner() != getOwner();
-        } else if (p_21171_.getType() == EntityType.CREEPER) {
-            return false;
         }
         return super.canAttack(p_21171_);
     }
 
     @Override
     public boolean isAlliedTo(Entity p_20355_) {
-        if (p_20355_ instanceof TraceableEntity traceableEntity) {
+        if (this.getOwner() == p_20355_) {
+            return true;
+        } else if (p_20355_ instanceof TraceableEntity traceableEntity) {
             return traceableEntity.getOwner() == getOwner();
         } else if (p_20355_ instanceof TamableAnimal tamableAnimal) {
             return tamableAnimal.getOwner() == getOwner();

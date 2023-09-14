@@ -1,6 +1,6 @@
 {
   "item": "minecraft:snowball",
-  "power": -1,
+  "power": 0,
   "alchemy_element": [
     "relics_and_alchemy:freeze"
   ]

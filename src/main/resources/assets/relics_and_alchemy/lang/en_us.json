@@ -17,5 +17,11 @@
   "item.relics_and_alchemy.alchemy_slime": "Alchemy Slime",
   "item.relics_and_alchemy.golem_combat_core": "Combat Golem Core",
   "entity.relics_and_alchemy.alchemy_combat_golem": "Alchemy Combat Golem",
-  "entity.relics_and_alchemy.alchemy_slime": "Alchemy Slime"
+  "entity.relics_and_alchemy.alchemy_slime": "Alchemy Slime",
+  "death.attack.freeze_entity": "%1$s was freeze by %2$s",
+  "alchemy.when_used": "When Used :",
+  "alchemy.status.projectile_power": "Projectile Power",
+  "alchemy.status.self_power": "Power",
+  "alchemy.status.hardness": "Hardness",
+  "alchemy.status.toughness": "Toughness"
 }

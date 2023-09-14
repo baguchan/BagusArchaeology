@@ -23,6 +23,6 @@ public class ExtendElement extends AlchemyElement {
     }
 
     public float getSelfScale() {
-        return 1.1F;
+        return 1.05F;
     }
 }
