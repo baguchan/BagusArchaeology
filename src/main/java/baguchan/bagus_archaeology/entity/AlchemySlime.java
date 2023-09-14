@@ -225,7 +225,8 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
         double d2 = d0 - snowball.getY();
         double d3 = this.getTarget().getZ() - this.getZ();
         double d4 = Math.sqrt(d1 * d1 + d3 * d3) * (double) 0.2F;
-        snowball.shoot(d1, d2 + d4, d3, 0.8F, 2.0F);
+        snowball.shoot(d1, d2 + d4, d3, 0.6F, 6.0F);
+        snowball.setXRot(snowball.getXRot() - -20.0F);
         ItemStack stack = new ItemStack(ModItems.ALCHEMY_PROJECTILE.get());
         List<AlchemyMaterial> alchemyMaterials = AlchemyUtils.getAlchemyMaterials(this.getItem());
         alchemyMaterials.forEach(alchemyMaterial -> {
