@@ -121,7 +121,7 @@ public class AlchemyGolem extends AbstractGolem implements IAlchemyOwner, IAlche
                 return InteractionResult.PASS;
             } else {
                 float f1 = 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F;
-                this.playSound(SoundEvents.STONE_HIT, 1.0F, f1);
+                this.playSound(SoundEvents.SLIME_ATTACK, 1.0F, f1);
                 if (!p_28861_.getAbilities().instabuild) {
                     itemstack.shrink(1);
                 }

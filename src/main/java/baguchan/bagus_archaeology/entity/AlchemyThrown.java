@@ -7,6 +7,7 @@ import baguchan.bagus_archaeology.util.AlchemyUtils;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
@@ -62,12 +63,12 @@ public class AlchemyThrown extends ThrowableItemProjectile {
                 scale += alchemyMaterial.getPower();
                 for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
                     alchemyElement.projectileHit(this, p_37404_, alchemyMaterial.getItem(), scale);
-                    if (p_37404_.getEntity() instanceof IAlchemyMob && p_37404_.getEntity() instanceof LivingEntity living) {
-                        living.heal(scale);
-                    }
                     scale *= alchemyElement.getSelfScale();
                 }
                 hardness += alchemyMaterial.getHardness();
+            }
+            if (p_37404_.getEntity() instanceof IAlchemyMob && p_37404_.getEntity() instanceof LivingEntity living) {
+                living.heal(scale);
             }
             if (hardness > 0) {
                 if (this.getOwner() instanceof LivingEntity living) {
@@ -78,6 +79,8 @@ public class AlchemyThrown extends ThrowableItemProjectile {
                 }
             }
         }
+        this.playSound(SoundEvents.SLIME_ATTACK, 1.0F, 1.0F);
+        this.level().broadcastEntityEvent(this, (byte) 3);
         makeDiscard();
     }
 
@@ -98,6 +101,7 @@ public class AlchemyThrown extends ThrowableItemProjectile {
             }
 
         }
+        this.level().broadcastEntityEvent(this, (byte) 3);
         makeDiscard();
     }
 

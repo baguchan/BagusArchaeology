@@ -83,7 +83,7 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
                 return InteractionResult.PASS;
             } else {
                 float f1 = 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F;
-                this.playSound(SoundEvents.STONE_HIT, 1.0F, f1);
+                this.playSound(SoundEvents.SLIME_ATTACK, 1.0F, f1);
                 if (!p_28861_.getAbilities().instabuild) {
                     itemstack.shrink(1);
                 }
@@ -249,7 +249,7 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
         this.targetSquish = 2.0F;
         this.level().broadcastEntityEvent(this, (byte) 61);
         AlchemyThrown snowball = new AlchemyThrown(ModEntities.ALCHEMY_THROWN.get(), this, this.level());
-        double d0 = this.getTarget().getEyeY() - (double) 1.1F;
+        double d0 = this.getTarget().getEyeY() - (double) this.getTarget().getEyeY();
         double d1 = this.getTarget().getX() - this.getX();
         double d2 = d0 - snowball.getY();
         double d3 = this.getTarget().getZ() - this.getZ();

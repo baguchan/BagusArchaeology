@@ -15,12 +15,12 @@ public class AlchemySlimeSpitGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        return this.alchemySlime.isAlive() && this.alchemySlime.getTarget() != null && this.alchemySlime.getTarget().isAlive();
+        return this.alchemySlime.isAlive() && this.alchemySlime.getTarget() != null && this.alchemySlime.canAttack(this.alchemySlime.getTarget()) && this.alchemySlime.hasLineOfSight(this.alchemySlime.getTarget()) && this.alchemySlime.getTarget().isAlive();
     }
 
     @Override
     public boolean canContinueToUse() {
-        return this.alchemySlime.isAlive() && this.alchemySlime.getTarget() != null && this.alchemySlime.getTarget().isAlive();
+        return this.alchemySlime.isAlive() && this.alchemySlime.getTarget() != null && this.alchemySlime.canAttack(this.alchemySlime.getTarget()) && this.alchemySlime.hasLineOfSight(this.alchemySlime.getTarget()) && this.alchemySlime.getTarget().isAlive();
     }
 
     public void tick() {
@@ -35,8 +35,10 @@ public class AlchemySlimeSpitGoal extends Goal {
     protected void checkAndPerformAttack(LivingEntity p_25557_, double p_25558_) {
         double d0 = this.getAttackReachSqr(p_25557_);
         if (p_25558_ <= d0) {
-            this.alchemySlime.attack();
-            this.tick = 60;
+            if (this.alchemySlime.onGround()) {
+                this.alchemySlime.attack();
+                this.tick = 50;
+            }
         }
 
     }
