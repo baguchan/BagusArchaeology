@@ -1,6 +1,6 @@
 {
   "item": "minecraft:wither_rose",
-  "power": 1.5,
+  "power": 0.5,
   "alchemy_element": [
     "relics_and_alchemy:flower"
   ]

@@ -17,4 +17,12 @@ public class ExtendElement extends AlchemyElement {
     @Override
     public void active(Entity entity, Item item, float power) {
     }
+
+    public float getProjectileScale() {
+        return 1.15F;
+    }
+
+    public float getSelfScale() {
+        return 1.1F;
+    }
 }

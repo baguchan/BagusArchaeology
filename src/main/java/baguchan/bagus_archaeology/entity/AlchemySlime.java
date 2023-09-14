@@ -249,9 +249,9 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
         this.targetSquish = 2.0F;
         this.level().broadcastEntityEvent(this, (byte) 61);
         AlchemyThrown snowball = new AlchemyThrown(ModEntities.ALCHEMY_THROWN.get(), this, this.level());
-        double d0 = this.getTarget().getEyeY() - (double) this.getTarget().getEyeY();
+        double d0 = this.getTarget().getEyeY() - (double) this.getEyeY();
         double d1 = this.getTarget().getX() - this.getX();
-        double d2 = d0 - snowball.getY();
+        double d2 = d0;
         double d3 = this.getTarget().getZ() - this.getZ();
         double d4 = Math.sqrt(d1 * d1 + d3 * d3) * (double) 0.2F;
         snowball.shoot(d1, d2 + d4, d3, 1.0F, 6.0F);
@@ -261,7 +261,7 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
         alchemyMaterials.forEach(alchemyMaterial -> {
             AlchemyUtils.addAlchemyMaterialToItemStack(stack, alchemyMaterial);
         });
-
+        this.setPos(this.getX(), this.getEyeY() + 0.1F, this.getZ());
 
         snowball.setItem(stack);
         this.playSound(SoundEvents.SNOW_GOLEM_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));

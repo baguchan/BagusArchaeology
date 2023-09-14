@@ -19,7 +19,7 @@ public class ThickElement extends AlchemyElement {
         if (hitResult instanceof EntityHitResult entityHitResult) {
             Entity entity = entityHitResult.getEntity();
             if (entity instanceof LivingEntity living) {
-                living.addEffect(new MobEffectInstance(MobEffects.GLOWING, (int) (200 * power)));
+                living.addEffect(new MobEffectInstance(MobEffects.GLOWING, (int) (20 * power)));
             }
         }
     }
@@ -27,7 +27,15 @@ public class ThickElement extends AlchemyElement {
     @Override
     public void active(Entity entity, Item item, float power) {
         if (entity instanceof LivingEntity living) {
-            living.addEffect(new MobEffectInstance(MobEffects.GLOWING, (int) (200 * power)));
+            living.addEffect(new MobEffectInstance(MobEffects.GLOWING, (int) (20 * power)));
         }
+    }
+
+    public float getProjectileScale() {
+        return 1.1F;
+    }
+
+    public float getSelfScale() {
+        return 1.15F;
     }
 }

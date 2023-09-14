@@ -63,7 +63,7 @@ public class AlchemyThrown extends ThrowableItemProjectile {
                 scale += alchemyMaterial.getPower();
                 for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
                     alchemyElement.projectileHit(this, p_37404_, alchemyMaterial.getItem(), scale);
-                    scale *= alchemyElement.getSelfScale();
+                    scale *= alchemyElement.getProjectileScale();
                 }
                 hardness += alchemyMaterial.getHardness();
             }
@@ -95,7 +95,7 @@ public class AlchemyThrown extends ThrowableItemProjectile {
                 scale += alchemyMaterial.getPower();
                 for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
                     alchemyElement.projectileHit(this, p_37258_, alchemyMaterial.getItem(), scale);
-                    scale *= alchemyElement.getSelfScale();
+                    scale *= alchemyElement.getProjectileScale();
                 }
 
             }

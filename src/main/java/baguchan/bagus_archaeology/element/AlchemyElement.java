@@ -14,28 +14,23 @@ import java.util.Arrays;
 
 public abstract class AlchemyElement {
     protected final AlchemyType[] alchemyTypes;
-    private final float scale;
     public static final Codec<AlchemyElement> CODEC = net.minecraft.util.ExtraCodecs.lazyInitializedCodec(() -> ModAlchemyElements.ALCHEMY_ELEMENT_REGISTRY.get().getCodec());
 
     public AlchemyElement(Properties properties) {
         this.alchemyTypes = properties.alchemyType;
-        this.scale = properties.scale;
     }
 
     public AlchemyType[] getAlchemyTypes() {
         return alchemyTypes;
     }
 
-    protected float getScale() {
-        return scale;
-    }
 
     public float getProjectileScale() {
-        return this.getScale();
+        return 1.0F;
     }
 
     public float getSelfScale() {
-        return this.getScale();
+        return 1.0F;
     }
 
 
@@ -78,11 +73,9 @@ public abstract class AlchemyElement {
 
     public static class Properties {
         private final AlchemyType[] alchemyType;
-        private final float scale;
 
-        public Properties(AlchemyType[] alchemyType, float scale) {
+        public Properties(AlchemyType[] alchemyType) {
             this.alchemyType = alchemyType;
-            this.scale = scale;
         }
     }
 

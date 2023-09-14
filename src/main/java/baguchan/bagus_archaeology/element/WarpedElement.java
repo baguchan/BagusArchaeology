@@ -23,7 +23,7 @@ public class WarpedElement extends AlchemyElement {
         super.entityAttack(entity, target, item, power);
         if (!entity.level().isClientSide()) {
             if (target instanceof LivingEntity living) {
-                living.addEffect(new MobEffectInstance(MobEffects.POISON, (int) (power * 20F)), entity);
+                living.addEffect(new MobEffectInstance(MobEffects.POISON, (int) (power * 10F)), entity);
             }
 
         }
@@ -35,7 +35,7 @@ public class WarpedElement extends AlchemyElement {
             if (hitResult instanceof EntityHitResult entityHitResult) {
                 Entity entity = entityHitResult.getEntity();
                 if (entity instanceof LivingEntity living) {
-                    living.addEffect(new MobEffectInstance(MobEffects.POISON, (int) (power * 20F)), projectile.getOwner() != null ? projectile.getOwner() : projectile);
+                    living.addEffect(new MobEffectInstance(MobEffects.POISON, (int) (power * 10F)), projectile.getOwner() != null ? projectile.getOwner() : projectile);
                 }
 
                 }
@@ -59,7 +59,7 @@ public class WarpedElement extends AlchemyElement {
         if (power < 0) {
             if (!entity.level().isClientSide()) {
                 if (entity instanceof LivingEntity living) {
-                    living.addEffect(new MobEffectInstance(MobEffects.POISON, (int) (-power * 20F)));
+                    living.addEffect(new MobEffectInstance(MobEffects.POISON, (int) (-power * 10F)));
                 }
             }
         }
@@ -67,7 +67,7 @@ public class WarpedElement extends AlchemyElement {
 
     @Override
     public float getProjectileScale() {
-        return super.getProjectileScale() * 0.2F;
+        return super.getProjectileScale() * 0.85F;
     }
 
     @Override

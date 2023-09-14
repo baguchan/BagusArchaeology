@@ -14,13 +14,23 @@ public class ExplosionElement extends AlchemyElement {
 
     @Override
     public void projectileHit(Projectile projectile, HitResult hitResult, Item item, float power) {
-        projectile.level().explode(projectile.getOwner() != null ? projectile.getOwner() : projectile, projectile.getX(), projectile.getY() - 0.01F, projectile.getZ(), power * 0.2F, Level.ExplosionInteraction.NONE);
+        projectile.level().explode(projectile.getOwner() != null ? projectile.getOwner() : projectile, projectile.getX(), projectile.getY(), projectile.getZ(), power * 0.1F, Level.ExplosionInteraction.NONE);
     }
 
     @Override
     public void active(Entity entity, Item item, float power) {
         if (entity instanceof LivingEntity living) {
-            entity.level().explode(null, entity.getX(), entity.getY() - 0.01F, entity.getZ(), power * 0.2F, Level.ExplosionInteraction.NONE);
+            entity.level().explode(null, entity.getX(), entity.getY() - 0.01F, entity.getZ(), power * 0.1F, Level.ExplosionInteraction.NONE);
         }
+    }
+
+    @Override
+    public float getProjectileScale() {
+        return super.getProjectileScale() * 0.75F;
+    }
+
+    @Override
+    public float getSelfScale() {
+        return super.getSelfScale() * 1.025F;
     }
 }
