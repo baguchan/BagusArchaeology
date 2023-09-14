@@ -18,7 +18,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
@@ -117,8 +116,13 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
             return stack1;
         }
 
-        if (stack.is(ItemTags.TERRACOTTA)) {
-            ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_GOLEM.get());
+        if (stack.is(ModItems.GOLEM_COMBAT_CORE.get())) {
+            ItemStack stack1;
+            if (AlchemyUtils.getAlchemyMaterialHardness(AlchemyUtils.getAlchemyMaterials(stack)) > 0) {
+                stack1 = new ItemStack(ModItems.ALCHEMY_COMBAT_GOLEM.get());
+            } else {
+                stack1 = new ItemStack(ModItems.ALCHEMY_SLIME.get());
+            }
             for (ItemStack stack2 : items) {
                 Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
                     return stack2.is(alchemyMaterialReference.get().getItem());

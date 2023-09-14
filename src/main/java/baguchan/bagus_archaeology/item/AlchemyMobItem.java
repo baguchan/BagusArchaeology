@@ -1,7 +1,9 @@
 package baguchan.bagus_archaeology.item;
 
+import baguchan.bagus_archaeology.api.IAlchemyMob;
+import baguchan.bagus_archaeology.api.IAlchemyOwner;
 import baguchan.bagus_archaeology.client.render.item.AlchemyGolemBWLR;
-import baguchan.bagus_archaeology.entity.AlchemyGolem;
+import baguchan.bagus_archaeology.entity.AlchemySlime;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -32,10 +34,10 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class AlchemyGolemItem extends AlchemyItem {
+public class AlchemyMobItem extends AlchemyItem {
     private final Supplier<? extends EntityType<? extends Mob>> defaultType;
 
-    public AlchemyGolemItem(Supplier<? extends EntityType<? extends Mob>> p_43207_, Item.Properties p_43210_) {
+    public AlchemyMobItem(Supplier<? extends EntityType<? extends Mob>> p_43207_, Item.Properties p_43210_) {
         super(p_43210_);
         this.defaultType = p_43207_;
     }
@@ -60,12 +62,15 @@ public class AlchemyGolemItem extends AlchemyItem {
             EntityType<?> entitytype = this.getType(itemstack.getTag());
             Entity entity = entitytype.spawn((ServerLevel) level, itemstack, p_43223_.getPlayer(), blockpos1, MobSpawnType.SPAWN_EGG, true, !Objects.equals(blockpos, blockpos1) && direction == Direction.UP);
             if (entity != null) {
-                if (itemstack.getTag() != null) {
-                    if (entity instanceof AlchemyGolem alchemyGolem) {
-                        alchemyGolem.setItem(itemstack);
-                        alchemyGolem.setOwner(p_43223_.getPlayer());
-                        alchemyGolem.setStatsFromItem(itemstack);
-                    }
+                if (entity instanceof IAlchemyOwner alchemyGolem) {
+                    alchemyGolem.setOwner(p_43223_.getPlayer());
+                }
+                if (entity instanceof IAlchemyMob alchemyGolem) {
+                    alchemyGolem.setItem(itemstack);
+                    alchemyGolem.setStatsFromItem(itemstack);
+                }
+                if (entity instanceof AlchemySlime alchemyGolem) {
+                    alchemyGolem.setSize(2, true);
                 }
                 itemstack.shrink(1);
                 level.gameEvent(p_43223_.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);
@@ -90,13 +95,17 @@ public class AlchemyGolemItem extends AlchemyItem {
             } else if (p_43225_.mayInteract(p_43226_, blockpos) && p_43226_.mayUseItemAt(blockpos, blockhitresult.getDirection(), itemstack)) {
                 EntityType<?> entitytype = this.getType(itemstack.getTag());
                 Entity entity = entitytype.spawn((ServerLevel) p_43225_, itemstack, p_43226_, blockpos, MobSpawnType.SPAWN_EGG, false, false);
-                if (itemstack.getTag() != null) {
-                    if (entity instanceof AlchemyGolem alchemyGolem) {
-                        alchemyGolem.setItem(itemstack);
-                        alchemyGolem.setOwner(p_43226_);
-                        alchemyGolem.setStatsFromItem(itemstack);
-                    }
+                if (entity instanceof IAlchemyOwner alchemyGolem) {
+                    alchemyGolem.setOwner(p_43226_);
                 }
+                if (entity instanceof IAlchemyMob alchemyGolem) {
+                    alchemyGolem.setItem(itemstack);
+                    alchemyGolem.setStatsFromItem(itemstack);
+                }
+                if (entity instanceof AlchemySlime alchemyGolem) {
+                    alchemyGolem.setSize(2, true);
+                }
+
                 if (entity == null) {
                     return InteractionResultHolder.pass(itemstack);
                 } else {

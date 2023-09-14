@@ -1,10 +1,10 @@
 package baguchan.bagus_archaeology.element;
 
-import baguchan.bagus_archaeology.entity.AlchemyGolem;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.phys.AABB;
@@ -19,7 +19,7 @@ public class SoulEchoElement extends AlchemyElement {
     }
 
     @Override
-    public void entityAttack(AlchemyGolem entity, Entity target, Item item, float power) {
+    public void entityAttack(Mob entity, Entity target, Item item, float power) {
         super.entityAttack(entity, target, item, power);
         if (power > 0) {
             if (entity.level().isClientSide()) {

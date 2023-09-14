@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "relics_and_alchemy:golem_combat_core"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "relics_and_alchemy:entities/alchemy_slime"
+}

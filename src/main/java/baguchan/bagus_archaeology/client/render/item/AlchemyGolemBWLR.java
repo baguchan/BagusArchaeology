@@ -2,7 +2,7 @@ package baguchan.bagus_archaeology.client.render.item;
 
 import baguchan.bagus_archaeology.client.model.AlchemyGolemModel;
 import baguchan.bagus_archaeology.client.render.entity.AlchemyGolemRenderer;
-import baguchan.bagus_archaeology.item.AlchemyGolemItem;
+import baguchan.bagus_archaeology.item.AlchemyMobItem;
 import baguchan.bagus_archaeology.registry.ModItems;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -24,8 +24,8 @@ public class AlchemyGolemBWLR extends BlockEntityWithoutLevelRenderer {
 
     @Override
     public void renderByItem(ItemStack pStack, ItemDisplayContext pTransformType, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pOverlay) {
-        if (pStack.getItem() instanceof AlchemyGolemItem) {
-            if (pStack.is(ModItems.ALCHEMY_GOLEM.get())) {
+        if (pStack.getItem() instanceof AlchemyMobItem) {
+            if (pStack.is(ModItems.ALCHEMY_COMBAT_GOLEM.get())) {
                 pPoseStack.pushPose();
                 pPoseStack.scale(1.0F, -1.0F, -1.0F);
                 pPoseStack.translate(0.65F, -0.65F, 0);

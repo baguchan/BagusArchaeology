@@ -22,6 +22,8 @@ public class ItemModelGenerator extends ItemModelProvider {
     protected void registerModels() {
         this.basicItem(ModItems.ALCHEMY_POTION.get());
         this.basicItem(ModItems.ALCHEMY_PROJECTILE.get());
+        this.basicItem(ModItems.ALCHEMY_SLIME.get());
+        this.basicItem(ModItems.GOLEM_COMBAT_CORE.get());
     }
 
     private void toBlock(Block b) {

@@ -5,7 +5,6 @@
   "block.relics_and_alchemy.pigman_skull": "Pigman Skull",
   "block.relics_and_alchemy.suspicious_soul_sand": "Suspicious Soul Sand",
   "block.relics_and_alchemy.suspicious_soul_soil": "Suspicious Soul Soil",
-  "block.relics_and_alchemy.soul_recover": "Soul Recover",
   "block.relics_and_alchemy.alchemy_cauldron": "Alchemy Cauldron",
   "item.relics_and_alchemy.studded_leather": "Studded Leather",
   "item.relics_and_alchemy.studded_helmet": "Studded Helmet",
@@ -14,6 +13,9 @@
   "item.relics_and_alchemy.studded_boots": "Studded Boots",
   "item.relics_and_alchemy.alchemy_potion": "Alchemy Potion",
   "item.relics_and_alchemy.alchemy_projectile": "Alchemy Ball",
-  "item.relics_and_alchemy.alchemy_golem": "Alchemy Golem",
-  "entity.relics_and_alchemy.alchemy_golem": "Alchemy Golem"
+  "item.relics_and_alchemy.alchemy_combat_golem": "Alchemy Combat Golem",
+  "item.relics_and_alchemy.alchemy_slime": "Alchemy Slime",
+  "item.relics_and_alchemy.golem_combat_core": "Combat Golem Core",
+  "entity.relics_and_alchemy.alchemy_combat_golem": "Alchemy Combat Golem",
+  "entity.relics_and_alchemy.alchemy_slime": "Alchemy Slime"
 }

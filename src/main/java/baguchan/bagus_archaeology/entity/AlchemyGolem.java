@@ -1,6 +1,10 @@
 package baguchan.bagus_archaeology.entity;
 
+import baguchan.bagus_archaeology.api.AlchemyCommand;
+import baguchan.bagus_archaeology.api.IAlchemyMob;
+import baguchan.bagus_archaeology.api.IAlchemyOwner;
 import baguchan.bagus_archaeology.element.AlchemyElement;
+import baguchan.bagus_archaeology.entity.goal.AlchemyCopyHurtOwnerTargetGoal;
 import baguchan.bagus_archaeology.material.AlchemyMaterial;
 import baguchan.bagus_archaeology.registry.ModItems;
 import baguchan.bagus_archaeology.util.AlchemyUtils;
@@ -24,8 +28,6 @@ import net.minecraft.world.entity.ai.goal.MoveTowardsTargetGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.TargetGoal;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.AbstractGolem;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Creeper;
@@ -33,15 +35,15 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.HitResult;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class AlchemyGolem extends AbstractGolem implements TraceableEntity {
+public class AlchemyGolem extends AbstractGolem implements IAlchemyOwner, IAlchemyMob {
     private static final EntityDataAccessor<ItemStack> DATA_ITEM_STACK = SynchedEntityData.defineId(AlchemyGolem.class, EntityDataSerializers.ITEM_STACK);
     private int attackAnimationTick;
 
@@ -50,7 +52,6 @@ public class AlchemyGolem extends AbstractGolem implements TraceableEntity {
     private UUID ownerUUID;
     @Nullable
     private Entity cachedOwner;
-
 
     public AlchemyGolem(EntityType<? extends AlchemyGolem> p_28834_, Level p_28835_) {
         super(p_28834_, p_28835_);
@@ -83,20 +84,30 @@ public class AlchemyGolem extends AbstractGolem implements TraceableEntity {
         }
     }
 
+    @Override
+    public void setAlchemyCommand(AlchemyCommand command) {
+    }
+
+    @Override
+    public AlchemyCommand getAlchemyCommand() {
+        return AlchemyCommand.STAND;
+    }
+
+
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9D, 32.0F));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new AlchemyGolemCopyHurtOwnerTargetGoal(this));
+        this.targetSelector.addGoal(2, new AlchemyCopyHurtOwnerTargetGoal<>(this));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, (p_28879_) -> {
             return p_28879_ instanceof Enemy && !(p_28879_ instanceof Creeper);
         }));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 40.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.KNOCKBACK_RESISTANCE, 0.2D).add(Attributes.ATTACK_DAMAGE, 2.0D).add(Attributes.ARMOR_TOUGHNESS).add(Attributes.ARMOR);
+        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 30.0D).add(Attributes.MOVEMENT_SPEED, 0.25D).add(Attributes.KNOCKBACK_RESISTANCE, 0.2D).add(Attributes.ATTACK_DAMAGE, 2.0D).add(Attributes.ARMOR_TOUGHNESS).add(Attributes.ARMOR);
     }
 
     protected InteractionResult mobInteract(Player p_28861_, InteractionHand p_28862_) {
@@ -223,7 +234,7 @@ public class AlchemyGolem extends AbstractGolem implements TraceableEntity {
     }
 
     public float getDamageScale() {
-        return 0.25F;
+        return 0.4F;
     }
 
     public boolean hurt(DamageSource p_28848_, float p_28849_) {
@@ -279,7 +290,7 @@ public class AlchemyGolem extends AbstractGolem implements TraceableEntity {
         }
     }
 
-    protected ItemStack getItemRaw() {
+    public ItemStack getItemRaw() {
         return this.getEntityData().get(DATA_ITEM_STACK);
     }
 
@@ -312,44 +323,11 @@ public class AlchemyGolem extends AbstractGolem implements TraceableEntity {
     }
 
     protected Item getDefaultItem() {
-        return Items.SNOWBALL;
+        return ModItems.ALCHEMY_COMBAT_GOLEM.get();
     }
 
-    public class AlchemyGolemCopyHurtOwnerTargetGoal extends TargetGoal {
-        private final TargetingConditions copyOwnerTargeting = TargetingConditions.forNonCombat().ignoreLineOfSight().ignoreInvisibilityTesting();
-
-        public AlchemyGolemCopyHurtOwnerTargetGoal(PathfinderMob p_34056_) {
-            super(p_34056_, false);
-        }
-
-        public boolean canUse() {
-            return AlchemyGolem.this.getOwner() instanceof LivingEntity livingOwner && livingOwner.getLastHurtByMob() != null && this.canAttack(livingOwner.getLastHurtByMob(), this.copyOwnerTargeting);
-        }
-
-        public void start() {
-            if (AlchemyGolem.this.getOwner() instanceof LivingEntity livingOwner) {
-                AlchemyGolem.this.setTarget(livingOwner.getLastHurtByMob());
-            }
-            super.start();
-        }
-    }
-
-    public class AlchemyGolemCopyOwnerTargetGoal extends TargetGoal {
-        private final TargetingConditions copyOwnerTargeting = TargetingConditions.forNonCombat().ignoreLineOfSight().ignoreInvisibilityTesting();
-
-        public AlchemyGolemCopyOwnerTargetGoal(PathfinderMob p_34056_) {
-            super(p_34056_, false);
-        }
-
-        public boolean canUse() {
-            return AlchemyGolem.this.getOwner() instanceof LivingEntity livingOwner && livingOwner.getLastHurtMob() != null && this.canAttack(livingOwner.getLastHurtMob(), this.copyOwnerTargeting);
-        }
-
-        public void start() {
-            if (AlchemyGolem.this.getOwner() instanceof LivingEntity livingOwner) {
-                AlchemyGolem.this.setTarget(livingOwner.getLastHurtMob());
-            }
-            super.start();
-        }
+    @Override
+    public ItemStack getPickedResult(HitResult target) {
+        return this.getItem();
     }
 }

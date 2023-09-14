@@ -5,13 +5,18 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 30,
+          "weight": 50,
           "name": "minecraft:air"
         },
         {
           "type": "minecraft:item",
           "weight": 10,
           "name": "relics_and_alchemy:studded_leather"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "relics_and_alchemy:golem_combat_core"
         },
         {
           "type": "minecraft:item",

@@ -125,4 +125,30 @@ public class AlchemyUtils {
         }
         return false;
     }
+
+    public static int getAlchemyElementHandlerSize(List<AlchemyElement> list, AlchemyElement findAlchemyElement) {
+        int count = 0;
+        for (AlchemyElement element : list) {
+            if (element.equals(findAlchemyElement)) {
+                ++count;
+            }
+        }
+        return count;
+    }
+
+    public static int getAlchemyMaterialToughness(List<AlchemyMaterial> list) {
+        int count = 0;
+        for (AlchemyMaterial element : list) {
+            count += (int) element.getToughness();
+        }
+        return count;
+    }
+
+    public static int getAlchemyMaterialHardness(List<AlchemyMaterial> list) {
+        int count = 0;
+        for (AlchemyMaterial element : list) {
+            count += (int) element.getHardness();
+        }
+        return count;
+    }
 }
