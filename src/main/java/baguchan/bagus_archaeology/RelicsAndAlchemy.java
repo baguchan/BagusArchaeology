@@ -23,17 +23,17 @@ public class RelicsAndAlchemy {
     public RelicsAndAlchemy() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModAlchemyElements.ALCHEMY_ELEMENT.register(modEventBus);
-        ModAlchemyMaterials.ALCHEMY_MATERIAL.register(modEventBus);
+
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModEntities.ENTITIES_REGISTRY.register(modEventBus);
         ModBlockEntitys.BLOCK_ENTITY.register(modEventBus);
         ModCreativeTabs.CREATIVE_TABS.register(modEventBus);
+        ModAlchemyElements.ALCHEMY_ELEMENT.register(modEventBus);
+        ModAlchemyMaterials.ALCHEMY_MATERIAL.register(modEventBus);
         // Register the commonSetup method for modloading
-        modEventBus.addListener(this::dataSetup);
-
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::dataSetup);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
