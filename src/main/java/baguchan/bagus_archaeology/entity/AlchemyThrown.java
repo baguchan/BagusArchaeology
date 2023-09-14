@@ -1,5 +1,6 @@
 package baguchan.bagus_archaeology.entity;
 
+import baguchan.bagus_archaeology.api.IAlchemyMob;
 import baguchan.bagus_archaeology.element.AlchemyElement;
 import baguchan.bagus_archaeology.material.AlchemyMaterial;
 import baguchan.bagus_archaeology.util.AlchemyUtils;
@@ -61,6 +62,9 @@ public class AlchemyThrown extends ThrowableItemProjectile {
                 scale += alchemyMaterial.getPower();
                 for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
                     alchemyElement.projectileHit(this, p_37404_, alchemyMaterial.getItem(), scale);
+                    if (p_37404_.getEntity() instanceof IAlchemyMob && p_37404_.getEntity() instanceof LivingEntity living) {
+                        living.heal(scale);
+                    }
                     scale *= alchemyElement.getSelfScale();
                 }
                 hardness += alchemyMaterial.getHardness();
@@ -68,6 +72,9 @@ public class AlchemyThrown extends ThrowableItemProjectile {
             if (hardness > 0) {
                 if (this.getOwner() instanceof LivingEntity living) {
                     p_37404_.getEntity().hurt(this.damageSources().mobProjectile(this, living), hardness);
+                } else {
+                    p_37404_.getEntity().hurt(this.damageSources().mobProjectile(this, null), hardness);
+
                 }
             }
         }

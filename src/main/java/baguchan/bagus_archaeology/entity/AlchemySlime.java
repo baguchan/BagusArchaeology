@@ -16,6 +16,9 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -24,6 +27,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Slime;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -68,6 +72,27 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
         return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, (double) 0.2F);
     }
 
+    protected InteractionResult mobInteract(Player p_28861_, InteractionHand p_28862_) {
+        ItemStack itemstack = p_28861_.getItemInHand(p_28862_);
+        if (!itemstack.is(ModItems.ALCHEMY_PROJECTILE.get()) && !AlchemyUtils.hasAlchemyMaterial(itemstack)) {
+            return InteractionResult.PASS;
+        } else {
+            float f = this.getHealth();
+            this.heal(10.0F);
+            if (this.getHealth() == f) {
+                return InteractionResult.PASS;
+            } else {
+                float f1 = 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F;
+                this.playSound(SoundEvents.STONE_HIT, 1.0F, f1);
+                if (!p_28861_.getAbilities().instabuild) {
+                    itemstack.shrink(1);
+                }
+
+                return InteractionResult.sidedSuccess(this.level().isClientSide);
+            }
+        }
+    }
+
     @Override
     public void setAlchemyCommand(AlchemyCommand command) {
         this.command = command;
@@ -101,6 +126,9 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
     public void setSize(int p_32972_, boolean p_32973_) {
         super.setSize(p_32972_, p_32973_);
         this.setStatsFromItem(this.getItem());
+        if (p_32973_) {
+            this.setHealth(this.getMaxHealth());
+        }
     }
 
     public void setItem(ItemStack p_37447_) {
@@ -140,6 +168,7 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
             this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.getAttributeValue(Attributes.MOVEMENT_SPEED) + health * 0.001F);
             this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.getAttributeValue(Attributes.MAX_HEALTH) + health);
         }
+
     }
 
     public ItemStack getItemRaw() {
@@ -225,8 +254,8 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
         double d2 = d0 - snowball.getY();
         double d3 = this.getTarget().getZ() - this.getZ();
         double d4 = Math.sqrt(d1 * d1 + d3 * d3) * (double) 0.2F;
-        snowball.shoot(d1, d2 + d4, d3, 0.6F, 6.0F);
-        snowball.setXRot(snowball.getXRot() - -20.0F);
+        snowball.shoot(d1, d2 + d4, d3, 1.0F, 6.0F);
+        snowball.setXRot(snowball.getXRot() - -25.0F);
         ItemStack stack = new ItemStack(ModItems.ALCHEMY_PROJECTILE.get());
         List<AlchemyMaterial> alchemyMaterials = AlchemyUtils.getAlchemyMaterials(this.getItem());
         alchemyMaterials.forEach(alchemyMaterial -> {
@@ -251,6 +280,11 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
     @Override
     public ItemStack getPickedResult(HitResult target) {
         return this.getItem();
+    }
+
+    @Override
+    public boolean canBeAffected(MobEffectInstance p_21197_) {
+        return false;
     }
 
     static class SlimeFollowOwnerGoal extends Goal {
