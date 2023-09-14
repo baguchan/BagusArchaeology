@@ -221,9 +221,16 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
 
     @Override
     protected void dealDamage(LivingEntity p_33638_) {
-        if (p_33638_.canAttack(p_33638_)) {
+        if (this.canAttack(p_33638_)) {
             super.dealDamage(p_33638_);
         }
+    }
+
+    public void playerTouch(Player p_33611_) {
+        if (this.isDealsDamage()) {
+            this.dealDamage(p_33611_);
+        }
+
     }
 
     @Override
@@ -232,7 +239,6 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
         if (!(p_33636_ instanceof IronGolem && this.isDealsDamage())) {
             this.dealDamage((LivingEntity) p_33636_);
         }
-
     }
 
     @Override
