@@ -12,6 +12,7 @@ import baguchan.bagus_archaeology.registry.ModEntities;
 import baguchan.bagus_archaeology.registry.ModItems;
 import baguchan.bagus_archaeology.util.AlchemyUtils;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -152,6 +153,33 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
 
     @Override
     public void remove(Entity.RemovalReason p_146834_) {
+        int i = this.getSize();
+        if (!this.level().isClientSide && i > 1 && this.isDeadOrDying()) {
+            Component component = this.getCustomName();
+            boolean flag = this.isNoAi();
+            float f = (float) i / 4.0F;
+            int j = i / 2;
+            int k = 2 + this.random.nextInt(3);
+
+            for (int l = 0; l < k; ++l) {
+                float f1 = ((float) (l % 2) - 0.5F) * f;
+                float f2 = ((float) (l / 2) - 0.5F) * f;
+                AlchemySlime slime = ModEntities.ALCHEMY_SLIME.get().create(this.level());
+                if (slime != null) {
+                    if (this.isPersistenceRequired()) {
+                        slime.setPersistenceRequired();
+                    }
+
+                    slime.setCustomName(component);
+                    slime.setNoAi(flag);
+                    slime.setInvulnerable(this.isInvulnerable());
+                    slime.setSize(j, true);
+                    slime.setOwner(this.getOwner());
+                    slime.moveTo(this.getX() + (double) f1, this.getY() + 0.5D, this.getZ() + (double) f2, this.random.nextFloat() * 360.0F, 0.0F);
+                    this.level().addFreshEntity(slime);
+                }
+            }
+        }
         this.setRemoved(p_146834_);
         this.invalidateCaps();
     }
@@ -177,8 +205,8 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
                 }
             }
 
-            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.getAttributeValue(Attributes.MOVEMENT_SPEED) + health * 0.001F);
-            this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.getAttributeValue(Attributes.MAX_HEALTH) + health);
+            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(this.getAttributeValue(Attributes.MOVEMENT_SPEED) + health * 0.001F * this.getSize());
+            this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.getAttributeValue(Attributes.MAX_HEALTH) + health * 0.5F * this.getSize());
         }
 
     }

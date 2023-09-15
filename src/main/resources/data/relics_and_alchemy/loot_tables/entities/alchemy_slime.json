@@ -6,7 +6,22 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "relics_and_alchemy:golem_combat_core"
+          "name": "relics_and_alchemy:golem_combat_core",
+          "conditions": [
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "type_specific": {
+                    "type": "slime",
+                    "size": 1
+                  }
+                }
+              }
+            }
+          ]
         }
       ],
       "rolls": 1.0
