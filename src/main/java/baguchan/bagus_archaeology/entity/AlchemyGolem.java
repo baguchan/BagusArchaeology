@@ -295,7 +295,7 @@ public class AlchemyGolem extends AbstractGolem implements IAlchemyOwner, IAlche
                 List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
                 for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
                     hardness = alchemyMaterial.getHardness();
-                    toughness = alchemyMaterial.getHardness();
+                    toughness = alchemyMaterial.getToughness();
                 }
             }
 
