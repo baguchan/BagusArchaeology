@@ -37,6 +37,7 @@ public class ModCreativeTabs {
                 output.acceptAll(Stream.of(
                         ModItems.ALCHEMY_POTION,
                         ModItems.ALCHEMY_PROJECTILE,
+                        ModItems.ALCHEMY_INGOT,
                         ModItems.ALCHEMY_COMBAT_GOLEM,
                         ModItems.ALCHEMY_SLIME,
                         ModItems.GOLEM_COMBAT_CORE

@@ -1,0 +1,9 @@
+{
+  "type": "relics_and_alchemy:alchemy_smithing",
+  "addition": {
+    "item": "relics_and_alchemy:alchemy_ingot"
+  },
+  "base": {
+    "tag": "minecraft:trimmable_armor"
+  }
+}

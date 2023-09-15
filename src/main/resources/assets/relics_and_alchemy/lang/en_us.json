@@ -13,6 +13,7 @@
   "item.relics_and_alchemy.studded_boots": "Studded Boots",
   "item.relics_and_alchemy.alchemy_potion": "Alchemy Potion",
   "item.relics_and_alchemy.alchemy_projectile": "Alchemy Ball",
+  "item.relics_and_alchemy.alchemy_ingot": "Alchemy Ingot",
   "item.relics_and_alchemy.alchemy_combat_golem": "Alchemy Combat Golem",
   "item.relics_and_alchemy.alchemy_slime": "Alchemy Slime",
   "item.relics_and_alchemy.golem_combat_core": "Combat Golem Core",
@@ -23,5 +24,9 @@
   "alchemy.status.projectile_power": "Projectile Power",
   "alchemy.status.self_power": "Power",
   "alchemy.status.hardness": "Hardness",
-  "alchemy.status.toughness": "Toughness"
+  "alchemy.status.toughness": "Toughness",
+  "item.relics_and_alchemy.smithing_template.alchemy_upgrade.additions_slot_description": "Put a Alchemy Ingot here",
+  "item.relics_and_alchemy.smithing_template.alchemy_upgrade.applies_to": "Any Equipment",
+  "item.relics_and_alchemy.smithing_template.alchemy_upgrade.base_slot_description": "Put a piece of armor, weapon or tool here",
+  "item.relics_and_alchemy.smithing_template.alchemy_upgrade.ingredients": "Nothing"
 }

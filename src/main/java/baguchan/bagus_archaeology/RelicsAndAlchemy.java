@@ -31,6 +31,7 @@ public class RelicsAndAlchemy {
         ModCreativeTabs.CREATIVE_TABS.register(modEventBus);
         ModAlchemyElements.ALCHEMY_ELEMENT.register(modEventBus);
         ModAlchemyMaterials.ALCHEMY_MATERIAL.register(modEventBus);
+        ModRecipes.RECIPE_SERIALIZERS.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::dataSetup);

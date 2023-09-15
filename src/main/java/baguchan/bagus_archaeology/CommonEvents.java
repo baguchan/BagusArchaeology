@@ -1,16 +1,30 @@
 package baguchan.bagus_archaeology;
 
+import baguchan.bagus_archaeology.element.AlchemyElement;
+import baguchan.bagus_archaeology.material.AlchemyMaterial;
 import baguchan.bagus_archaeology.registry.ModBlocks;
+import baguchan.bagus_archaeology.registry.ModTags;
+import baguchan.bagus_archaeology.util.AlchemyUtils;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.event.ItemAttributeModifierEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.NoteBlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.List;
+import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = RelicsAndAlchemy.MODID)
 public class CommonEvents {
@@ -41,6 +55,48 @@ public class CommonEvents {
                 event.getLevel().setBlock(event.getPos(), ModBlocks.ALCHEMY_CAULDRON.get().defaultBlockState(), 3);
                 event.setUseItem(Event.Result.ALLOW);
                 event.setCanceled(true);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void modifier(ItemAttributeModifierEvent event) {
+        ItemStack stack = event.getItemStack();
+        if (!stack.isEmpty()) {
+
+            float power = 0;
+            float hardness = 0;
+            float toughness = 0;
+
+            if (AlchemyUtils.hasAlchemyMaterial(stack)) {
+                List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(stack);
+
+                for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
+                    hardness += alchemyMaterial.getHardness() * 0.1F;
+                    toughness += alchemyMaterial.getToughness() * 0.2F;
+                    power += alchemyMaterial.getPower() * 0.1F;
+                    for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
+                        power *= alchemyElement.getSelfScale();
+                    }
+                }
+            }
+            if (stack.getItem() instanceof ArmorItem armorItem) {
+                if (armorItem.getEquipmentSlot() == event.getSlotType()) {
+                    if (hardness > 0) {
+                        event.addModifier(Attributes.ARMOR, new AttributeModifier(UUID.fromString("2598f9f2-865c-af38-2948-bf41e562c5bc"), "Alchemy Bonus", hardness, AttributeModifier.Operation.ADDITION));
+                    }
+                    if (toughness > 0) {
+                        event.addModifier(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(UUID.fromString("5f9d8ca8-ba6d-2366-fe2c-7afffea9cf4b"), "Alchemy Bonus", toughness, AttributeModifier.Operation.ADDITION));
+                    }
+                }
+            }
+            if (stack.getItem() instanceof TieredItem tieredItem || stack.is(ModTags.Items.ALCHEMY_ALLOW_TOOL)) {
+                if (event.getSlotType() == EquipmentSlot.MAINHAND) {
+
+                    if (power > 0) {
+                        event.addModifier(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.fromString("77f447a4-5940-e156-4d61-4344d920ebb9"), "Alchemy Bonus", power, AttributeModifier.Operation.ADDITION));
+                    }
+                }
             }
         }
     }

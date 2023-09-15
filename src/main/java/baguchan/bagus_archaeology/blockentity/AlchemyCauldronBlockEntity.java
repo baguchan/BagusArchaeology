@@ -115,6 +115,22 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
             setChanged();
             return stack1;
         }
+        if (stack.is(Items.GOLD_INGOT)) {
+            ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_INGOT.get());
+            for (ItemStack stack2 : items) {
+                Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
+                    return stack2.is(alchemyMaterialReference.get().getItem());
+                }).findFirst();
+                if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent()) {
+                    ItemStack stack3 = stack2.split(1);
+                    AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
+                }
+
+            }
+            level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
+            setChanged();
+            return stack1;
+        }
 
         if (stack.is(ModItems.GOLEM_COMBAT_CORE.get())) {
             ItemStack stack1;
