@@ -298,10 +298,12 @@ public class AlchemyGolem extends AbstractGolem implements IAlchemyOwner, IAlche
                     toughness = alchemyMaterial.getToughness();
                 }
             }
+            this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.getAttributeValue(Attributes.MAX_HEALTH) + hardness);
 
-            this.getAttribute(Attributes.ARMOR).setBaseValue(this.getAttributeValue(Attributes.ARMOR) + hardness);
+            this.getAttribute(Attributes.ARMOR).setBaseValue(this.getAttributeValue(Attributes.ARMOR) + hardness * 0.25F);
             this.getAttribute(Attributes.ARMOR_TOUGHNESS).setBaseValue(this.getAttributeValue(Attributes.ARMOR_TOUGHNESS) + toughness);
         }
+        this.setHealth(this.getMaxHealth());
     }
 
     public ItemStack getItemRaw() {
