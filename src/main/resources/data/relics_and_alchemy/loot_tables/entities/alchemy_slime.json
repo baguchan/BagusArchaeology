@@ -11,21 +11,29 @@
             {
               "condition": "minecraft:inverted",
               "term": {
+                "condition": "minecraft:damage_source_properties",
+                "predicate": {
+                  "source_entity": {
+                    "type": "minecraft:frog"
+                  }
+                }
+              }
+            },
+            {
+              "condition": "minecraft:inverted",
+              "term": {
                 "condition": "minecraft:entity_properties",
                 "entity": "this",
                 "predicate": {
-                  "type_specific": {
-                    "type": "slime",
-                    "size": 1
-                  }
+                  "nbt": "{Size:1}"
                 }
               }
             }
           ]
         }
       ],
-      "rolls": 1.0
+      "rolls": 1.0,
+      "random_sequence": "relics_and_alchemy:entities/alchemy_slime"
     }
-  ],
-  "random_sequence": "relics_and_alchemy:entities/alchemy_slime"
+  ]
 }

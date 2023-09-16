@@ -31,7 +31,7 @@ public class AlchemySmithingRecipe implements SmithingRecipe {
     }
 
     public boolean matches(Container p_267224_, Level p_266798_) {
-        return this.base.test(p_267224_.getItem(1)) && !AlchemyUtils.hasAlchemyMaterial(p_267224_.getItem(0)) && this.addition.test(p_267224_.getItem(0)) && p_267224_.getItem(2).isEmpty();
+        return this.base.test(p_267224_.getItem(1)) && !AlchemyUtils.hasAlchemyMaterial(p_267224_.getItem(1)) && this.addition.test(p_267224_.getItem(0)) && p_267224_.getItem(2).isEmpty();
     }
 
     public ItemStack assemble(Container p_267320_, RegistryAccess p_267280_) {
