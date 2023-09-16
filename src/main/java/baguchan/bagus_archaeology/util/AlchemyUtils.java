@@ -136,16 +136,16 @@ public class AlchemyUtils {
         return count;
     }
 
-    public static int getAlchemyMaterialToughness(List<AlchemyMaterial> list) {
-        int count = 0;
+    public static float getAlchemyMaterialToughness(List<AlchemyMaterial> list) {
+        float count = 0;
         for (AlchemyMaterial element : list) {
             count += (int) element.getToughness();
         }
         return count;
     }
 
-    public static int getAlchemyMaterialHardness(List<AlchemyMaterial> list) {
-        int count = 0;
+    public static float getAlchemyMaterialHardness(List<AlchemyMaterial> list) {
+        float count = 0;
         for (AlchemyMaterial element : list) {
             count += (int) element.getHardness();
         }
