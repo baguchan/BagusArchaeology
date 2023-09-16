@@ -86,93 +86,93 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
     }
 
     public ItemStack result(ItemStack stack, Level level, BlockState state, BlockPos blockPos, boolean simulator) {
-        AlchemyEvent event = new AlchemyEvent.Pre(stack, level, simulator);
+        AlchemyEvent.Pre event = new AlchemyEvent.Pre(stack, level, simulator);
 
         if (!MinecraftForge.EVENT_BUS.post(event)) {
 
-        if (stack.is(Items.GLASS_BOTTLE)) {
-            ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_POTION.get());
-            for (ItemStack stack2 : items) {
-                Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
-                    return stack2.is(alchemyMaterialReference.get().getItem());
-                }).findFirst();
-                if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent() && referenceOptional.get().get().isUsableDrink()) {
-                    ItemStack stack3 = stack2.split(1);
-                    AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
-                }
+            if (stack.is(Items.GLASS_BOTTLE)) {
+                ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_POTION.get());
+                for (ItemStack stack2 : items) {
+                    Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
+                        return stack2.is(alchemyMaterialReference.get().getItem());
+                    }).findFirst();
+                    if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent() && referenceOptional.get().get().isUsableDrink()) {
+                        ItemStack stack3 = stack2.split(1);
+                        AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
+                    }
 
+                }
+                level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
+                setChanged();
+                return stack1;
             }
-            level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
-            setChanged();
-            return stack1;
-        }
             if (stack.is(ModTags.Items.PROJECTILE_MATERIAL)) {
-            ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_PROJECTILE.get());
-            for (ItemStack stack2 : items) {
-                Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
-                    return stack2.is(alchemyMaterialReference.get().getItem());
-                }).findFirst();
-                if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent()) {
-                    ItemStack stack3 = stack2.split(1);
-                    AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
-                }
+                ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_PROJECTILE.get());
+                for (ItemStack stack2 : items) {
+                    Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
+                        return stack2.is(alchemyMaterialReference.get().getItem());
+                    }).findFirst();
+                    if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent()) {
+                        ItemStack stack3 = stack2.split(1);
+                        AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
+                    }
 
+                }
+                level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
+                setChanged();
+                return stack1;
             }
-            level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
-            setChanged();
-            return stack1;
-        }
             if (stack.is(ModTags.Items.INGOT_MATERIAL)) {
-            ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_INGOT.get());
-            for (ItemStack stack2 : items) {
-                Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
-                    return stack2.is(alchemyMaterialReference.get().getItem());
-                }).findFirst();
-                if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent()) {
-                    ItemStack stack3 = stack2.split(1);
-                    AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
+                ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_INGOT.get());
+                for (ItemStack stack2 : items) {
+                    Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
+                        return stack2.is(alchemyMaterialReference.get().getItem());
+                    }).findFirst();
+                    if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent()) {
+                        ItemStack stack3 = stack2.split(1);
+                        AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
+                    }
+
                 }
-
+                level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
+                setChanged();
+                return stack1;
             }
-            level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
-            setChanged();
-            return stack1;
-        }
 
-        if (stack.is(ModItems.GOLEM_COMBAT_CORE.get())) {
-            ItemStack stack1;
-            if (AlchemyUtils.getAlchemyMaterialHardness(AlchemyUtils.getAlchemyMaterials(stack)) > 0) {
-                stack1 = new ItemStack(ModItems.ALCHEMY_COMBAT_GOLEM.get());
-            } else {
-                stack1 = new ItemStack(ModItems.ALCHEMY_SLIME.get());
-            }
-            for (ItemStack stack2 : items) {
-                Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
-                    return stack2.is(alchemyMaterialReference.get().getItem());
-                }).findFirst();
-                if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent() && referenceOptional.get().get().isUsableConstruct()) {
-                    ItemStack stack3 = stack2.split(1);
-                    AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
+            if (stack.is(ModItems.GOLEM_COMBAT_CORE.get())) {
+                ItemStack stack1;
+                if (AlchemyUtils.getAlchemyMaterialHardness(AlchemyUtils.getAlchemyMaterials(stack)) > 0) {
+                    stack1 = new ItemStack(ModItems.ALCHEMY_COMBAT_GOLEM.get());
+                } else {
+                    stack1 = new ItemStack(ModItems.ALCHEMY_SLIME.get());
                 }
+                for (ItemStack stack2 : items) {
+                    Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
+                        return stack2.is(alchemyMaterialReference.get().getItem());
+                    }).findFirst();
+                    if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent() && referenceOptional.get().get().isUsableConstruct()) {
+                        ItemStack stack3 = stack2.split(1);
+                        AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
+                    }
 
+                }
+                level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
+                setChanged();
+                return stack1;
             }
-            level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
-            setChanged();
-            return stack1;
-        }
 
-        if (!simulator && stack.is(Items.BUCKET)) {
-            level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
-            setChanged();
-            return Items.WATER_BUCKET.getDefaultInstance();
-        }
+            if (!simulator && stack.is(Items.BUCKET)) {
+                level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
+                setChanged();
+                return Items.WATER_BUCKET.getDefaultInstance();
+            }
             MinecraftForge.EVENT_BUS.post(new AlchemyEvent.Post(stack, level, simulator));
         }
         if (event.isConsumeWater()) {
             level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
             setChanged();
         }
-        return event.getStack();
+        return event.getResultStack();
     }
 
     public static void animationTick(Level level, BlockPos pos, BlockState state, AlchemyCauldronBlockEntity alchemyCauldronBlockEntity) {

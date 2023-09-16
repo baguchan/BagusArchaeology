@@ -48,6 +48,10 @@ public class AlchemyEvent extends Event {
         public void setResultStack(ItemStack resultStack) {
             this.resultStack = resultStack;
         }
+
+        public ItemStack getResultStack() {
+            return resultStack;
+        }
     }
 
     public static class Post extends AlchemyEvent {
