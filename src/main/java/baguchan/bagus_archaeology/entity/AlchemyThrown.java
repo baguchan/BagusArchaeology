@@ -7,6 +7,7 @@ import baguchan.bagus_archaeology.util.AlchemyUtils;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,6 +22,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import java.util.List;
 
 public class AlchemyThrown extends ThrowableItemProjectile {
+    public float scale = 1.0F;
     public AlchemyThrown(EntityType<? extends ThrowableItemProjectile> p_37442_, Level p_37443_) {
         super(p_37442_, p_37443_);
     }
@@ -92,7 +94,7 @@ public class AlchemyThrown extends ThrowableItemProjectile {
         if (AlchemyUtils.hasAlchemyMaterial(this.getItem())) {
             List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
             for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
-                scale += alchemyMaterial.getPower();
+                scale += alchemyMaterial.getPower() * scale;
                 for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
                     alchemyElement.projectileHit(this, p_37258_, alchemyMaterial.getItem(), scale);
                     scale *= alchemyElement.getProjectileScale();
@@ -110,5 +112,21 @@ public class AlchemyThrown extends ThrowableItemProjectile {
             this.level().broadcastEntityEvent(this, (byte) 3);
             this.discard();
         }
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag p_37449_) {
+        super.addAdditionalSaveData(p_37449_);
+        p_37449_.putFloat("Scale", this.scale);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag p_37445_) {
+        super.readAdditionalSaveData(p_37445_);
+        this.scale = p_37445_.getFloat("Scale");
+    }
+
+    public void setScale(float scale) {
+        this.scale = scale;
     }
 }

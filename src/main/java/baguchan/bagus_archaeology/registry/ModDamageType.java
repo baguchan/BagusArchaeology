@@ -8,5 +8,6 @@ import net.minecraft.world.damagesource.DamageType;
 
 public interface ModDamageType {
     ResourceKey<DamageType> FREEZE = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(RelicsAndAlchemy.MODID, "freeze"));
+    ResourceKey<DamageType> FIRE = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(RelicsAndAlchemy.MODID, "fire"));
 
 }

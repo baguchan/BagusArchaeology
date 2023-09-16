@@ -29,4 +29,7 @@ public class ModAlchemyElements {
     public static final RegistryObject<AlchemyElement> USABLE = ALCHEMY_ELEMENT.register("usable", () -> new UsableElement(new AlchemyElement.Properties(new AlchemyElement.AlchemyType[]{AlchemyElement.AlchemyType.SELF})));
     public static final RegistryObject<AlchemyElement> FLOWER = ALCHEMY_ELEMENT.register("flower", () -> new FlowerElemnt(new AlchemyElement.Properties(new AlchemyElement.AlchemyType[]{AlchemyElement.AlchemyType.SELF})));
     public static final RegistryObject<AlchemyElement> FREEZE = ALCHEMY_ELEMENT.register("freeze", () -> new FreezeElement(new AlchemyElement.Properties(new AlchemyElement.AlchemyType[]{AlchemyElement.AlchemyType.PROJECTILE})));
+    public static final RegistryObject<AlchemyElement> TELEPORT = ALCHEMY_ELEMENT.register("teleport", () -> new TeleportElement(new AlchemyElement.Properties(new AlchemyElement.AlchemyType[]{AlchemyElement.AlchemyType.PROJECTILE})));
+    public static final RegistryObject<AlchemyElement> FIRE = ALCHEMY_ELEMENT.register("fire", () -> new FireElement(new AlchemyElement.Properties(new AlchemyElement.AlchemyType[]{AlchemyElement.AlchemyType.PROJECTILE})));
+
 }

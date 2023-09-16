@@ -311,7 +311,7 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
             AlchemyUtils.addAlchemyMaterialToItemStack(stack, alchemyMaterial);
         });
         this.setPos(this.getX(), this.getEyeY() + 0.1F, this.getZ());
-
+        snowball.setScale(0.5F * this.getSize());
         snowball.setItem(stack);
         this.playSound(SoundEvents.SNOW_GOLEM_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
         this.level().addFreshEntity(snowball);

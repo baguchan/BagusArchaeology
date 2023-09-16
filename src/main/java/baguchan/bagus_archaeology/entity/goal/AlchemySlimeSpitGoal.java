@@ -37,7 +37,7 @@ public class AlchemySlimeSpitGoal extends Goal {
         if (p_25558_ <= d0) {
             if (this.alchemySlime.onGround()) {
                 this.alchemySlime.attack();
-                this.tick = 40;
+                this.tick = 80 - 20 * this.alchemySlime.getSize();
             }
         }
 
