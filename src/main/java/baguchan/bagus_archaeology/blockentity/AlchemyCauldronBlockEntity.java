@@ -168,6 +168,10 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
         }
             MinecraftForge.EVENT_BUS.post(new AlchemyEvent.Post(stack, level, simulator));
         }
+        if (event.isConsumeWater()) {
+            level.setBlock(blockPos, state.setValue(AlchemyCauldronBlock.HAS_WATER, false), 3);
+            setChanged();
+        }
         return event.getStack();
     }
 

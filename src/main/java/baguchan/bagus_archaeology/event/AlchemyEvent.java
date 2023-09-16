@@ -9,6 +9,7 @@ public class AlchemyEvent extends Event {
     private final Level level;
     private final ItemStack stack;
     private final boolean simurator;
+    private boolean consumeWater = false;
 
     public AlchemyEvent(ItemStack stack, Level level, boolean simulator) {
         this.level = level;
@@ -26,6 +27,14 @@ public class AlchemyEvent extends Event {
 
     public boolean isSimurator() {
         return simurator;
+    }
+
+    public boolean isConsumeWater() {
+        return consumeWater;
+    }
+
+    public void setConsumeWater(boolean consumeWater) {
+        this.consumeWater = consumeWater;
     }
 
     @Cancelable
