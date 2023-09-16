@@ -1,0 +1,7 @@
+{
+  "item": "minecraft:fire_charge",
+  "alchemy_element": [
+    "relics_and_alchemy:fire"
+  ],
+  "power": 1.5
+}

@@ -1,0 +1,7 @@
+{
+  "item": "minecraft:blaze_powder",
+  "alchemy_element": [
+    "relics_and_alchemy:fire"
+  ],
+  "power": 2.5
+}
