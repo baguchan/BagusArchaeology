@@ -9,7 +9,8 @@ import net.minecraft.world.item.Item;
 public class ModTags {
     public static class Items {
         public static final TagKey<Item> ALCHEMY_ALLOW_TOOL = tag("alchemy_allow_tool");
-
+        public static final TagKey<Item> PROJECTILE_MATERIAL = tag("projectile_material");
+        public static final TagKey<Item> INGOT_MATERIAL = tag("ingot_material");
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(RelicsAndAlchemy.MODID, name));
         }

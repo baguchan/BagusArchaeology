@@ -2,9 +2,11 @@ package baguchan.bagus_archaeology.blockentity;
 
 import baguchan.bagus_archaeology.RelicsAndAlchemy;
 import baguchan.bagus_archaeology.block.AlchemyCauldronBlock;
+import baguchan.bagus_archaeology.event.AlchemyEvent;
 import baguchan.bagus_archaeology.material.AlchemyMaterial;
 import baguchan.bagus_archaeology.registry.ModBlockEntitys;
 import baguchan.bagus_archaeology.registry.ModItems;
+import baguchan.bagus_archaeology.registry.ModTags;
 import baguchan.bagus_archaeology.util.AlchemyUtils;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -34,6 +36,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.MinecraftForge;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -83,6 +86,10 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
     }
 
     public ItemStack result(ItemStack stack, Level level, BlockState state, BlockPos blockPos, boolean simulator) {
+        AlchemyEvent event = new AlchemyEvent.Pre(stack, level, simulator);
+
+        if (!MinecraftForge.EVENT_BUS.post(event)) {
+
         if (stack.is(Items.GLASS_BOTTLE)) {
             ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_POTION.get());
             for (ItemStack stack2 : items) {
@@ -99,7 +106,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
             setChanged();
             return stack1;
         }
-        if (stack.is(Items.SLIME_BALL) || stack.is(Items.CLAY_BALL)) {
+            if (stack.is(ModTags.Items.PROJECTILE_MATERIAL)) {
             ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_PROJECTILE.get());
             for (ItemStack stack2 : items) {
                 Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
@@ -115,7 +122,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
             setChanged();
             return stack1;
         }
-        if (stack.is(Items.GOLD_INGOT)) {
+            if (stack.is(ModTags.Items.INGOT_MATERIAL)) {
             ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_INGOT.get());
             for (ItemStack stack2 : items) {
                 Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
@@ -159,7 +166,9 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
             setChanged();
             return Items.WATER_BUCKET.getDefaultInstance();
         }
-        return ItemStack.EMPTY;
+            MinecraftForge.EVENT_BUS.post(new AlchemyEvent.Post(stack, level, simulator));
+        }
+        return event.getStack();
     }
 
     public static void animationTick(Level level, BlockPos pos, BlockState state, AlchemyCauldronBlockEntity alchemyCauldronBlockEntity) {

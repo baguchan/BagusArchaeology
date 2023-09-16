@@ -25,5 +25,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(ItemTags.TRIMMABLE_ARMOR).add(ModItems.STUDDED_BOOTS.get(), ModItems.STUDDED_LEGGINGS.get(), ModItems.STUDDED_CHESTPLATE.get(), ModItems.STUDDED_HELMET.get());
         tag(ItemTags.FREEZE_IMMUNE_WEARABLES).add(ModItems.STUDDED_BOOTS.get(), ModItems.STUDDED_LEGGINGS.get(), ModItems.STUDDED_CHESTPLATE.get(), ModItems.STUDDED_HELMET.get());
         tag(ModTags.Items.ALCHEMY_ALLOW_TOOL).add(Items.TRIDENT).addTag(ItemTags.SWORDS).addTag(ItemTags.PICKAXES).addTag(ItemTags.SHOVELS).addTag(ItemTags.AXES);
+        tag(ModTags.Items.INGOT_MATERIAL).add(Items.GOLD_INGOT);
+        tag(ModTags.Items.PROJECTILE_MATERIAL).add(Items.CLAY_BALL);
     }
 }
