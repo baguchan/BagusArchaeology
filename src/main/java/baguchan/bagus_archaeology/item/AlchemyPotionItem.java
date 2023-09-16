@@ -36,7 +36,7 @@ public class AlchemyPotionItem extends AlchemyItem {
             for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
                 scale += alchemyMaterial.getPower();
                 for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
-                    alchemyElement.active(p_41350_, alchemyMaterial.getItem(), scale);
+                    alchemyElement.active(p_41350_, alchemyMaterial.getItem(), scale + alchemyMaterial.getPowerBalance());
                     scale *= alchemyElement.getSelfScale();
                 }
             }

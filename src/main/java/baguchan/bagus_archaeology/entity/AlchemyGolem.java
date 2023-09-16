@@ -221,7 +221,7 @@ public class AlchemyGolem extends AbstractGolem implements IAlchemyOwner, IAlche
             for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
                 scale += alchemyMaterial.getPower() * this.getDamageScale();
                 for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
-                    alchemyElement.entityAttack(this, p_28837_, alchemyMaterial.getItem(), scale);
+                    alchemyElement.entityAttack(this, p_28837_, alchemyMaterial.getItem(), scale + alchemyMaterial.getPowerBalance());
                     scale *= alchemyElement.getSelfScale();
                 }
             }

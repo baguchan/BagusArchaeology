@@ -20,9 +20,10 @@ public class AlchemyMaterial {
                     BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(instance2 -> instance2.getItem()),
                     AlchemyElement.CODEC.listOf().fieldOf("alchemy_element").orElse(List.of()).forGetter(alchemyMaterial -> alchemyMaterial.getAlchemyElement()),
                     Codec.FLOAT.fieldOf("power").orElse(0F).forGetter(alchemyMaterial -> alchemyMaterial.getPower()),
+                    Codec.FLOAT.fieldOf("power_balance").orElse(1F).forGetter(alchemyMaterial -> alchemyMaterial.getPower()),
                     Codec.FLOAT.fieldOf("hardness").orElse(0F).forGetter(alchemyMaterial -> alchemyMaterial.getHardness()),
                     Codec.FLOAT.fieldOf("toughness").orElse(0F).forGetter(alchemyMaterial -> alchemyMaterial.getToughness()))
-            .apply(instance, (Item item1, List<AlchemyElement> alchemyMaterial1, Float scale, Float hardness, Float toughness) -> new AlchemyMaterial(item1, alchemyMaterial1, scale, hardness, toughness))
+            .apply(instance, (Item item1, List<AlchemyElement> alchemyMaterial1, Float scale, Float powerBalance, Float hardness, Float toughness) -> new AlchemyMaterial(item1, alchemyMaterial1, scale, powerBalance, hardness, toughness))
     );
 
     public static final ResourceKey<Registry<AlchemyMaterial>> REGISTRY_KEY = ResourceKey
@@ -30,13 +31,15 @@ public class AlchemyMaterial {
     private final Item item;
     private final List<AlchemyElement> alchemyElement;
     private final float power;
+    private final float powerBalance;
     private final float hardness;
     private final float toughness;
 
-    public AlchemyMaterial(Item item, List<AlchemyElement> alchemyElement, float power, float hardness, float toughness) {
+    public AlchemyMaterial(Item item, List<AlchemyElement> alchemyElement, float power, float powerBalance, float hardness, float toughness) {
         this.item = item;
         this.alchemyElement = alchemyElement;
         this.power = power;
+        this.powerBalance = powerBalance;
         this.hardness = hardness;
         this.toughness = toughness;
     }
@@ -51,6 +54,10 @@ public class AlchemyMaterial {
 
     public float getPower() {
         return power;
+    }
+
+    public float getPowerBalance() {
+        return powerBalance;
     }
 
     public float getHardness() {
