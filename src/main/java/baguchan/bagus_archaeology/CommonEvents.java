@@ -72,8 +72,8 @@ public class CommonEvents {
                 Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(stack);
 
                 for (Map.Entry<AlchemyMaterial, Float> entry : alchemyMaterialList.entrySet()) {
-                    hardness += entry.getKey().getHardness() * 0.1F;
-                    toughness += entry.getKey().getToughness() * 0.2F;
+                    hardness += entry.getKey().getHardness() * entry.getValue() * 0.1F;
+                    toughness += entry.getKey().getToughness() * entry.getValue() * 0.2F;
                     power += entry.getKey().getPower() * entry.getValue() * 0.1F;
                     for (AlchemyElement alchemyElement : entry.getKey().getAlchemyElement()) {
                         power *= alchemyElement.getSelfScale();

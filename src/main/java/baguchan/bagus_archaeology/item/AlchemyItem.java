@@ -30,8 +30,8 @@ public class AlchemyItem extends Item {
             p_42990_.add(alchemyMaterial.getKey().getName());
             self += alchemyMaterial.getKey().getPower() * alchemyMaterial.getValue();
             projectile += alchemyMaterial.getKey().getPower() * alchemyMaterial.getValue();
-            hardness += alchemyMaterial.getKey().getHardness();
-            toughness += alchemyMaterial.getKey().getToughness();
+            hardness += alchemyMaterial.getKey().getHardness() * alchemyMaterial.getValue();
+            toughness += alchemyMaterial.getKey().getToughness() * alchemyMaterial.getValue();
             for (AlchemyElement alchemyElement : alchemyMaterial.getKey().getAlchemyElement()) {
                 self *= alchemyElement.getSelfScale();
                 projectile *= alchemyElement.getProjectileScale();
