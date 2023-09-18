@@ -1,6 +1,7 @@
 {
   "item": "minecraft:warped_fungus",
   "power": -3,
+  "power_balance": -0.1,
   "alchemy_element": [
     "relics_and_alchemy:warped"
   ]

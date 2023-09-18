@@ -1,6 +1,7 @@
 {
   "item": "minecraft:soul_sand",
   "power": 1.5,
+  "power_balance": 0.025,
   "alchemy_element": [
   ]
 }

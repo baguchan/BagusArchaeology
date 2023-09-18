@@ -1,6 +1,7 @@
 {
   "item": "minecraft:honeycomb",
   "power": 1,
+  "power_balance": 0.2,
   "alchemy_element": [
     "relics_and_alchemy:sugar"
   ]
