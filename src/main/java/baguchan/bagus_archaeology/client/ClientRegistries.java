@@ -12,7 +12,6 @@ import baguchan.bagus_archaeology.registry.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.SkullModel;
 import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.BrushableBlockRenderer;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -51,9 +50,6 @@ public class ClientRegistries {
 
     @SubscribeEvent
     public static void registerColor(RegisterColorHandlersEvent.Block event) {
-        event.register((p_92621_, p_92622_, p_92623_, p_92624_) -> {
-            return p_92622_ != null && p_92623_ != null ? BiomeColors.getAverageWaterColor(p_92622_, p_92623_) : -1;
-        }, ModBlocks.ALCHEMY_CAULDRON.get());
     }
 
     @SubscribeEvent

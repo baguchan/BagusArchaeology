@@ -4,7 +4,7 @@
       "model": "minecraft:block/cauldron"
     },
     "has_water=true": {
-      "model": "minecraft:block/water_cauldron_full"
+      "model": "relics_and_alchemy:block/alchemy_cauldron_full"
     }
   }
 }

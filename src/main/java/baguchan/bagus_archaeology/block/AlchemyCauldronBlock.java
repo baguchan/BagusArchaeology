@@ -69,8 +69,8 @@ public class AlchemyCauldronBlock extends BaseEntityBlock {
 
     @Override
     public void entityInside(BlockState p_153506_, Level p_153507_, BlockPos p_153508_, Entity p_153509_) {
-        if (this.isEntityInsideContent(p_153506_, p_153508_, p_153509_)) {
-            //p_153509_.hurt(p_153509_.damageSources().inFire(), 3.0F);
+        if (this.isEntityInsideContent(p_153506_, p_153508_, p_153509_) && p_153506_.getValue(HAS_WATER)) {
+            p_153509_.hurt(p_153509_.damageSources().inFire(), 2.0F);
         }
     }
 

@@ -11,6 +11,9 @@ import baguchan.bagus_archaeology.material.AlchemyMaterial;
 import baguchan.bagus_archaeology.registry.ModEntities;
 import baguchan.bagus_archaeology.registry.ModItems;
 import baguchan.bagus_archaeology.util.AlchemyUtils;
+import net.minecraft.core.particles.ItemParticleOption;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -57,6 +60,10 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.getEntityData().define(DATA_ITEM_STACK, ItemStack.EMPTY);
+    }
+
+    protected ParticleOptions getParticleType() {
+        return new ItemParticleOption(ParticleTypes.ITEM, ModItems.ALCHEMY_PROJECTILE.get().getDefaultInstance());
     }
 
     protected void registerGoals() {
