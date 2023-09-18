@@ -35,7 +35,7 @@ public class ModItems {
     public static final RegistryObject<Item> ALCHEMY_INGOT = ITEMS.register("alchemy_ingot", () -> new AlchemyItem((new Item.Properties().stacksTo(1))));
     public static final RegistryObject<Item> ALCHEMY_COMBAT_GOLEM = ITEMS.register("alchemy_combat_golem", () -> new AlchemyMobItem(ModEntities.ALCHEMY_COMBAT_GOLEM, (new Item.Properties())));
     public static final RegistryObject<Item> ALCHEMY_SLIME = ITEMS.register("alchemy_slime", () -> new AlchemyMobItem(ModEntities.ALCHEMY_SLIME, (new Item.Properties().stacksTo(1))));
-    public static final RegistryObject<Item> GOLEM_COMBAT_CORE = ITEMS.register("golem_combat_core", () -> new Item((new Item.Properties().stacksTo(1))));
+    public static final RegistryObject<Item> GOLEM_COMBAT_CORE = ITEMS.register("golem_combat_core", () -> new Item((new Item.Properties().stacksTo(16))));
 
     public static void dispenserRegistry() {
         DispenserBlock.registerBehavior(ALCHEMY_PROJECTILE.get(), new AbstractProjectileDispenseBehavior() {
