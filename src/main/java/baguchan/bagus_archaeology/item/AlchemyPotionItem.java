@@ -15,7 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 
-import java.util.List;
+import java.util.Map;
 
 public class AlchemyPotionItem extends AlchemyItem {
     public AlchemyPotionItem(Item.Properties properties) {
@@ -32,11 +32,12 @@ public class AlchemyPotionItem extends AlchemyItem {
 
         float scale = 0F;
         if (AlchemyUtils.hasAlchemyMaterial(p_41348_)) {
-            List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(p_41348_);
-            for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
-                scale += alchemyMaterial.getPower();
+            Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(p_41348_);
+            for (Map.Entry<AlchemyMaterial, Float> entry : alchemyMaterialList.entrySet()) {
+                AlchemyMaterial alchemyMaterial = entry.getKey();
+                scale += alchemyMaterial.getPower() * entry.getValue();
                 for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
-                    alchemyElement.active(p_41350_, alchemyMaterial.getItem(), scale + alchemyMaterial.getPowerBalance());
+                    alchemyElement.active(p_41350_, alchemyMaterial.getItem(), scale);
                     scale *= alchemyElement.getSelfScale();
                 }
             }

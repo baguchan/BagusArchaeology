@@ -19,7 +19,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 
-import java.util.List;
+import java.util.Map;
 
 public class AlchemyThrown extends ThrowableItemProjectile {
     public float scale = 1.0F;
@@ -60,14 +60,14 @@ public class AlchemyThrown extends ThrowableItemProjectile {
         float scale = 0F;
         float hardness = 0F;
         if (AlchemyUtils.hasAlchemyMaterial(this.getItem())) {
-            List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
-            for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
-                scale += alchemyMaterial.getPower();
-                for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
-                    alchemyElement.projectileHit(this, p_37404_, alchemyMaterial.getItem(), scale + alchemyMaterial.getPowerBalance());
+            Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
+            for (Map.Entry<AlchemyMaterial, Float> alchemyMaterial : alchemyMaterialList.entrySet()) {
+                scale += alchemyMaterial.getKey().getPower() * alchemyMaterial.getValue();
+                for (AlchemyElement alchemyElement : alchemyMaterial.getKey().getAlchemyElement()) {
+                    alchemyElement.projectileHit(this, p_37404_, alchemyMaterial.getKey().getItem(), scale);
                     scale *= alchemyElement.getProjectileScale();
                 }
-                hardness += alchemyMaterial.getHardness();
+                hardness += alchemyMaterial.getKey().getHardness();
             }
             if (p_37404_.getEntity() instanceof IAlchemyMob && p_37404_.getEntity() instanceof LivingEntity living) {
                 living.heal(scale);
@@ -92,11 +92,11 @@ public class AlchemyThrown extends ThrowableItemProjectile {
         float scale = 0F;
 
         if (AlchemyUtils.hasAlchemyMaterial(this.getItem())) {
-            List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
-            for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
-                scale += alchemyMaterial.getPower() * scale;
-                for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
-                    alchemyElement.projectileHit(this, p_37258_, alchemyMaterial.getItem(), scale + alchemyMaterial.getPowerBalance());
+            Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
+            for (Map.Entry<AlchemyMaterial, Float> alchemyMaterial : alchemyMaterialList.entrySet()) {
+                scale += alchemyMaterial.getKey().getPower() * alchemyMaterial.getValue();
+                for (AlchemyElement alchemyElement : alchemyMaterial.getKey().getAlchemyElement()) {
+                    alchemyElement.projectileHit(this, p_37258_, alchemyMaterial.getKey().getItem(), scale);
                     scale *= alchemyElement.getProjectileScale();
                 }
 

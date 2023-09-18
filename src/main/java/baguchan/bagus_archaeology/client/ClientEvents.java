@@ -17,6 +17,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
+import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = RelicsAndAlchemy.MODID, value = Dist.CLIENT)
 public class ClientEvents {
@@ -27,8 +28,9 @@ public class ClientEvents {
         Player player = event.getEntity();
 
         if (stack.getItem() instanceof ArmorItem armorItem || stack.getItem() instanceof TieredItem || stack.is(ModTags.Items.ALCHEMY_ALLOW_TOOL)) {
-            List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(stack);
-            for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
+            Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(stack);
+            for (Map.Entry<AlchemyMaterial, Float> entry : alchemyMaterialList.entrySet()) {
+                AlchemyMaterial alchemyMaterial = entry.getKey();
                 list.add(alchemyMaterial.getName());
             }
         }

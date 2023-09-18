@@ -16,7 +16,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SmithingRecipe;
 import net.minecraft.world.level.Level;
 
-import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class AlchemySmithingRecipe implements SmithingRecipe {
@@ -39,10 +39,10 @@ public class AlchemySmithingRecipe implements SmithingRecipe {
         ItemStack itemstack2 = itemstack.copy();
         if (this.base.test(itemstack2)) {
             if (AlchemyUtils.hasAlchemyMaterial(p_267320_.getItem(0))) {
-                List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(p_267320_.getItem(0));
-                for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
-                    AlchemyUtils.addAlchemyMaterialToItemStack(itemstack2, alchemyMaterial);
-                }
+                Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(p_267320_.getItem(0));
+                alchemyMaterialList.forEach((alchemyMaterial, scale) -> {
+                    AlchemyUtils.addAlchemyMaterialToItemStack(itemstack2, alchemyMaterial, scale);
+                });
 
             }
             return itemstack2;

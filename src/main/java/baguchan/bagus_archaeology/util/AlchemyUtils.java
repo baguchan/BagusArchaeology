@@ -3,23 +3,34 @@ package baguchan.bagus_archaeology.util;
 import baguchan.bagus_archaeology.RelicsAndAlchemy;
 import baguchan.bagus_archaeology.element.AlchemyElement;
 import baguchan.bagus_archaeology.material.AlchemyMaterial;
-import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 public class AlchemyUtils {
     public static final String TAG_ALCHEMY_ELEMENT = "AlchemyElement";
     public static final String TAG_STORED_ALCHEMY_MATERIAL = "StoredAlchemyMaterials";
     public static final String TAG_ALCHEMY_MATERIAL = "AlchemyMaterial";
-    public static final String TAG_ALCHEMY_SCALE = "AlchemyMaterial";
+    public static final String TAG_ALCHEMY_SCALE = "AlchemyMaterialScale";
 
+
+    public static float getEnchantLevelFromNBT(@Nullable CompoundTag tag) {
+        if (tag != null) {
+            return tag.getFloat(TAG_ALCHEMY_SCALE);
+        } else {
+            return 0;
+        }
+    }
     /**
      * get AlchemyMaterial From NBT
      *
@@ -64,30 +75,29 @@ public class AlchemyUtils {
     }
 
     /**
-     * get Mob Enchantments From ItemStack
+     * get Alchemy Material From ItemStack
      *
      * @param stack AlchemyElemented Item
      */
-    public static List<AlchemyMaterial> getAlchemyMaterials(ItemStack stack) {
+    public static Map<AlchemyMaterial, Float> getAlchemyMaterials(ItemStack stack) {
         ListTag listnbt = getAlchemyMaterialListForNBT(stack.getTag());
         return makeAlchemyMaterialListFromListNBT(listnbt);
     }
 
-    private static List<AlchemyMaterial> makeAlchemyMaterialListFromListNBT(ListTag p_226652_0_) {
-        List<AlchemyMaterial> linkedList = Lists.newLinkedList();
+    private static Map<AlchemyMaterial, Float> makeAlchemyMaterialListFromListNBT(ListTag p_226652_0_) {
+        Map<AlchemyMaterial, Float> map = Maps.newLinkedHashMap();
 
         for (int i = 0; i < p_226652_0_.size(); ++i) {
             CompoundTag compoundnbt = p_226652_0_.getCompound(i);
-            AlchemyMaterial alchemy = getAlchemyMaterialFromString(compoundnbt.getString(TAG_ALCHEMY_MATERIAL));
-            if (alchemy != null) {
-                linkedList.add(alchemy);
-            }
+            AlchemyMaterial mobEnchant = getAlchemyMaterialFromString(compoundnbt.getString(TAG_ALCHEMY_MATERIAL));
+            map.put(mobEnchant, compoundnbt.getFloat(TAG_ALCHEMY_SCALE) + 1.0F);
+
         }
 
-        return linkedList;
+        return map;
     }
 
-    public static void addAlchemyMaterialToItemStack(ItemStack itemIn, ItemStack alchemyMaterial) {
+    public static void addAlchemyMaterialToItemStackWithRandom(ItemStack itemIn, ItemStack alchemyMaterial, RandomSource randomSource) {
         ListTag listnbt = getAlchemyMaterialListForNBT(itemIn.getTag());
 
         Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
@@ -97,13 +107,15 @@ public class AlchemyUtils {
         if (referenceOptional.isPresent()) {
             CompoundTag compoundnbt1 = new CompoundTag();
             compoundnbt1.putString(TAG_ALCHEMY_MATERIAL, String.valueOf(referenceOptional.get().key().location()));
+            compoundnbt1.putFloat(TAG_ALCHEMY_SCALE, (float) (randomSource.nextDouble() * referenceOptional.get().get().getPowerBalance()));
             listnbt.add(compoundnbt1);
+
         }
 
         itemIn.getOrCreateTag().put(TAG_STORED_ALCHEMY_MATERIAL, listnbt);
     }
 
-    public static void addAlchemyMaterialToItemStack(ItemStack itemIn, AlchemyMaterial alchemyMaterial) {
+    public static void addAlchemyMaterialToItemStackWithRandom(ItemStack itemIn, AlchemyMaterial alchemyMaterial, RandomSource randomSource) {
         ListTag listnbt = getAlchemyMaterialListForNBT(itemIn.getTag());
 
         ResourceLocation resourcelocation = RelicsAndAlchemy.registryAccess().registryOrThrow(AlchemyMaterial.REGISTRY_KEY).getKey(alchemyMaterial);
@@ -111,10 +123,42 @@ public class AlchemyUtils {
 
             CompoundTag compoundnbt1 = new CompoundTag();
         compoundnbt1.putString(TAG_ALCHEMY_MATERIAL, String.valueOf(resourcelocation));
+        compoundnbt1.putFloat(TAG_ALCHEMY_SCALE, (float) (randomSource.nextDouble() * alchemyMaterial.getPowerBalance()));
             listnbt.add(compoundnbt1);
 
+        itemIn.getTag().put(TAG_STORED_ALCHEMY_MATERIAL, listnbt);
+    }
+
+    public static void addAlchemyMaterialToItemStack(ItemStack itemIn, ItemStack alchemyMaterial, float scale) {
+        ListTag listnbt = getAlchemyMaterialListForNBT(itemIn.getTag());
+
+        Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
+            return alchemyMaterial.is(alchemyMaterialReference.get().getItem());
+        }).findFirst();
+
+        if (referenceOptional.isPresent()) {
+            CompoundTag compoundnbt1 = new CompoundTag();
+            compoundnbt1.putString(TAG_ALCHEMY_MATERIAL, String.valueOf(referenceOptional.get().key().location()));
+            compoundnbt1.putFloat(TAG_ALCHEMY_SCALE, 1.0F - scale);
+            listnbt.add(compoundnbt1);
+
+        }
 
         itemIn.getOrCreateTag().put(TAG_STORED_ALCHEMY_MATERIAL, listnbt);
+    }
+
+    public static void addAlchemyMaterialToItemStack(ItemStack itemIn, AlchemyMaterial alchemyMaterial, float scale) {
+        ListTag listnbt = getAlchemyMaterialListForNBT(itemIn.getTag());
+
+        ResourceLocation resourcelocation = RelicsAndAlchemy.registryAccess().registryOrThrow(AlchemyMaterial.REGISTRY_KEY).getKey(alchemyMaterial);
+
+
+        CompoundTag compoundnbt1 = new CompoundTag();
+        compoundnbt1.putString(TAG_ALCHEMY_MATERIAL, String.valueOf(resourcelocation));
+        compoundnbt1.putFloat(TAG_ALCHEMY_SCALE, 1.0F - scale);
+        listnbt.add(compoundnbt1);
+
+        itemIn.getTag().put(TAG_STORED_ALCHEMY_MATERIAL, listnbt);
     }
 
     public static boolean findAlchemyElementHandler(List<AlchemyElement> list, AlchemyElement findAlchemyElement) {
@@ -136,7 +180,7 @@ public class AlchemyUtils {
         return count;
     }
 
-    public static float getAlchemyMaterialToughness(List<AlchemyMaterial> list) {
+    public static float getAlchemyMaterialToughness(Set<AlchemyMaterial> list) {
         float count = 0;
         for (AlchemyMaterial element : list) {
             count += (int) element.getToughness();
@@ -144,7 +188,7 @@ public class AlchemyUtils {
         return count;
     }
 
-    public static float getAlchemyMaterialHardness(List<AlchemyMaterial> list) {
+    public static float getAlchemyMaterialHardness(Set<AlchemyMaterial> list) {
         float count = 0;
         for (AlchemyMaterial element : list) {
             count += (int) element.getHardness();

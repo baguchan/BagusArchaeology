@@ -40,7 +40,7 @@ import net.minecraft.world.phys.HitResult;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
-import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
@@ -90,10 +90,10 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
             float scale = 0;
 
             if (AlchemyUtils.hasAlchemyMaterial(this.getItem())) {
-                List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
-                for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
-                    scale += alchemyMaterial.getPower();
-                    for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
+                Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
+                for (Map.Entry<AlchemyMaterial, Float> alchemyMaterial : alchemyMaterialList.entrySet()) {
+                    scale += alchemyMaterial.getKey().getPower() * alchemyMaterial.getValue();
+                    for (AlchemyElement alchemyElement : alchemyMaterial.getKey().getAlchemyElement()) {
                         scale *= alchemyElement.getSelfScale();
                     }
                 }
@@ -206,9 +206,10 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
             float health = 0;
 
             if (AlchemyUtils.hasAlchemyMaterial(p_37447_)) {
-                List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
-                for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
-                    health += alchemyMaterial.getPower() * 2;
+                Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
+                for (Map.Entry<AlchemyMaterial, Float> entry : alchemyMaterialList.entrySet()) {
+                    AlchemyMaterial alchemyMaterial = entry.getKey();
+                    health += alchemyMaterial.getPower() * 2 * entry.getValue();
                 }
             }
 
@@ -313,9 +314,9 @@ public class AlchemySlime extends Slime implements IAlchemyOwner, IAlchemyMob {
         snowball.shoot(d1, d2 + d4, d3, 1.0F, 6.0F);
         snowball.setXRot(snowball.getXRot() - -25.0F);
         ItemStack stack = new ItemStack(ModItems.ALCHEMY_PROJECTILE.get());
-        List<AlchemyMaterial> alchemyMaterials = AlchemyUtils.getAlchemyMaterials(this.getItem());
-        alchemyMaterials.forEach(alchemyMaterial -> {
-            AlchemyUtils.addAlchemyMaterialToItemStack(stack, alchemyMaterial);
+        Map<AlchemyMaterial, Float> alchemyMaterials = AlchemyUtils.getAlchemyMaterials(this.getItem());
+        alchemyMaterials.forEach((alchemyMaterial, scale) -> {
+            AlchemyUtils.addAlchemyMaterialToItemStack(stack, alchemyMaterial, scale);
         });
         this.setPos(this.getX(), this.getEyeY() + 0.1F, this.getZ());
         snowball.setScale(0.5F * this.getSize());

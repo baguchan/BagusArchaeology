@@ -23,7 +23,7 @@ import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = RelicsAndAlchemy.MODID)
@@ -69,13 +69,13 @@ public class CommonEvents {
             float toughness = 0;
 
             if (AlchemyUtils.hasAlchemyMaterial(stack)) {
-                List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(stack);
+                Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(stack);
 
-                for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
-                    hardness += alchemyMaterial.getHardness() * 0.1F;
-                    toughness += alchemyMaterial.getToughness() * 0.2F;
-                    power += alchemyMaterial.getPower() * 0.1F;
-                    for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
+                for (Map.Entry<AlchemyMaterial, Float> entry : alchemyMaterialList.entrySet()) {
+                    hardness += entry.getKey().getHardness() * 0.1F;
+                    toughness += entry.getKey().getToughness() * 0.2F;
+                    power += entry.getKey().getPower() * entry.getValue() * 0.1F;
+                    for (AlchemyElement alchemyElement : entry.getKey().getAlchemyElement()) {
                         power *= alchemyElement.getSelfScale();
                     }
                 }

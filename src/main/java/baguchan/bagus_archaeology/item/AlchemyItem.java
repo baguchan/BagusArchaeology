@@ -13,6 +13,7 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Map;
 
 public class AlchemyItem extends Item {
     public AlchemyItem(Properties properties) {
@@ -20,20 +21,20 @@ public class AlchemyItem extends Item {
     }
 
     public void appendHoverText(ItemStack p_42988_, @Nullable Level p_42989_, List<Component> p_42990_, TooltipFlag p_42991_) {
-        List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(p_42988_);
+        Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(p_42988_);
         float self = 0;
         float projectile = 0;
         float hardness = 0;
         float toughness = 0;
-        for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
-            p_42990_.add(alchemyMaterial.getName());
-            self += alchemyMaterial.getPower();
-            projectile += alchemyMaterial.getPower();
-            hardness += alchemyMaterial.getHardness();
-            toughness += alchemyMaterial.getToughness();
-            for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
-                self += alchemyElement.getSelfScale();
-                projectile += alchemyElement.getProjectileScale();
+        for (Map.Entry<AlchemyMaterial, Float> alchemyMaterial : alchemyMaterialList.entrySet()) {
+            p_42990_.add(alchemyMaterial.getKey().getName());
+            self += alchemyMaterial.getKey().getPower() * alchemyMaterial.getValue();
+            projectile += alchemyMaterial.getKey().getPower() * alchemyMaterial.getValue();
+            hardness += alchemyMaterial.getKey().getHardness();
+            toughness += alchemyMaterial.getKey().getToughness();
+            for (AlchemyElement alchemyElement : alchemyMaterial.getKey().getAlchemyElement()) {
+                self *= alchemyElement.getSelfScale();
+                projectile *= alchemyElement.getProjectileScale();
             }
         }
 

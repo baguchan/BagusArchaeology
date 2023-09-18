@@ -37,7 +37,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 
 import javax.annotation.Nullable;
-import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class AlchemyGolem extends AbstractGolem implements IAlchemyOwner, IAlchemyMob {
@@ -117,9 +117,10 @@ public class AlchemyGolem extends AbstractGolem implements IAlchemyOwner, IAlche
             float scale = 0;
 
             if (AlchemyUtils.hasAlchemyMaterial(this.getItem())) {
-                List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
-                for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
-                    scale += alchemyMaterial.getPower() * this.getDamageScale();
+                Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
+                for (Map.Entry<AlchemyMaterial, Float> entry : alchemyMaterialList.entrySet()) {
+                    AlchemyMaterial alchemyMaterial = entry.getKey();
+                    scale += alchemyMaterial.getPower() * entry.getValue() * this.getDamageScale();
                     for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
                         scale *= alchemyElement.getSelfScale();
                     }
@@ -217,11 +218,12 @@ public class AlchemyGolem extends AbstractGolem implements IAlchemyOwner, IAlche
 
         float scale = 0F;
         if (AlchemyUtils.hasAlchemyMaterial(this.getItem())) {
-            List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
-            for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
-                scale += alchemyMaterial.getPower() * this.getDamageScale();
+            Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
+            for (Map.Entry<AlchemyMaterial, Float> entry : alchemyMaterialList.entrySet()) {
+                AlchemyMaterial alchemyMaterial = entry.getKey();
+                scale += alchemyMaterial.getPower() * entry.getValue() * this.getDamageScale();
                 for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
-                    alchemyElement.entityAttack(this, p_28837_, alchemyMaterial.getItem(), scale + alchemyMaterial.getPowerBalance());
+                    alchemyElement.entityAttack(this, p_28837_, alchemyMaterial.getItem(), scale);
                     scale *= alchemyElement.getSelfScale();
                 }
             }
@@ -292,10 +294,10 @@ public class AlchemyGolem extends AbstractGolem implements IAlchemyOwner, IAlche
             float toughness = 0;
 
             if (AlchemyUtils.hasAlchemyMaterial(p_37447_)) {
-                List<AlchemyMaterial> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
-                for (AlchemyMaterial alchemyMaterial : alchemyMaterialList) {
-                    hardness = alchemyMaterial.getHardness();
-                    toughness = alchemyMaterial.getToughness();
+                Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(this.getItem());
+                for (Map.Entry<AlchemyMaterial, Float> alchemyMaterial : alchemyMaterialList.entrySet()) {
+                    hardness = alchemyMaterial.getKey().getHardness() * alchemyMaterial.getValue();
+                    toughness = alchemyMaterial.getKey().getToughness() * alchemyMaterial.getValue();
                 }
             }
             this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.getAttributeValue(Attributes.MAX_HEALTH) + hardness);

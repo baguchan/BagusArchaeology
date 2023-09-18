@@ -98,7 +98,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
                     }).findFirst();
                     if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent() && referenceOptional.get().get().isUsableDrink()) {
                         ItemStack stack3 = stack2.split(1);
-                        AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
+                        AlchemyUtils.addAlchemyMaterialToItemStackWithRandom(stack1, stack3, this.getLevel().random);
                     }
 
                 }
@@ -114,7 +114,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
                     }).findFirst();
                     if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent()) {
                         ItemStack stack3 = stack2.split(1);
-                        AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
+                        AlchemyUtils.addAlchemyMaterialToItemStackWithRandom(stack1, stack3, this.getLevel().random);
                     }
 
                 }
@@ -130,7 +130,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
                     }).findFirst();
                     if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent()) {
                         ItemStack stack3 = stack2.split(1);
-                        AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
+                        AlchemyUtils.addAlchemyMaterialToItemStackWithRandom(stack1, stack3, this.getLevel().random);
                     }
 
                 }
@@ -141,7 +141,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
 
             if (stack.is(ModItems.GOLEM_COMBAT_CORE.get())) {
                 ItemStack stack1;
-                if (AlchemyUtils.getAlchemyMaterialHardness(AlchemyUtils.getAlchemyMaterials(stack)) > 0) {
+                if (AlchemyUtils.getAlchemyMaterialHardness(AlchemyUtils.getAlchemyMaterials(stack).keySet()) > 0) {
                     stack1 = new ItemStack(ModItems.ALCHEMY_COMBAT_GOLEM.get());
                 } else {
                     stack1 = new ItemStack(ModItems.ALCHEMY_SLIME.get());
@@ -152,7 +152,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
                     }).findFirst();
                     if (!stack2.isEmpty() && !simulator && referenceOptional.isPresent() && referenceOptional.get().get().isUsableConstruct()) {
                         ItemStack stack3 = stack2.split(1);
-                        AlchemyUtils.addAlchemyMaterialToItemStack(stack1, stack3);
+                        AlchemyUtils.addAlchemyMaterialToItemStackWithRandom(stack1, stack3, this.getLevel().random);
                     }
 
                 }
