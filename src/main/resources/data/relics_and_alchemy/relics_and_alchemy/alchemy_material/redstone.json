@@ -1,7 +1,7 @@
 {
   "item": "minecraft:redstone",
   "power": 1,
-  "power_balance": 0.25,
+  "power_balance": 0.4,
   "alchemy_element": [
     "relics_and_alchemy:extend"
   ]

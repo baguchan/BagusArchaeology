@@ -10,6 +10,7 @@ import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
@@ -26,6 +27,6 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(ItemTags.FREEZE_IMMUNE_WEARABLES).add(ModItems.STUDDED_BOOTS.get(), ModItems.STUDDED_LEGGINGS.get(), ModItems.STUDDED_CHESTPLATE.get(), ModItems.STUDDED_HELMET.get());
         tag(ModTags.Items.ALCHEMY_ALLOW_TOOL).add(Items.TRIDENT).addTag(ItemTags.SWORDS).addTag(ItemTags.PICKAXES).addTag(ItemTags.SHOVELS).addTag(ItemTags.AXES);
         tag(ModTags.Items.INGOT_MATERIAL).add(Items.GOLD_INGOT);
-        tag(ModTags.Items.PROJECTILE_MATERIAL).add(Items.CLAY_BALL);
+        tag(ModTags.Items.PROJECTILE_MATERIAL).add(Blocks.CLAY.asItem());
     }
 }

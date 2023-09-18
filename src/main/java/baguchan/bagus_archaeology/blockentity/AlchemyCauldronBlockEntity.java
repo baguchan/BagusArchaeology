@@ -107,7 +107,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
                 return stack1;
             }
             if (stack.is(ModTags.Items.PROJECTILE_MATERIAL)) {
-                ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_PROJECTILE.get());
+                ItemStack stack1 = new ItemStack(ModItems.ALCHEMY_PROJECTILE.get(), 16);
                 for (ItemStack stack2 : items) {
                     Optional<Holder.Reference<AlchemyMaterial>> referenceOptional = RelicsAndAlchemy.registryAccess().lookup(AlchemyMaterial.REGISTRY_KEY).get().listElements().filter(alchemyMaterialReference -> {
                         return stack2.is(alchemyMaterialReference.get().getItem());

@@ -1,7 +1,7 @@
 {
   "item": "minecraft:honey_bottle",
   "power": 3,
-  "power_balance": 0.2,
+  "power_balance": 0.5,
   "alchemy_element": [
     "relics_and_alchemy:usable"
   ]

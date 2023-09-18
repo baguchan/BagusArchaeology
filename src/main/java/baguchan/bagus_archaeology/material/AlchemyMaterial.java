@@ -20,7 +20,7 @@ public class AlchemyMaterial {
                     BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(instance2 -> instance2.getItem()),
                     AlchemyElement.CODEC.listOf().fieldOf("alchemy_element").orElse(List.of()).forGetter(alchemyMaterial -> alchemyMaterial.getAlchemyElement()),
                     Codec.FLOAT.fieldOf("power").orElse(0F).forGetter(alchemyMaterial -> alchemyMaterial.getPower()),
-                    Codec.FLOAT.fieldOf("power_balance").orElse(0F).forGetter(alchemyMaterial -> alchemyMaterial.getPower()),
+                    Codec.FLOAT.fieldOf("power_balance").orElse(1.0F).forGetter(alchemyMaterial -> alchemyMaterial.getPower()),
                     Codec.FLOAT.fieldOf("hardness").orElse(0F).forGetter(alchemyMaterial -> alchemyMaterial.getHardness()),
                     Codec.FLOAT.fieldOf("toughness").orElse(0F).forGetter(alchemyMaterial -> alchemyMaterial.getToughness()))
             .apply(instance, (Item item1, List<AlchemyElement> alchemyMaterial1, Float scale, Float powerBalance, Float hardness, Float toughness) -> new AlchemyMaterial(item1, alchemyMaterial1, scale, powerBalance, hardness, toughness))

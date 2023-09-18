@@ -1,6 +1,7 @@
 {
   "item": "minecraft:pink_tulip",
   "power": 0,
+  "power_balance": 0.05,
   "alchemy_element": [
     "relics_and_alchemy:flower"
   ]

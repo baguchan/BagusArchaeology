@@ -1,6 +1,7 @@
 {
   "item": "minecraft:warped_wart_block",
   "power": -5,
+  "power_balance": 0.8,
   "alchemy_element": [
     "relics_and_alchemy:warped"
   ]

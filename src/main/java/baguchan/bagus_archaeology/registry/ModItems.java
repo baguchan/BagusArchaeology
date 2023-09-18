@@ -30,12 +30,12 @@ public class ModItems {
     public static final RegistryObject<Item> STUDDED_BOOTS = ITEMS.register("studded_boots", () -> new DyeableArmorItem(ModArmorMaterials.STUDDED, ArmorItem.Type.BOOTS, (new Item.Properties())));
     public static final RegistryObject<Item> STUDDED_LEATHER = ITEMS.register("studded_leather", () -> new Item((new Item.Properties())));
 
-    public static final RegistryObject<Item> ALCHEMY_POTION = ITEMS.register("alchemy_potion", () -> new AlchemyPotionItem((new Item.Properties().stacksTo(16))));
+    public static final RegistryObject<Item> ALCHEMY_POTION = ITEMS.register("alchemy_potion", () -> new AlchemyPotionItem((new Item.Properties().stacksTo(1))));
     public static final RegistryObject<Item> ALCHEMY_PROJECTILE = ITEMS.register("alchemy_projectile", () -> new AlchemyProjectileItem((new Item.Properties().stacksTo(16))));
-    public static final RegistryObject<Item> ALCHEMY_INGOT = ITEMS.register("alchemy_ingot", () -> new AlchemyItem((new Item.Properties())));
-    public static final RegistryObject<Item> ALCHEMY_COMBAT_GOLEM = ITEMS.register("alchemy_combat_golem", () -> new AlchemyMobItem(ModEntities.ALCHEMY_COMBAT_GOLEM, (new Item.Properties().stacksTo(1))));
+    public static final RegistryObject<Item> ALCHEMY_INGOT = ITEMS.register("alchemy_ingot", () -> new AlchemyItem((new Item.Properties().stacksTo(1))));
+    public static final RegistryObject<Item> ALCHEMY_COMBAT_GOLEM = ITEMS.register("alchemy_combat_golem", () -> new AlchemyMobItem(ModEntities.ALCHEMY_COMBAT_GOLEM, (new Item.Properties())));
     public static final RegistryObject<Item> ALCHEMY_SLIME = ITEMS.register("alchemy_slime", () -> new AlchemyMobItem(ModEntities.ALCHEMY_SLIME, (new Item.Properties().stacksTo(1))));
-    public static final RegistryObject<Item> GOLEM_COMBAT_CORE = ITEMS.register("golem_combat_core", () -> new Item((new Item.Properties().stacksTo(16))));
+    public static final RegistryObject<Item> GOLEM_COMBAT_CORE = ITEMS.register("golem_combat_core", () -> new Item((new Item.Properties().stacksTo(1))));
 
     public static void dispenserRegistry() {
         DispenserBlock.registerBehavior(ALCHEMY_PROJECTILE.get(), new AbstractProjectileDispenseBehavior() {
