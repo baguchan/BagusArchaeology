@@ -63,9 +63,9 @@ public class AlchemyCategory implements IRecipeCategory<AlchemyRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, AlchemyRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 20, 18).addIngredients(Ingredient.of(ModTags.Items.INGOT_MATERIAL)).addIngredients(Ingredient.of(ModTags.Items.PROJECTILE_MATERIAL)).addIngredients(Ingredient.of(ModItems.GOLEM_COMBAT_CORE.get()));
+        builder.addSlot(RecipeIngredientRole.INPUT, 20, 18).addItemStacks(recipe.getInputs());
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 99, 18).addItemStacks(recipe.getInputs());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 99, 18).addIngredients(Ingredient.of(ModTags.Items.INGOT_MATERIAL)).addIngredients(Ingredient.of(ModTags.Items.PROJECTILE_MATERIAL)).addIngredients(Ingredient.of(ModItems.GOLEM_COMBAT_CORE.get()));
     }
 
 
