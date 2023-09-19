@@ -32,5 +32,5 @@
   "item.relics_and_alchemy.smithing_template.alchemy_upgrade.ingredients": "Nothing",
   "relics_and_alchemy.jei.alchemy": "Alchemy",
   "relics_and_alchemy.jei.alchemy_random": "Another Materials",
-  "relics_and_alchemy.jei.alchemy_random_result": "Random Result"
+  "relics_and_alchemy.jei.alchemy_random_result": "Item with Random Result"
 }

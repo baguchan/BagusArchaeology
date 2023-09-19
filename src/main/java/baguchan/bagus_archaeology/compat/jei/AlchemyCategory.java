@@ -64,19 +64,19 @@ public class AlchemyCategory implements IRecipeCategory<AlchemyRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, AlchemyRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 20, 18).addItemStacks(recipe.getInputs());
-        builder.addSlot(RecipeIngredientRole.INPUT, 74, 11).addIngredients(Ingredient.of(ModTags.Items.INGOT_MATERIAL)).addIngredients(Ingredient.of(ModTags.Items.PROJECTILE_MATERIAL)).addIngredients(Ingredient.of(ModItems.GOLEM_COMBAT_CORE.get()));
+        builder.addSlot(RecipeIngredientRole.INPUT, 20, 18 + 8).addItemStacks(recipe.getInputs());
+        builder.addSlot(RecipeIngredientRole.INPUT, 74 - 16, 11 - 8).addIngredients(Ingredient.of(ModTags.Items.INGOT_MATERIAL)).addIngredients(Ingredient.of(ModTags.Items.PROJECTILE_MATERIAL)).addIngredients(Ingredient.of(ModItems.GOLEM_COMBAT_CORE.get()));
     }
 
 
     @Override
     public void draw(AlchemyRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics stack, double mouseX, double mouseY) {
-        arrow.draw(stack, 72 - 17, 35 - 17);
-        if (mouseX > 60 && mouseX < 70 && mouseY > 36 && mouseY < 47) {
-            stack.renderComponentHoverEffect(Minecraft.getInstance().font, Minecraft.getInstance().font.getSplitter().componentStyleAtWidth(Component.translatable("relics_and_alchemy.jei.alchemy_random"), 32), (int) mouseX, (int) mouseY);
+        arrow.draw(stack, 72 - 17, 35 - 9);
+        if (mouseX > 60 - 16 && mouseX < 70 - 16 && mouseY > 36 - 8 && mouseY < 47 - 8) {
+            stack.renderTooltip(Minecraft.getInstance().font, Component.translatable("relics_and_alchemy.jei.alchemy_random"), (int) mouseX, (int) mouseY);
         }
-        if (mouseX > 118 && mouseX < 128 && mouseY > 36 && mouseY < 47) {
-            stack.renderComponentHoverEffect(Minecraft.getInstance().font, Minecraft.getInstance().font.getSplitter().componentStyleAtWidth(Component.translatable("relics_and_alchemy.jei.alchemy_random_result"), 32), (int) mouseX, (int) mouseY);
+        if (mouseX > 118 - 16 && mouseX < 128 - 16 && mouseY > 36 - 8 && mouseY < 47 - 8) {
+            stack.renderTooltip(Minecraft.getInstance().font, Component.translatable("relics_and_alchemy.jei.alchemy_random_result"), (int) mouseX, (int) mouseY);
         }
     }
 
