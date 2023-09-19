@@ -1,6 +1,7 @@
 package baguchan.bagus_archaeology.data;
 
 import baguchan.bagus_archaeology.RelicsAndAlchemy;
+import baguchan.bagus_archaeology.registry.ModBlocks;
 import baguchan.bagus_archaeology.registry.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -25,6 +26,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         this.basicItem(ModItems.ALCHEMY_INGOT.get());
         this.basicItem(ModItems.ALCHEMY_SLIME.get());
         this.basicItem(ModItems.GOLEM_COMBAT_CORE.get());
+        this.toBlockModel(ModBlocks.ALCHEMY_CAULDRON.get(), "alchemy_cauldron_full");
     }
 
     private void toBlock(Block b) {

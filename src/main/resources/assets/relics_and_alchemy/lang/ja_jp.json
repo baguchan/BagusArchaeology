@@ -29,5 +29,6 @@
   "item.relics_and_alchemy.smithing_template.alchemy_upgrade.additions_slot_description": "錬金インゴットをここに入れてください",
   "item.relics_and_alchemy.smithing_template.alchemy_upgrade.applies_to": "各種装備",
   "item.relics_and_alchemy.smithing_template.alchemy_upgrade.base_slot_description": "アーマー、武器、ツールをここに入れてください",
-  "item.relics_and_alchemy.smithing_template.alchemy_upgrade.ingredients": "なし"
+  "item.relics_and_alchemy.smithing_template.alchemy_upgrade.ingredients": "なし",
+  "relics_and_alchemy.jei.alchemy": "錬金"
 }

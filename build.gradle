@@ -122,6 +122,8 @@ repositories {
     // flatDir {
     //     dir 'libs'
     // }
+    maven { url = "https://dvs1.progwml6.com/files/maven/" } // JEI
+    maven { url = "https://modmaven.k-4u.nl" } // Mirror for JEI
     maven {
         url = "https://api.modrinth.com/maven"
     }
@@ -136,6 +138,9 @@ dependencies {
     minecraft "net.neoforged:forge:${minecraft_version}-${neo_version}"
     annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
     implementation(fg.deobf("maven.modrinth:bagus-lib:1.20.1-4.0.0"))
+    compileOnly(fg.deobf("mezz.jei:jei-1.20.1-forge-api:15.2.0.25"))
+    compileOnly(fg.deobf("mezz.jei:jei-1.20.1-common-api:15.2.0.25"))
+    runtimeOnly(fg.deobf("mezz.jei:jei-1.20.1-forge:15.2.0.25"))
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")

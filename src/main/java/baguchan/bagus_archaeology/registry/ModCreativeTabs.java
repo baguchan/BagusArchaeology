@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 public class ModCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, RelicsAndAlchemy.MODID);
 
-    public static final RegistryObject<CreativeModeTab> SOUL_ARCHAEOLOGY = CREATIVE_TABS.register("soul_received", () -> CreativeModeTab.builder()
+    public static final RegistryObject<CreativeModeTab> RELIC_AMD_ALCHEMY = CREATIVE_TABS.register("relics_and_alchemy", () -> CreativeModeTab.builder()
             .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
             .title(Component.translatable("itemGroup." + "relics_and_alchemy"))
             .icon(() -> ModItems.ALCHEMY_INGOT.get().getDefaultInstance())
