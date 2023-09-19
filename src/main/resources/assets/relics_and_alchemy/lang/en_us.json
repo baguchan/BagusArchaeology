@@ -30,5 +30,7 @@
   "item.relics_and_alchemy.smithing_template.alchemy_upgrade.applies_to": "Any Equipment",
   "item.relics_and_alchemy.smithing_template.alchemy_upgrade.base_slot_description": "Put a piece of armor, weapon or tool here",
   "item.relics_and_alchemy.smithing_template.alchemy_upgrade.ingredients": "Nothing",
-  "relics_and_alchemy.jei.alchemy": "Alchemy"
+  "relics_and_alchemy.jei.alchemy": "Alchemy",
+  "relics_and_alchemy.jei.alchemy_random": "Another Materials",
+  "relics_and_alchemy.jei.alchemy_random_result": "Random Result"
 }
