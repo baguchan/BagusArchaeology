@@ -156,7 +156,7 @@ public class AlchemyUtils {
         compoundnbt1.putFloat(TAG_ALCHEMY_SCALE, 1.0F - scale);
         listnbt.add(compoundnbt1);
 
-        itemIn.getTag().put(TAG_STORED_ALCHEMY_MATERIAL, listnbt);
+        itemIn.getOrCreateTag().put(TAG_STORED_ALCHEMY_MATERIAL, listnbt);
     }
 
     public static boolean findAlchemyElementHandler(List<AlchemyElement> list, AlchemyElement findAlchemyElement) {
