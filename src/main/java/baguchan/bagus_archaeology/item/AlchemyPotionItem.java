@@ -2,6 +2,7 @@ package baguchan.bagus_archaeology.item;
 
 import baguchan.bagus_archaeology.element.AlchemyElement;
 import baguchan.bagus_archaeology.material.AlchemyMaterial;
+import baguchan.bagus_archaeology.util.AlchemyData;
 import baguchan.bagus_archaeology.util.AlchemyUtils;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
@@ -15,7 +16,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 
-import java.util.Map;
+import java.util.List;
 
 public class AlchemyPotionItem extends AlchemyItem {
     public AlchemyPotionItem(Item.Properties properties) {
@@ -32,13 +33,13 @@ public class AlchemyPotionItem extends AlchemyItem {
 
         float scale = 0F;
         if (AlchemyUtils.hasAlchemyMaterial(p_41348_)) {
-            Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(p_41348_);
-            for (Map.Entry<AlchemyMaterial, Float> entry : alchemyMaterialList.entrySet()) {
-                AlchemyMaterial alchemyMaterial = entry.getKey();
-                scale += alchemyMaterial.getPower() * entry.getValue();
+            List<AlchemyData> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(p_41348_);
+            for (AlchemyData entry : alchemyMaterialList) {
+                AlchemyMaterial alchemyMaterial = entry.alchemy;
+                scale += alchemyMaterial.getPower() * entry.alchemyScale;
                 for (AlchemyElement alchemyElement : alchemyMaterial.getAlchemyElement()) {
                     alchemyElement.active(p_41350_, alchemyMaterial.getItem(), scale);
-                    scale *= alchemyElement.getSelfScale();
+                    scale *= alchemyElement.getSelfPostScale();
                 }
             }
         }

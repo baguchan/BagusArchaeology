@@ -25,12 +25,12 @@ public class ExplosionElement extends AlchemyElement {
     }
 
     @Override
-    public float getProjectileScale() {
-        return super.getProjectileScale() * 0.75F;
+    public float getProjectilePostScale() {
+        return super.getProjectilePostScale() * 0.75F;
     }
 
     @Override
-    public float getSelfScale() {
-        return super.getSelfScale() * 1.025F;
+    public float getSelfPostScale() {
+        return super.getSelfPostScale() * 1.025F;
     }
 }

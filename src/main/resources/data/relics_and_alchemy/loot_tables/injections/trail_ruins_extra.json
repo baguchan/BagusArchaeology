@@ -5,38 +5,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 50,
+          "weight": 40,
           "name": "minecraft:air"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 10,
-          "name": "relics_and_alchemy:studded_leather"
         },
         {
           "type": "minecraft:item",
           "weight": 5,
           "name": "relics_and_alchemy:golem_combat_core"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "relics_and_alchemy:studded_helmet"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "relics_and_alchemy:studded_chestplate"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "relics_and_alchemy:studded_leggings"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 1,
-          "name": "relics_and_alchemy:studded_boots"
         }
       ]
     }

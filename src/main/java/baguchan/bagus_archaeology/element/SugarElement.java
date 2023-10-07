@@ -19,12 +19,12 @@ public class SugarElement extends AlchemyElement {
     }
 
     @Override
-    public float getProjectileScale() {
-        return super.getProjectileScale() * 0.2F;
+    public float getProjectilePostScale() {
+        return super.getProjectilePostScale() * 0.2F;
     }
 
     @Override
-    public float getSelfScale() {
-        return super.getSelfScale() * 0.5F;
+    public float getSelfPostScale() {
+        return super.getSelfPostScale() * 0.5F;
     }
 }

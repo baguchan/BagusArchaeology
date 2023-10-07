@@ -141,7 +141,7 @@ public class AlchemyCauldronBlockEntity extends BlockEntity implements Container
 
             if (stack.is(ModItems.GOLEM_COMBAT_CORE.get())) {
                 ItemStack stack1;
-                if (AlchemyUtils.getAlchemyMaterialHardness(AlchemyUtils.getAlchemyMaterials(stack).keySet()) > 0) {
+                if (AlchemyUtils.getAlchemyMaterialHardness(AlchemyUtils.getAlchemyMaterials(stack)) > 0) {
                     stack1 = new ItemStack(ModItems.ALCHEMY_COMBAT_GOLEM.get());
                 } else {
                     stack1 = new ItemStack(ModItems.ALCHEMY_SLIME.get());

@@ -1,9 +1,9 @@
 package baguchan.bagus_archaeology;
 
 import baguchan.bagus_archaeology.element.AlchemyElement;
-import baguchan.bagus_archaeology.material.AlchemyMaterial;
 import baguchan.bagus_archaeology.registry.ModBlocks;
 import baguchan.bagus_archaeology.registry.ModTags;
+import baguchan.bagus_archaeology.util.AlchemyData;
 import baguchan.bagus_archaeology.util.AlchemyUtils;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -23,7 +23,7 @@ import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.Map;
+import java.util.List;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = RelicsAndAlchemy.MODID)
@@ -69,14 +69,14 @@ public class CommonEvents {
             float toughness = 0;
 
             if (AlchemyUtils.hasAlchemyMaterial(stack)) {
-                Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(stack);
+                List<AlchemyData> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(stack);
 
-                for (Map.Entry<AlchemyMaterial, Float> entry : alchemyMaterialList.entrySet()) {
-                    hardness += entry.getKey().getHardness() * entry.getValue() * 0.1F;
-                    toughness += entry.getKey().getToughness() * entry.getValue() * 0.2F;
-                    power += entry.getKey().getPower() * entry.getValue() * 0.1F;
-                    for (AlchemyElement alchemyElement : entry.getKey().getAlchemyElement()) {
-                        power *= alchemyElement.getSelfScale();
+                for (AlchemyData entry : alchemyMaterialList) {
+                    hardness += entry.alchemy.getHardness() * entry.alchemyScale * 0.1F;
+                    toughness += entry.alchemy.getToughness() * entry.alchemyScale * 0.2F;
+                    power += entry.alchemy.getPower() * entry.alchemyScale * 0.1F;
+                    for (AlchemyElement alchemyElement : entry.alchemy.getAlchemyElement()) {
+                        power *= alchemyElement.getSelfPostScale();
                     }
                 }
             }

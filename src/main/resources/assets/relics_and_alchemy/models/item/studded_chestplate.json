@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "relics_and_alchemy:item/studded_chestplate",
-    "layer1": "relics_and_alchemy:item/studded_chestplate_overlay"
-  }
-}

@@ -60,12 +60,12 @@ public class FireElement extends AlchemyElement {
     }
 
     @Override
-    public float getSelfScale() {
+    public float getSelfPostScale() {
         return 1.1F;
     }
 
     @Override
-    public float getProjectileScale() {
+    public float getProjectilePostScale() {
         return 0.8F;
     }
 }

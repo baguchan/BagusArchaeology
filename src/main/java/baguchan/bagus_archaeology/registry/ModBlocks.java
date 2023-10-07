@@ -1,13 +1,13 @@
 package baguchan.bagus_archaeology.registry;
 
 import baguchan.bagus_archaeology.RelicsAndAlchemy;
-import baguchan.bagus_archaeology.block.*;
+import baguchan.bagus_archaeology.block.AlchemyCauldronBlock;
+import baguchan.bagus_archaeology.block.BrushableSoulSandBlock;
+import baguchan.bagus_archaeology.block.BrushableSoulSoilBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.WallSkullBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -23,10 +23,6 @@ import java.util.function.ToIntFunction;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, RelicsAndAlchemy.MODID);
-    public static final SkullBlock.Type PIGMAN_SKULL_TYPE = new SkullBlock.Type() {
-    };
-    public static final RegistryObject<SkullBlock> PIGMAN_SKULL = noItemRegister("pigman_skull", () -> new ModSkullBlock(PIGMAN_SKULL_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
-    public static final RegistryObject<WallSkullBlock> PIGMAN_SKULL_WALL = noItemRegister("pigman_skull_wall", () -> new ModWallSkullBlock(PIGMAN_SKULL_TYPE, BlockBehaviour.Properties.of().strength(1F).sound(SoundType.BONE_BLOCK)));
     public static final RegistryObject<BrushableSoulSandBlock> SUSPICIOUS_SOUL_SAND = register("suspicious_soul_sand", () -> new BrushableSoulSandBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.35F).instrument(NoteBlockInstrument.COW_BELL).speedFactor(0.4F).sound(SoundType.SUSPICIOUS_SAND)));
     public static final RegistryObject<BrushableSoulSoilBlock> SUSPICIOUS_SOUL_SOIL = register("suspicious_soul_soil", () -> new BrushableSoulSoilBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.35F).sound(SoundType.SUSPICIOUS_SAND)));
     public static final RegistryObject<AlchemyCauldronBlock> ALCHEMY_CAULDRON = register("alchemy_cauldron", () -> new AlchemyCauldronBlock(BlockBehaviour.Properties.of().strength(1F, 5F).lightLevel(litBlockEmission(10)).sound(SoundType.METAL)));

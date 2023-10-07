@@ -3,7 +3,7 @@ package baguchan.bagus_archaeology.util;
 import baguchan.bagus_archaeology.RelicsAndAlchemy;
 import baguchan.bagus_archaeology.element.AlchemyElement;
 import baguchan.bagus_archaeology.material.AlchemyMaterial;
-import com.google.common.collect.Maps;
+import com.google.common.collect.Lists;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -13,9 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 public class AlchemyUtils {
     public static final String TAG_ALCHEMY_ELEMENT = "AlchemyElement";
@@ -79,18 +77,18 @@ public class AlchemyUtils {
      *
      * @param stack AlchemyElemented Item
      */
-    public static Map<AlchemyMaterial, Float> getAlchemyMaterials(ItemStack stack) {
+    public static List<AlchemyData> getAlchemyMaterials(ItemStack stack) {
         ListTag listnbt = getAlchemyMaterialListForNBT(stack.getTag());
         return makeAlchemyMaterialListFromListNBT(listnbt);
     }
 
-    private static Map<AlchemyMaterial, Float> makeAlchemyMaterialListFromListNBT(ListTag p_226652_0_) {
-        Map<AlchemyMaterial, Float> map = Maps.newLinkedHashMap();
+    private static List<AlchemyData> makeAlchemyMaterialListFromListNBT(ListTag p_226652_0_) {
+        List<AlchemyData> map = Lists.newLinkedList();
 
         for (int i = 0; i < p_226652_0_.size(); ++i) {
             CompoundTag compoundnbt = p_226652_0_.getCompound(i);
             AlchemyMaterial mobEnchant = getAlchemyMaterialFromString(compoundnbt.getString(TAG_ALCHEMY_MATERIAL));
-            map.put(mobEnchant, compoundnbt.getFloat(TAG_ALCHEMY_SCALE) + 1.0F);
+            map.add(new AlchemyData(mobEnchant, compoundnbt.getFloat(TAG_ALCHEMY_SCALE) + 1.0F));
 
         }
 
@@ -180,18 +178,18 @@ public class AlchemyUtils {
         return count;
     }
 
-    public static float getAlchemyMaterialToughness(Set<AlchemyMaterial> list) {
+    public static float getAlchemyMaterialToughness(List<AlchemyData> list) {
         float count = 0;
-        for (AlchemyMaterial element : list) {
-            count += (int) element.getToughness();
+        for (AlchemyData element : list) {
+            count += (int) element.alchemy.getToughness();
         }
         return count;
     }
 
-    public static float getAlchemyMaterialHardness(Set<AlchemyMaterial> list) {
+    public static float getAlchemyMaterialHardness(List<AlchemyData> list) {
         float count = 0;
-        for (AlchemyMaterial element : list) {
-            count += (int) element.getHardness();
+        for (AlchemyData element : list) {
+            count += (int) element.alchemy.getHardness();
         }
         return count;
     }

@@ -66,12 +66,12 @@ public class WarpedElement extends AlchemyElement {
     }
 
     @Override
-    public float getProjectileScale() {
-        return super.getProjectileScale() * 0.85F;
+    public float getProjectilePostScale() {
+        return super.getProjectilePostScale() * 0.85F;
     }
 
     @Override
-    public float getSelfScale() {
-        return super.getSelfScale() * 2.0F;
+    public float getSelfPostScale() {
+        return super.getSelfPostScale() * 2.0F;
     }
 }

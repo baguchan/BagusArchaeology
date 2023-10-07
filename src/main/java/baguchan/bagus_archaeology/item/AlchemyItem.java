@@ -1,7 +1,7 @@
 package baguchan.bagus_archaeology.item;
 
 import baguchan.bagus_archaeology.element.AlchemyElement;
-import baguchan.bagus_archaeology.material.AlchemyMaterial;
+import baguchan.bagus_archaeology.util.AlchemyData;
 import baguchan.bagus_archaeology.util.AlchemyUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.CommonComponents;
@@ -13,7 +13,6 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Map;
 
 public class AlchemyItem extends Item {
     public AlchemyItem(Properties properties) {
@@ -21,20 +20,20 @@ public class AlchemyItem extends Item {
     }
 
     public void appendHoverText(ItemStack p_42988_, @Nullable Level p_42989_, List<Component> p_42990_, TooltipFlag p_42991_) {
-        Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(p_42988_);
+        List<AlchemyData> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(p_42988_);
         float self = 0;
         float projectile = 0;
         float hardness = 0;
         float toughness = 0;
-        for (Map.Entry<AlchemyMaterial, Float> alchemyMaterial : alchemyMaterialList.entrySet()) {
-            p_42990_.add(alchemyMaterial.getKey().getName());
-            self += alchemyMaterial.getKey().getPower() * alchemyMaterial.getValue();
-            projectile += alchemyMaterial.getKey().getPower() * alchemyMaterial.getValue();
-            hardness += alchemyMaterial.getKey().getHardness() * alchemyMaterial.getValue();
-            toughness += alchemyMaterial.getKey().getToughness() * alchemyMaterial.getValue();
-            for (AlchemyElement alchemyElement : alchemyMaterial.getKey().getAlchemyElement()) {
-                self *= alchemyElement.getSelfScale();
-                projectile *= alchemyElement.getProjectileScale();
+        for (AlchemyData alchemyMaterial : alchemyMaterialList) {
+            p_42990_.add(alchemyMaterial.alchemy.getName());
+            self += alchemyMaterial.alchemy.getPower() * alchemyMaterial.alchemyScale;
+            projectile += alchemyMaterial.alchemy.getPower() * alchemyMaterial.alchemyScale;
+            hardness += alchemyMaterial.alchemy.getHardness() * alchemyMaterial.alchemyScale;
+            toughness += alchemyMaterial.alchemy.getToughness() * alchemyMaterial.alchemyScale;
+            for (AlchemyElement alchemyElement : alchemyMaterial.alchemy.getAlchemyElement()) {
+                self *= alchemyElement.getSelfPostScale();
+                projectile *= alchemyElement.getProjectilePostScale();
             }
         }
 

@@ -3,6 +3,7 @@ package baguchan.bagus_archaeology.client;
 import baguchan.bagus_archaeology.RelicsAndAlchemy;
 import baguchan.bagus_archaeology.material.AlchemyMaterial;
 import baguchan.bagus_archaeology.registry.ModTags;
+import baguchan.bagus_archaeology.util.AlchemyData;
 import baguchan.bagus_archaeology.util.AlchemyUtils;
 import com.google.common.collect.Lists;
 import net.minecraft.network.chat.Component;
@@ -17,7 +18,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
-import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = RelicsAndAlchemy.MODID, value = Dist.CLIENT)
 public class ClientEvents {
@@ -28,9 +28,9 @@ public class ClientEvents {
         Player player = event.getEntity();
 
         if (stack.getItem() instanceof ArmorItem armorItem || stack.getItem() instanceof TieredItem || stack.is(ModTags.Items.ALCHEMY_ALLOW_TOOL)) {
-            Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(stack);
-            for (Map.Entry<AlchemyMaterial, Float> entry : alchemyMaterialList.entrySet()) {
-                AlchemyMaterial alchemyMaterial = entry.getKey();
+            List<AlchemyData> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(stack);
+            for (AlchemyData entry : alchemyMaterialList) {
+                AlchemyMaterial alchemyMaterial = entry.alchemy;
                 list.add(alchemyMaterial.getName());
             }
         }

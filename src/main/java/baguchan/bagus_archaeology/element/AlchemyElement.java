@@ -25,11 +25,11 @@ public abstract class AlchemyElement {
     }
 
 
-    public float getProjectileScale() {
+    public float getProjectilePostScale() {
         return 1.0F;
     }
 
-    public float getSelfScale() {
+    public float getSelfPostScale() {
         return 1.0F;
     }
 

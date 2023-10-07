@@ -18,11 +18,11 @@ public class ExtendElement extends AlchemyElement {
     public void active(Entity entity, Item item, float power) {
     }
 
-    public float getProjectileScale() {
+    public float getProjectilePostScale() {
         return 1.15F;
     }
 
-    public float getSelfScale() {
+    public float getSelfPostScale() {
         return 1.05F;
     }
 }

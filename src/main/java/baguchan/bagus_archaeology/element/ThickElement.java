@@ -31,11 +31,11 @@ public class ThickElement extends AlchemyElement {
         }
     }
 
-    public float getProjectileScale() {
+    public float getProjectilePostScale() {
         return 1.05F;
     }
 
-    public float getSelfScale() {
+    public float getSelfPostScale() {
         return 1.15F;
     }
 }

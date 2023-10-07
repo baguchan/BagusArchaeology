@@ -1,7 +1,7 @@
 package baguchan.bagus_archaeology.recipe;
 
-import baguchan.bagus_archaeology.material.AlchemyMaterial;
 import baguchan.bagus_archaeology.registry.ModRecipes;
+import baguchan.bagus_archaeology.util.AlchemyData;
 import baguchan.bagus_archaeology.util.AlchemyUtils;
 import com.google.gson.JsonObject;
 import net.minecraft.core.RegistryAccess;
@@ -16,7 +16,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SmithingRecipe;
 import net.minecraft.world.level.Level;
 
-import java.util.Map;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class AlchemySmithingRecipe implements SmithingRecipe {
@@ -39,9 +39,9 @@ public class AlchemySmithingRecipe implements SmithingRecipe {
         ItemStack itemstack2 = itemstack.copy();
         if (this.base.test(itemstack2)) {
             if (AlchemyUtils.hasAlchemyMaterial(p_267320_.getItem(0))) {
-                Map<AlchemyMaterial, Float> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(p_267320_.getItem(0));
-                alchemyMaterialList.forEach((alchemyMaterial, scale) -> {
-                    AlchemyUtils.addAlchemyMaterialToItemStack(itemstack2, alchemyMaterial, scale);
+                List<AlchemyData> alchemyMaterialList = AlchemyUtils.getAlchemyMaterials(p_267320_.getItem(0));
+                alchemyMaterialList.forEach((alchemyMaterial) -> {
+                    AlchemyUtils.addAlchemyMaterialToItemStack(itemstack2, alchemyMaterial.alchemy, alchemyMaterial.alchemyScale);
                 });
 
             }
